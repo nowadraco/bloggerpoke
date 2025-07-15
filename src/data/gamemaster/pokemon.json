@@ -8,7 +8,7 @@
             "def": 111,
             "hp": 128
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["TACKLE", "VINE_WHIP"],
         "chargedMoves": ["POWER_WHIP", "SEED_BOMB", "SLUDGE_BOMB"],
         "tags": ["starter", "shadoweligible"],
@@ -35,7 +35,7 @@
             "def": 111,
             "hp": 128
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["TACKLE", "VINE_WHIP"],
         "chargedMoves": ["POWER_WHIP", "SEED_BOMB", "SLUDGE_BOMB"],
         "tags": ["starter", "shadow"],
@@ -61,7 +61,7 @@
             "def": 143,
             "hp": 155
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["RAZOR_LEAF", "VINE_WHIP"],
         "chargedMoves": ["POWER_WHIP", "SLUDGE_BOMB", "SOLAR_BEAM"],
         "tags": ["starter", "shadoweligible"],
@@ -89,7 +89,7 @@
             "def": 143,
             "hp": 155
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["RAZOR_LEAF", "VINE_WHIP"],
         "chargedMoves": ["POWER_WHIP", "SLUDGE_BOMB", "SOLAR_BEAM"],
         "tags": ["starter", "shadow"],
@@ -116,7 +116,7 @@
             "def": 189,
             "hp": 190
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["RAZOR_LEAF", "VINE_WHIP"],
         "chargedMoves": ["FRENZY_PLANT", "PETAL_BLIZZARD", "SLUDGE_BOMB", "SOLAR_BEAM"],
         "tags": ["starter", "shadoweligible"],
@@ -145,7 +145,7 @@
             "def": 246,
             "hp": 190
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["RAZOR_LEAF", "VINE_WHIP"],
         "chargedMoves": ["FRENZY_PLANT", "PETAL_BLIZZARD", "SLUDGE_BOMB", "SOLAR_BEAM"],
         "tags": ["starter", "shadoweligible", "mega"],
@@ -173,7 +173,7 @@
             "def": 189,
             "hp": 190
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["RAZOR_LEAF", "VINE_WHIP"],
         "chargedMoves": ["FRENZY_PLANT", "PETAL_BLIZZARD", "SLUDGE_BOMB", "SOLAR_BEAM"],
         "tags": ["starter", "shadow"],
@@ -2837,7 +2837,7 @@
             "def": 112,
             "hp": 128
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "RAZOR_LEAF"],
         "chargedMoves": ["MOONBLAST", "SEED_BOMB", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -2864,7 +2864,7 @@
             "def": 112,
             "hp": 128
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "RAZOR_LEAF"],
         "chargedMoves": ["MOONBLAST", "SEED_BOMB", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -2890,7 +2890,7 @@
             "def": 136,
             "hp": 155
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "RAZOR_LEAF"],
         "chargedMoves": ["MOONBLAST", "PETAL_BLIZZARD", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -2918,7 +2918,7 @@
             "def": 136,
             "hp": 155
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "RAZOR_LEAF"],
         "chargedMoves": ["MOONBLAST", "PETAL_BLIZZARD", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -2945,7 +2945,7 @@
             "def": 167,
             "hp": 181
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "RAZOR_LEAF"],
         "chargedMoves": ["MOONBLAST", "PETAL_BLIZZARD", "SOLAR_BEAM", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -2973,7 +2973,7 @@
             "def": 167,
             "hp": 181
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "RAZOR_LEAF"],
         "chargedMoves": ["MOONBLAST", "PETAL_BLIZZARD", "SOLAR_BEAM", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -3000,7 +3000,7 @@
             "def": 99,
             "hp": 111
         },
-        "types": ["bug", "grass"],
+        "types": ["bug", "planta"],
         "fastMoves": ["BUG_BITE", "SCRATCH"],
         "chargedMoves": ["CROSS_POISON", "SEED_BOMB", "X_SCISSOR"],
         "defaultIVs": {
@@ -3025,7 +3025,7 @@
             "def": 146,
             "hp": 155
         },
-        "types": ["bug", "grass"],
+        "types": ["bug", "planta"],
         "fastMoves": ["BUG_BITE", "FURY_CUTTER", "STRUGGLE_BUG"],
         "chargedMoves": ["CROSS_POISON", "SOLAR_BEAM", "X_SCISSOR"],
         "defaultIVs": {
@@ -4473,7 +4473,7 @@
             "def": 61,
             "hp": 137
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "VINE_WHIP"],
         "chargedMoves": ["POWER_WHIP", "SLUDGE_BOMB", "WRAP"],
         "defaultIVs": {
@@ -4500,7 +4500,7 @@
             "def": 61,
             "hp": 137
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "VINE_WHIP"],
         "chargedMoves": ["POWER_WHIP", "SLUDGE_BOMB", "WRAP"],
         "defaultIVs": {
@@ -4526,7 +4526,7 @@
             "def": 92,
             "hp": 163
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "BULLET_SEED", "RAZOR_LEAF"],
         "chargedMoves": ["POWER_WHIP", "SEED_BOMB", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -4556,7 +4556,7 @@
             "def": 92,
             "hp": 163
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "BULLET_SEED", "RAZOR_LEAF"],
         "chargedMoves": ["POWER_WHIP", "SEED_BOMB", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -4584,7 +4584,7 @@
             "def": 135,
             "hp": 190
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "RAZOR_LEAF", "MAGICAL_LEAF"],
         "chargedMoves": ["LEAF_BLADE", "SLUDGE_BOMB", "SOLAR_BEAM", "ACID_SPRAY", "LEAF_TORNADO"],
         "eliteMoves": ["MAGICAL_LEAF"],
@@ -4614,7 +4614,7 @@
             "def": 135,
             "hp": 190
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ACID", "RAZOR_LEAF", "MAGICAL_LEAF"],
         "chargedMoves": ["LEAF_BLADE", "SLUDGE_BOMB", "SOLAR_BEAM", "ACID_SPRAY", "LEAF_TORNADO"],
         "eliteMoves": ["MAGICAL_LEAF"],
@@ -6431,7 +6431,7 @@
             "def": 111,
             "hp": 120
         },
-        "types": ["grass", "electric"],
+        "types": ["planta", "electric"],
         "fastMoves": ["CHARGE_BEAM", "TACKLE"],
         "chargedMoves": ["SWIFT", "THUNDERBOLT", "ENERGY_BALL"],
         "defaultIVs": {
@@ -6513,7 +6513,7 @@
             "def": 176,
             "hp": 155
         },
-        "types": ["electric", "grass"],
+        "types": ["electric", "planta"],
         "fastMoves": ["THUNDER_SHOCK", "TACKLE"],
         "chargedMoves": ["SWIFT", "WILD_CHARGE", "ENERGY_BALL"],
         "defaultIVs": {
@@ -6569,7 +6569,7 @@
             "def": 125,
             "hp": 155
         },
-        "types": ["grass", "psychic"],
+        "types": ["planta", "psychic"],
         "fastMoves": ["BULLET_SEED", "CONFUSION"],
         "chargedMoves": ["ANCIENT_POWER", "PSYCHIC", "SEED_BOMB"],
         "defaultIVs": {
@@ -6596,7 +6596,7 @@
             "def": 125,
             "hp": 155
         },
-        "types": ["grass", "psychic"],
+        "types": ["planta", "psychic"],
         "fastMoves": ["BULLET_SEED", "CONFUSION"],
         "chargedMoves": ["ANCIENT_POWER", "PSYCHIC", "SEED_BOMB"],
         "defaultIVs": {
@@ -6622,7 +6622,7 @@
             "def": 149,
             "hp": 216
         },
-        "types": ["grass", "psychic"],
+        "types": ["planta", "psychic"],
         "fastMoves": ["BULLET_SEED", "CONFUSION", "EXTRASENSORY", "ZEN_HEADBUTT"],
         "chargedMoves": ["PSYCHIC", "SEED_BOMB", "SOLAR_BEAM"],
         "defaultIVs": {
@@ -6651,7 +6651,7 @@
             "def": 153,
             "hp": 216
         },
-        "types": ["grass", "dragon"],
+        "types": ["planta", "dragon"],
         "fastMoves": ["BULLET_SEED", "DRAGON_TAIL"],
         "chargedMoves": ["DRAGON_PULSE", "SEED_BOMB", "SOLAR_BEAM", "DRACO_METEOR"],
         "eliteMoves": ["DRACO_METEOR"],
@@ -6679,7 +6679,7 @@
             "def": 153,
             "hp": 216
         },
-        "types": ["grass", "dragon"],
+        "types": ["planta", "dragon"],
         "fastMoves": ["BULLET_SEED", "DRAGON_TAIL"],
         "chargedMoves": ["DRAGON_PULSE", "SEED_BOMB", "SOLAR_BEAM", "DRACO_METEOR"],
         "eliteMoves": ["DRACO_METEOR"],
@@ -6706,7 +6706,7 @@
             "def": 149,
             "hp": 216
         },
-        "types": ["grass", "psychic"],
+        "types": ["planta", "psychic"],
         "fastMoves": ["BULLET_SEED", "CONFUSION", "EXTRASENSORY", "ZEN_HEADBUTT"],
         "chargedMoves": ["PSYCHIC", "SEED_BOMB", "SOLAR_BEAM"],
         "defaultIVs": {
@@ -7350,7 +7350,7 @@
             "def": 169,
             "hp": 163
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["INFESTATION", "VINE_WHIP"],
         "chargedMoves": ["GRASS_KNOT", "POWER_WHIP", "SLUDGE_BOMB", "SOLAR_BEAM"],
         "defaultIVs": {
@@ -7379,7 +7379,7 @@
             "def": 169,
             "hp": 163
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["INFESTATION", "VINE_WHIP"],
         "chargedMoves": ["GRASS_KNOT", "POWER_WHIP", "SLUDGE_BOMB", "SOLAR_BEAM"],
         "defaultIVs": {
@@ -9227,7 +9227,7 @@
             "def": 122,
             "hp": 128
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["TACKLE", "VINE_WHIP", "MAGICAL_LEAF"],
         "chargedMoves": ["BODY_SLAM", "ENERGY_BALL", "GRASS_KNOT"],
         "tags": ["starter", "shadoweligible"],
@@ -9254,7 +9254,7 @@
             "def": 122,
             "hp": 128
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["TACKLE", "VINE_WHIP", "MAGICAL_LEAF"],
         "chargedMoves": ["BODY_SLAM", "ENERGY_BALL", "GRASS_KNOT"],
         "tags": ["starter", "shadow"],
@@ -9280,7 +9280,7 @@
             "def": 155,
             "hp": 155
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "TACKLE", "MAGICAL_LEAF"],
         "chargedMoves": ["ANCIENT_POWER", "ENERGY_BALL", "GRASS_KNOT"],
         "tags": ["starter", "shadoweligible"],
@@ -9309,7 +9309,7 @@
             "def": 155,
             "hp": 155
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "TACKLE", "MAGICAL_LEAF"],
         "chargedMoves": ["ANCIENT_POWER", "ENERGY_BALL", "GRASS_KNOT"],
         "tags": ["starter", "shadow"],
@@ -9337,7 +9337,7 @@
             "def": 202,
             "hp": 190
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "VINE_WHIP", "MAGICAL_LEAF"],
         "chargedMoves": ["EARTHQUAKE", "FRENZY_PLANT", "PETAL_BLIZZARD", "SOLAR_BEAM"],
         "tags": ["starter", "shadoweligible"],
@@ -9367,7 +9367,7 @@
             "def": 202,
             "hp": 190
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "VINE_WHIP", "MAGICAL_LEAF"],
         "chargedMoves": ["EARTHQUAKE", "FRENZY_PLANT", "PETAL_BLIZZARD", "SOLAR_BEAM"],
         "tags": ["starter", "shadow"],
@@ -10585,7 +10585,7 @@
             "def": 186,
             "hp": 181
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["ACID", "RAZOR_LEAF", "BULLET_SEED", "MAGICAL_LEAF"],
         "chargedMoves": ["DAZZLING_GLEAM", "LEAF_BLADE", "PETAL_BLIZZARD"],
         "defaultIVs": {
@@ -10613,7 +10613,7 @@
             "def": 186,
             "hp": 181
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["ACID", "RAZOR_LEAF", "BULLET_SEED", "MAGICAL_LEAF"],
         "chargedMoves": ["DAZZLING_GLEAM", "LEAF_BLADE", "PETAL_BLIZZARD"],
         "defaultIVs": {
@@ -10810,7 +10810,7 @@
             "def": 94,
             "hp": 111
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["BULLET_SEED", "TACKLE"],
         "chargedMoves": ["DAZZLING_GLEAM", "GRASS_KNOT", "SEED_BOMB"],
         "defaultIVs": {
@@ -10837,7 +10837,7 @@
             "def": 94,
             "hp": 111
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["BULLET_SEED", "TACKLE"],
         "chargedMoves": ["DAZZLING_GLEAM", "GRASS_KNOT", "SEED_BOMB"],
         "defaultIVs": {
@@ -10863,7 +10863,7 @@
             "def": 120,
             "hp": 146
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["BULLET_SEED", "TACKLE"],
         "chargedMoves": ["DAZZLING_GLEAM", "ENERGY_BALL", "GRASS_KNOT"],
         "defaultIVs": {
@@ -10891,7 +10891,7 @@
             "def": 120,
             "hp": 146
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["BULLET_SEED", "TACKLE"],
         "chargedMoves": ["DAZZLING_GLEAM", "ENERGY_BALL", "GRASS_KNOT"],
         "defaultIVs": {
@@ -10918,7 +10918,7 @@
             "def": 183,
             "hp": 181
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["BULLET_SEED", "INFESTATION", "FAIRY_WIND"],
         "chargedMoves": ["DAZZLING_GLEAM", "ENERGY_BALL", "AERIAL_ACE", "SOLAR_BEAM", "ACROBATICS"],
         "eliteMoves": ["ACROBATICS"],
@@ -10948,7 +10948,7 @@
             "def": 183,
             "hp": 181
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["BULLET_SEED", "INFESTATION", "FAIRY_WIND"],
         "chargedMoves": ["DAZZLING_GLEAM", "ENERGY_BALL", "AERIAL_ACE", "SOLAR_BEAM", "ACROBATICS"],
         "eliteMoves": ["ACROBATICS"],
@@ -11032,7 +11032,7 @@
             "def": 55,
             "hp": 102
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["CUT", "RAZOR_LEAF"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT", "SEED_BOMB"],
         "defaultIVs": {
@@ -11057,7 +11057,7 @@
             "def": 135,
             "hp": 181
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "RAZOR_LEAF"],
         "chargedMoves": ["PETAL_BLIZZARD", "SLUDGE_BOMB", "SOLAR_BEAM", "LEAF_STORM"],
         "defaultIVs": {
@@ -13867,7 +13867,7 @@
             "def": 210,
             "hp": 225
         },
-        "types": ["psychic", "grass"],
+        "types": ["psychic", "planta"],
         "fastMoves": ["CHARGE_BEAM", "CONFUSION", "MAGICAL_LEAF"],
         "chargedMoves": ["DAZZLING_GLEAM", "HYPER_BEAM", "PSYCHIC", "SEED_BOMB", "LEAF_STORM"],
         "eliteMoves": ["MAGICAL_LEAF"],
@@ -13890,7 +13890,7 @@
             "def": 94,
             "hp": 120
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "POUND"],
         "chargedMoves": ["AERIAL_ACE", "ENERGY_BALL", "GRASS_KNOT"],
         "tags": ["starter", "shadoweligible"],
@@ -13917,7 +13917,7 @@
             "def": 94,
             "hp": 120
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "POUND"],
         "chargedMoves": ["AERIAL_ACE", "ENERGY_BALL", "GRASS_KNOT"],
         "tags": ["starter", "shadow"],
@@ -13943,7 +13943,7 @@
             "def": 120,
             "hp": 137
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "QUICK_ATTACK"],
         "chargedMoves": ["AERIAL_ACE", "GRASS_KNOT", "LEAF_BLADE"],
         "tags": ["starter", "shadoweligible"],
@@ -13971,7 +13971,7 @@
             "def": 120,
             "hp": 137
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "QUICK_ATTACK"],
         "chargedMoves": ["AERIAL_ACE", "GRASS_KNOT", "LEAF_BLADE"],
         "tags": ["starter", "shadow"],
@@ -13998,7 +13998,7 @@
             "def": 169,
             "hp": 172
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "FURY_CUTTER"],
         "chargedMoves": ["AERIAL_ACE", "EARTHQUAKE", "LEAF_BLADE", "FRENZY_PLANT", "DRAGON_CLAW", "BREAKING_SWIPE"],
         "tags": ["starter", "shadoweligible"],
@@ -14027,7 +14027,7 @@
             "def": 186,
             "hp": 172
         },
-        "types": ["grass", "dragon"],
+        "types": ["planta", "dragon"],
         "fastMoves": ["BULLET_SEED", "FURY_CUTTER"],
         "chargedMoves": ["AERIAL_ACE", "EARTHQUAKE", "LEAF_BLADE", "FRENZY_PLANT", "DRAGON_CLAW", "BREAKING_SWIPE"],
         "tags": ["starter", "mega", "shadoweligible"],
@@ -14051,7 +14051,7 @@
             "def": 169,
             "hp": 172
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "FURY_CUTTER"],
         "chargedMoves": ["AERIAL_ACE", "EARTHQUAKE", "LEAF_BLADE", "FRENZY_PLANT", "DRAGON_CLAW", "BREAKING_SWIPE"],
         "tags": ["starter", "shadow"],
@@ -14852,7 +14852,7 @@
             "def": 77,
             "hp": 120
         },
-        "types": ["water", "grass"],
+        "types": ["water", "planta"],
         "fastMoves": ["RAZOR_LEAF", "WATER_GUN"],
         "chargedMoves": ["BUBBLE_BEAM", "ENERGY_BALL", "SCALD"],
         "defaultIVs": {
@@ -14877,7 +14877,7 @@
             "def": 119,
             "hp": 155
         },
-        "types": ["water", "grass"],
+        "types": ["water", "planta"],
         "fastMoves": ["BUBBLE", "RAZOR_LEAF"],
         "chargedMoves": ["BUBBLE_BEAM", "GRASS_KNOT", "ICE_BEAM", "SCALD"],
         "defaultIVs": {
@@ -14903,7 +14903,7 @@
             "def": 176,
             "hp": 190
         },
-        "types": ["water", "grass"],
+        "types": ["water", "planta"],
         "fastMoves": ["BUBBLE", "RAZOR_LEAF"],
         "chargedMoves": ["BLIZZARD", "HYDRO_PUMP", "ENERGY_BALL", "ICE_BEAM", "SOLAR_BEAM", "LEAF_STORM", "SCALD"],
         "defaultIVs": {
@@ -14929,7 +14929,7 @@
             "def": 77,
             "hp": 120
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "QUICK_ATTACK"],
         "chargedMoves": ["ENERGY_BALL", "FOUL_PLAY", "GRASS_KNOT"],
         "defaultIVs": {
@@ -14956,7 +14956,7 @@
             "def": 77,
             "hp": 120
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "QUICK_ATTACK"],
         "chargedMoves": ["ENERGY_BALL", "FOUL_PLAY", "GRASS_KNOT"],
         "defaultIVs": {
@@ -14982,7 +14982,7 @@
             "def": 78,
             "hp": 172
         },
-        "types": ["grass", "dark"],
+        "types": ["planta", "dark"],
         "fastMoves": ["FEINT_ATTACK", "RAZOR_LEAF"],
         "chargedMoves": ["FOUL_PLAY", "GRASS_KNOT", "LEAF_BLADE"],
         "defaultIVs": {
@@ -15010,7 +15010,7 @@
             "def": 78,
             "hp": 172
         },
-        "types": ["grass", "dark"],
+        "types": ["planta", "dark"],
         "fastMoves": ["FEINT_ATTACK", "RAZOR_LEAF"],
         "chargedMoves": ["FOUL_PLAY", "GRASS_KNOT", "LEAF_BLADE"],
         "defaultIVs": {
@@ -15037,7 +15037,7 @@
             "def": 121,
             "hp": 207
         },
-        "types": ["grass", "dark"],
+        "types": ["planta", "dark"],
         "fastMoves": ["FEINT_ATTACK", "RAZOR_LEAF", "SNARL", "BULLET_SEED"],
         "chargedMoves": ["FOUL_PLAY", "HURRICANE", "LEAF_BLADE", "LEAF_TORNADO"],
         "defaultIVs": {
@@ -15067,7 +15067,7 @@
             "def": 121,
             "hp": 207
         },
-        "types": ["grass", "dark"],
+        "types": ["planta", "dark"],
         "fastMoves": ["FEINT_ATTACK", "RAZOR_LEAF", "SNARL", "BULLET_SEED"],
         "chargedMoves": ["FOUL_PLAY", "HURRICANE", "LEAF_BLADE", "LEAF_TORNADO"],
         "defaultIVs": {
@@ -15493,7 +15493,7 @@
             "def": 110,
             "hp": 155
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "TACKLE"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT", "SEED_BOMB"],
         "defaultIVs": {
@@ -15518,7 +15518,7 @@
             "def": 144,
             "hp": 155
         },
-        "types": ["grass", "fighting"],
+        "types": ["planta", "fighting"],
         "fastMoves": ["BULLET_SEED", "COUNTER", "FORCE_PALM"],
         "chargedMoves": ["DYNAMIC_PUNCH", "GRASS_KNOT", "SEED_BOMB", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -16804,7 +16804,7 @@
             "def": 131,
             "hp": 137
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["POISON_JAB", "RAZOR_LEAF", "MAGICAL_LEAF"],
         "chargedMoves": ["DAZZLING_GLEAM", "PETAL_BLIZZARD", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -17519,7 +17519,7 @@
             "def": 74,
             "hp": 137
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["POISON_STING", "SUCKER_PUNCH", "SAND_ATTACK"],
         "chargedMoves": ["BRICK_BREAK", "GRASS_KNOT", "SEED_BOMB", "PAYBACK", "TRAILBLAZE"],
         "defaultIVs": {
@@ -17546,7 +17546,7 @@
             "def": 74,
             "hp": 137
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["POISON_STING", "SUCKER_PUNCH", "SAND_ATTACK"],
         "chargedMoves": ["BRICK_BREAK", "GRASS_KNOT", "SEED_BOMB", "PAYBACK", "TRAILBLAZE"],
         "defaultIVs": {
@@ -17572,7 +17572,7 @@
             "def": 115,
             "hp": 172
         },
-        "types": ["grass", "dark"],
+        "types": ["planta", "dark"],
         "fastMoves": ["POISON_JAB", "SUCKER_PUNCH", "SAND_ATTACK"],
         "chargedMoves": ["DARK_PULSE", "DYNAMIC_PUNCH", "GRASS_KNOT", "PAYBACK", "TRAILBLAZE"],
         "defaultIVs": {
@@ -17600,7 +17600,7 @@
             "def": 115,
             "hp": 172
         },
-        "types": ["grass", "dark"],
+        "types": ["planta", "dark"],
         "fastMoves": ["POISON_JAB", "SUCKER_PUNCH", "SAND_ATTACK"],
         "chargedMoves": ["DARK_PULSE", "DYNAMIC_PUNCH", "GRASS_KNOT", "PAYBACK", "TRAILBLAZE"],
         "defaultIVs": {
@@ -18066,7 +18066,7 @@
             "def": 150,
             "hp": 165
         },
-        "types": ["rock", "grass"],
+        "types": ["rock", "planta"],
         "fastMoves": ["ACID", "INFESTATION", "BULLET_SEED"],
         "chargedMoves": ["ANCIENT_POWER", "GRASS_KNOT", "MIRROR_COAT"],
         "defaultIVs": {
@@ -18093,7 +18093,7 @@
             "def": 150,
             "hp": 165
         },
-        "types": ["rock", "grass"],
+        "types": ["rock", "planta"],
         "fastMoves": ["ACID", "INFESTATION", "BULLET_SEED"],
         "chargedMoves": ["ANCIENT_POWER", "GRASS_KNOT", "MIRROR_COAT"],
         "defaultIVs": {
@@ -18119,7 +18119,7 @@
             "def": 194,
             "hp": 200
         },
-        "types": ["rock", "grass"],
+        "types": ["rock", "planta"],
         "fastMoves": ["ACID", "INFESTATION", "BULLET_SEED"],
         "chargedMoves": ["BULLDOZE", "GRASS_KNOT", "STONE_EDGE", "ROCK_SLIDE", "ROCK_TOMB"],
         "defaultIVs": {
@@ -18148,7 +18148,7 @@
             "def": 194,
             "hp": 200
         },
-        "types": ["rock", "grass"],
+        "types": ["rock", "planta"],
         "fastMoves": ["ACID", "INFESTATION", "BULLET_SEED"],
         "chargedMoves": ["BULLDOZE", "GRASS_KNOT", "STONE_EDGE", "ROCK_SLIDE", "ROCK_TOMB"],
         "defaultIVs": {
@@ -18683,7 +18683,7 @@
             "def": 163,
             "hp": 223
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["AIR_SLASH", "RAZOR_LEAF"],
         "chargedMoves": ["AERIAL_ACE", "LEAF_BLADE", "STOMP", "BRUTAL_SWING"],
         "tags": ["regional"],
@@ -20188,7 +20188,7 @@
             "def": 110,
             "hp": 146
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "TACKLE"],
         "chargedMoves": ["BODY_SLAM", "ENERGY_BALL", "SEED_BOMB"],
         "tags": ["starter", "shadoweligible"],
@@ -20215,7 +20215,7 @@
             "def": 110,
             "hp": 146
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "TACKLE"],
         "chargedMoves": ["BODY_SLAM", "ENERGY_BALL", "SEED_BOMB"],
         "tags": ["starter", "shadow"],
@@ -20241,7 +20241,7 @@
             "def": 143,
             "hp": 181
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BITE", "RAZOR_LEAF"],
         "chargedMoves": ["BODY_SLAM", "ENERGY_BALL", "SOLAR_BEAM"],
         "tags": ["starter", "shadoweligible"],
@@ -20269,7 +20269,7 @@
             "def": 143,
             "hp": 181
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BITE", "RAZOR_LEAF"],
         "chargedMoves": ["BODY_SLAM", "ENERGY_BALL", "SOLAR_BEAM"],
         "tags": ["starter", "shadow"],
@@ -20296,7 +20296,7 @@
             "def": 188,
             "hp": 216
         },
-        "types": ["grass", "ground"],
+        "types": ["planta", "ground"],
         "fastMoves": ["BITE", "RAZOR_LEAF"],
         "chargedMoves": ["EARTHQUAKE", "SOLAR_BEAM", "SAND_TOMB", "STONE_EDGE", "FRENZY_PLANT"],
         "tags": ["starter", "shadoweligible"],
@@ -20324,7 +20324,7 @@
             "def": 188,
             "hp": 216
         },
-        "types": ["grass", "ground"],
+        "types": ["planta", "ground"],
         "fastMoves": ["BITE", "RAZOR_LEAF"],
         "chargedMoves": ["EARTHQUAKE", "SOLAR_BEAM", "SAND_TOMB", "STONE_EDGE", "FRENZY_PLANT"],
         "tags": ["starter", "shadow"],
@@ -21169,7 +21169,7 @@
             "def": 109,
             "hp": 120
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["HIDDEN_POWER_BUG", "HIDDEN_POWER_DARK", "HIDDEN_POWER_DRAGON", "HIDDEN_POWER_ELECTRIC", "HIDDEN_POWER_FIGHTING", "HIDDEN_POWER_FIRE", "HIDDEN_POWER_FLYING", "HIDDEN_POWER_GHOST", "HIDDEN_POWER_GRASS", "HIDDEN_POWER_GROUND", "HIDDEN_POWER_ICE", "HIDDEN_POWER_POISON", "HIDDEN_POWER_PSYCHIC", "HIDDEN_POWER_ROCK", "HIDDEN_POWER_STEEL", "HIDDEN_POWER_WATER", "RAZOR_LEAF"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT"],
         "defaultIVs": {
@@ -21194,7 +21194,7 @@
             "def": 185,
             "hp": 155
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["POISON_JAB", "RAZOR_LEAF", "BULLET_SEED", "MAGICAL_LEAF", "POISON_STING"],
         "chargedMoves": ["DAZZLING_GLEAM", "GRASS_KNOT", "SLUDGE_BOMB", "SOLAR_BEAM", "WEATHER_BALL_FIRE", "LEAF_STORM"],
         "defaultIVs": {
@@ -21515,7 +21515,7 @@
             "def": 180,
             "hp": 155
         },
-        "types": ["bug", "grass"],
+        "types": ["bug", "planta"],
         "fastMoves": ["BUG_BITE", "CONFUSION"],
         "chargedMoves": ["BUG_BUZZ", "ENERGY_BALL", "PSYBEAM"],
         "defaultIVs": {
@@ -21742,7 +21742,7 @@
             "def": 92,
             "hp": 128
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "TACKLE"],
         "chargedMoves": ["DAZZLING_GLEAM", "PETAL_BLIZZARD", "SEED_BOMB"],
         "defaultIVs": {
@@ -21767,7 +21767,7 @@
             "def": 153,
             "hp": 172
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "RAZOR_LEAF"],
         "chargedMoves": ["DAZZLING_GLEAM", "HYPER_BEAM", "SOLAR_BEAM"],
         "defaultIVs": {
@@ -21792,7 +21792,7 @@
             "def": 153,
             "hp": 172
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "RAZOR_LEAF"],
         "chargedMoves": ["DAZZLING_GLEAM", "HYPER_BEAM", "SOLAR_BEAM", "WEATHER_BALL_FIRE"],
         "defaultIVs": {
@@ -23252,7 +23252,7 @@
             "def": 136,
             "hp": 179
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BITE", "VINE_WHIP"],
         "chargedMoves": ["CRUNCH", "ENERGY_BALL", "POWER_WHIP"],
         "tags": ["regional"],
@@ -23349,7 +23349,7 @@
             "def": 105,
             "hp": 155
         },
-        "types": ["grass", "ice"],
+        "types": ["planta", "ice"],
         "fastMoves": ["ICE_SHARD", "POWDER_SNOW", "LEAFAGE"],
         "chargedMoves": ["ENERGY_BALL", "ICE_BEAM", "STOMP"],
         "defaultIVs": {
@@ -23376,7 +23376,7 @@
             "def": 105,
             "hp": 155
         },
-        "types": ["grass", "ice"],
+        "types": ["planta", "ice"],
         "fastMoves": ["ICE_SHARD", "POWDER_SNOW", "LEAFAGE"],
         "chargedMoves": ["ENERGY_BALL", "ICE_BEAM", "STOMP"],
         "defaultIVs": {
@@ -23402,7 +23402,7 @@
             "def": 158,
             "hp": 207
         },
-        "types": ["grass", "ice"],
+        "types": ["planta", "ice"],
         "fastMoves": ["POWDER_SNOW", "RAZOR_LEAF", "LEAFAGE"],
         "chargedMoves": ["BLIZZARD", "ENERGY_BALL", "OUTRAGE", "WEATHER_BALL_ICE", "ICY_WIND"],
         "defaultIVs": {
@@ -23431,7 +23431,7 @@
             "def": 191,
             "hp": 207
         },
-        "types": ["grass", "ice"],
+        "types": ["planta", "ice"],
         "fastMoves": ["POWDER_SNOW", "RAZOR_LEAF", "LEAFAGE"],
         "chargedMoves": ["BLIZZARD", "ENERGY_BALL", "OUTRAGE", "WEATHER_BALL_ICE", "ICY_WIND"],
         "defaultIVs": {
@@ -23458,7 +23458,7 @@
             "def": 158,
             "hp": 207
         },
-        "types": ["grass", "ice"],
+        "types": ["planta", "ice"],
         "fastMoves": ["POWDER_SNOW", "RAZOR_LEAF", "LEAFAGE"],
         "chargedMoves": ["BLIZZARD", "ENERGY_BALL", "OUTRAGE", "WEATHER_BALL_ICE", "ICY_WIND"],
         "defaultIVs": {
@@ -23681,7 +23681,7 @@
             "def": 184,
             "hp": 225
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["INFESTATION", "VINE_WHIP"],
         "chargedMoves": ["ANCIENT_POWER", "ROCK_SLIDE", "SLUDGE_BOMB", "SOLAR_BEAM", "POWER_WHIP"],
         "defaultIVs": {
@@ -23708,7 +23708,7 @@
             "def": 184,
             "hp": 225
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["INFESTATION", "VINE_WHIP"],
         "chargedMoves": ["ANCIENT_POWER", "ROCK_SLIDE", "SLUDGE_BOMB", "SOLAR_BEAM", "POWER_WHIP"],
         "defaultIVs": {
@@ -23899,7 +23899,7 @@
             "def": 219,
             "hp": 163
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["QUICK_ATTACK", "RAZOR_LEAF", "BULLET_SEED"],
         "chargedMoves": ["ENERGY_BALL", "LEAF_BLADE", "SOLAR_BEAM", "LAST_RESORT"],
         "defaultIVs": {
@@ -24453,7 +24453,7 @@
             "def": 219,
             "hp": 137
         },
-        "types": ["electric", "grass"],
+        "types": ["electric", "planta"],
         "fastMoves": ["ASTONISH", "THUNDER_SHOCK"],
         "chargedMoves": ["OMINOUS_WIND", "THUNDER", "THUNDERBOLT"],
         "defaultIVs": {
@@ -24971,7 +24971,7 @@
             "def": 210,
             "hp": 225
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["HIDDEN_POWER_BUG", "HIDDEN_POWER_DARK", "HIDDEN_POWER_DRAGON", "HIDDEN_POWER_ELECTRIC", "HIDDEN_POWER_FIGHTING", "HIDDEN_POWER_FIRE", "HIDDEN_POWER_FLYING", "HIDDEN_POWER_GHOST", "HIDDEN_POWER_GRASS", "HIDDEN_POWER_GROUND", "HIDDEN_POWER_ICE", "HIDDEN_POWER_POISON", "HIDDEN_POWER_PSYCHIC", "HIDDEN_POWER_ROCK", "HIDDEN_POWER_STEEL", "HIDDEN_POWER_WATER", "ZEN_HEADBUTT", "MAGICAL_LEAF"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT", "SOLAR_BEAM", "SEED_FLARE"],
         "eliteMoves": ["SEED_FLARE"],
@@ -24994,7 +24994,7 @@
             "def": 166,
             "hp": 225
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["HIDDEN_POWER_BUG", "HIDDEN_POWER_DARK", "HIDDEN_POWER_DRAGON", "HIDDEN_POWER_ELECTRIC", "HIDDEN_POWER_FIGHTING", "HIDDEN_POWER_FIRE", "HIDDEN_POWER_FLYING", "HIDDEN_POWER_GHOST", "HIDDEN_POWER_GRASS", "HIDDEN_POWER_GROUND", "HIDDEN_POWER_ICE", "HIDDEN_POWER_POISON", "HIDDEN_POWER_PSYCHIC", "HIDDEN_POWER_ROCK", "HIDDEN_POWER_STEEL", "HIDDEN_POWER_WATER", "ZEN_HEADBUTT", "MAGICAL_LEAF"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT", "SOLAR_BEAM", "SEED_FLARE"],
         "eliteMoves": ["SEED_FLARE"],
@@ -25227,7 +25227,7 @@
             "def": 238,
             "hp": 237
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["IRON_TAIL", "SHADOW_CLAW"],
         "chargedMoves": ["FUTURE_SIGHT", "HYPER_BEAM", "OUTRAGE"],
         "defaultIVs": {
@@ -25417,7 +25417,7 @@
             "def": 107,
             "hp": 128
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["TACKLE", "VINE_WHIP"],
         "chargedMoves": ["ENERGY_BALL", "SEED_BOMB", "WRAP"],
         "tags": ["starter", "shadoweligible"],
@@ -25444,7 +25444,7 @@
             "def": 107,
             "hp": 128
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["TACKLE", "VINE_WHIP"],
         "chargedMoves": ["ENERGY_BALL", "SEED_BOMB", "WRAP"],
         "tags": ["starter", "shadow"],
@@ -25470,7 +25470,7 @@
             "def": 152,
             "hp": 155
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["IRON_TAIL", "VINE_WHIP"],
         "chargedMoves": ["GRASS_KNOT", "LEAF_TORNADO", "WRAP"],
         "tags": ["starter", "shadoweligible"],
@@ -25499,7 +25499,7 @@
             "def": 152,
             "hp": 155
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["IRON_TAIL", "VINE_WHIP"],
         "chargedMoves": ["GRASS_KNOT", "LEAF_TORNADO", "WRAP"],
         "tags": ["starter", "shadow"],
@@ -25527,7 +25527,7 @@
             "def": 204,
             "hp": 181
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["IRON_TAIL", "VINE_WHIP"],
         "chargedMoves": ["GRASS_KNOT", "LEAF_TORNADO", "AERIAL_ACE", "FRENZY_PLANT"],
         "eliteMoves": ["FRENZY_PLANT"],
@@ -25557,7 +25557,7 @@
             "def": 204,
             "hp": 181
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["IRON_TAIL", "VINE_WHIP"],
         "chargedMoves": ["GRASS_KNOT", "LEAF_TORNADO", "AERIAL_ACE", "FRENZY_PLANT"],
         "eliteMoves": ["FRENZY_PLANT"],
@@ -26228,7 +26228,7 @@
             "def": 94,
             "hp": 137
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["SCRATCH", "VINE_WHIP"],
         "chargedMoves": ["ENERGY_BALL", "SEED_BOMB", "CRUNCH"],
         "tags": ["regional"],
@@ -26254,7 +26254,7 @@
             "def": 133,
             "hp": 181
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BITE", "VINE_WHIP"],
         "chargedMoves": ["SOLAR_BEAM", "GRASS_KNOT", "CRUNCH"],
         "tags": ["regional"],
@@ -27410,7 +27410,7 @@
             "def": 124,
             "hp": 128
         },
-        "types": ["bug", "grass"],
+        "types": ["bug", "planta"],
         "fastMoves": ["STRUGGLE_BUG", "BUG_BITE"],
         "chargedMoves": ["ENERGY_BALL", "SEED_BOMB", "SILVER_WIND"],
         "defaultIVs": {
@@ -27435,7 +27435,7 @@
             "def": 162,
             "hp": 146
         },
-        "types": ["bug", "grass"],
+        "types": ["bug", "planta"],
         "fastMoves": ["STRUGGLE_BUG", "BUG_BITE"],
         "chargedMoves": ["ENERGY_BALL", "BUG_BUZZ", "SILVER_WIND"],
         "defaultIVs": {
@@ -27462,7 +27462,7 @@
             "def": 165,
             "hp": 181
         },
-        "types": ["bug", "grass"],
+        "types": ["bug", "planta"],
         "fastMoves": ["RAZOR_LEAF", "BUG_BITE", "SHADOW_CLAW"],
         "chargedMoves": ["LEAF_BLADE", "X_SCISSOR", "SILVER_WIND", "LEAF_STORM"],
         "eliteMoves": ["SHADOW_CLAW"],
@@ -27652,7 +27652,7 @@
             "def": 111,
             "hp": 120
         },
-        "types": ["grass", "fairy"],
+        "types": ["planta", "fairy"],
         "fastMoves": ["CHARM", "RAZOR_LEAF"],
         "chargedMoves": ["ENERGY_BALL", "SEED_BOMB", "GRASS_KNOT"],
         "defaultIVs": {
@@ -27677,7 +27677,7 @@
             "def": 176,
             "hp": 155
         },
-        "types": ["grass", "fairy"],
+        "types": ["planta", "fairy"],
         "fastMoves": ["CHARM", "RAZOR_LEAF", "FAIRY_WIND"],
         "chargedMoves": ["GRASS_KNOT", "HURRICANE", "MOONBLAST", "SEED_BOMB"],
         "defaultIVs": {
@@ -27702,7 +27702,7 @@
             "def": 91,
             "hp": 128
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["CHARM", "HIDDEN_POWER_BUG", "HIDDEN_POWER_DARK", "HIDDEN_POWER_DRAGON", "HIDDEN_POWER_ELECTRIC", "HIDDEN_POWER_FIGHTING", "HIDDEN_POWER_FIRE", "HIDDEN_POWER_FLYING", "HIDDEN_POWER_GHOST", "HIDDEN_POWER_GRASS", "HIDDEN_POWER_GROUND", "HIDDEN_POWER_ICE", "HIDDEN_POWER_POISON", "HIDDEN_POWER_PSYCHIC", "HIDDEN_POWER_ROCK", "HIDDEN_POWER_STEEL", "HIDDEN_POWER_WATER"],
         "chargedMoves": ["ENERGY_BALL", "SEED_BOMB"],
         "defaultIVs": {
@@ -27727,7 +27727,7 @@
             "def": 155,
             "hp": 172
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["CHARM", "HIDDEN_POWER_BUG", "HIDDEN_POWER_DARK", "HIDDEN_POWER_DRAGON", "HIDDEN_POWER_ELECTRIC", "HIDDEN_POWER_FIGHTING", "HIDDEN_POWER_FIRE", "HIDDEN_POWER_FLYING", "HIDDEN_POWER_GHOST", "HIDDEN_POWER_GRASS", "HIDDEN_POWER_GROUND", "HIDDEN_POWER_ICE", "HIDDEN_POWER_POISON", "HIDDEN_POWER_PSYCHIC", "HIDDEN_POWER_ROCK", "HIDDEN_POWER_STEEL", "HIDDEN_POWER_WATER", "MAGICAL_LEAF"],
         "chargedMoves": ["PETAL_BLIZZARD", "HYPER_BEAM", "SOLAR_BEAM"],
         "defaultIVs": {
@@ -27753,7 +27753,7 @@
             "def": 159,
             "hp": 172
         },
-        "types": ["grass", "fighting"],
+        "types": ["planta", "fighting"],
         "fastMoves": ["MAGICAL_LEAF", "BULLET_SEED"],
         "chargedMoves": ["PETAL_BLIZZARD", "CLOSE_COMBAT", "SOLAR_BEAM", "UPPER_HAND"],
         "defaultIVs": {
@@ -28097,7 +28097,7 @@
             "def": 130,
             "hp": 181
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["BULLET_SEED", "POISON_JAB"],
         "chargedMoves": ["AERIAL_ACE", "PETAL_BLIZZARD", "SOLAR_BEAM"],
         "tags": ["regional"],
@@ -29372,7 +29372,7 @@
             "def": 100,
             "hp": 155
         },
-        "types": ["normal", "grass"],
+        "types": ["normal", "planta"],
         "fastMoves": ["TACKLE", "TAKE_DOWN"],
         "chargedMoves": ["ENERGY_BALL", "SEED_BOMB", "WILD_CHARGE", "TRAILBLAZE"],
         "defaultIVs": {
@@ -29397,7 +29397,7 @@
             "def": 146,
             "hp": 190
         },
-        "types": ["normal", "grass"],
+        "types": ["normal", "planta"],
         "fastMoves": ["FEINT_ATTACK", "TAKE_DOWN"],
         "chargedMoves": ["MEGAHORN", "SOLAR_BEAM", "WILD_CHARGE", "HYPER_BEAM", "TRAILBLAZE"],
         "defaultIVs": {
@@ -29554,7 +29554,7 @@
             "def": 91,
             "hp": 170
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ASTONISH", "FEINT_ATTACK"],
         "chargedMoves": ["ENERGY_BALL", "BODY_SLAM", "GRASS_KNOT"],
         "defaultIVs": {
@@ -29581,7 +29581,7 @@
             "def": 91,
             "hp": 170
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ASTONISH", "FEINT_ATTACK"],
         "chargedMoves": ["ENERGY_BALL", "BODY_SLAM", "GRASS_KNOT"],
         "defaultIVs": {
@@ -29607,7 +29607,7 @@
             "def": 139,
             "hp": 249
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ASTONISH", "FEINT_ATTACK"],
         "chargedMoves": ["FOUL_PLAY", "SLUDGE_BOMB", "GRASS_KNOT"],
         "defaultIVs": {
@@ -29634,7 +29634,7 @@
             "def": 139,
             "hp": 249
         },
-        "types": ["grass", "poison"],
+        "types": ["planta", "poison"],
         "fastMoves": ["ASTONISH", "FEINT_ATTACK"],
         "chargedMoves": ["FOUL_PLAY", "SLUDGE_BOMB", "GRASS_KNOT"],
         "defaultIVs": {
@@ -29843,7 +29843,7 @@
             "def": 155,
             "hp": 127
         },
-        "types": ["grass", "steel"],
+        "types": ["planta", "steel"],
         "fastMoves": ["TACKLE", "METAL_CLAW"],
         "chargedMoves": ["GYRO_BALL", "FLASH_CANNON", "IRON_HEAD"],
         "defaultIVs": {
@@ -29870,7 +29870,7 @@
             "def": 155,
             "hp": 127
         },
-        "types": ["grass", "steel"],
+        "types": ["planta", "steel"],
         "fastMoves": ["TACKLE", "METAL_CLAW"],
         "chargedMoves": ["GYRO_BALL", "FLASH_CANNON", "IRON_HEAD"],
         "defaultIVs": {
@@ -29896,7 +29896,7 @@
             "def": 223,
             "hp": 179
         },
-        "types": ["grass", "steel"],
+        "types": ["planta", "steel"],
         "fastMoves": ["BULLET_SEED", "METAL_CLAW"],
         "chargedMoves": ["POWER_WHIP", "FLASH_CANNON", "ACID_SPRAY", "THUNDER", "MIRROR_SHOT"],
         "defaultIVs": {
@@ -29925,7 +29925,7 @@
             "def": 223,
             "hp": 179
         },
-        "types": ["grass", "steel"],
+        "types": ["planta", "steel"],
         "fastMoves": ["BULLET_SEED", "METAL_CLAW"],
         "chargedMoves": ["POWER_WHIP", "FLASH_CANNON", "ACID_SPRAY", "THUNDER", "MIRROR_SHOT"],
         "defaultIVs": {
@@ -31234,7 +31234,7 @@
             "def": 229,
             "hp": 209
         },
-        "types": ["grass", "fighting"],
+        "types": ["planta", "fighting"],
         "fastMoves": ["QUICK_ATTACK", "ZEN_HEADBUTT", "DOUBLE_KICK"],
         "chargedMoves": ["CLOSE_COMBAT", "LEAF_BLADE", "STONE_EDGE", "SACRED_SWORD"],
         "eliteMoves": ["SACRED_SWORD"],
@@ -31716,7 +31716,7 @@
             "def": 106,
             "hp": 148
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["TAKE_DOWN", "VINE_WHIP"],
         "chargedMoves": ["GYRO_BALL", "SEED_BOMB", "BODY_SLAM"],
         "tags": ["starter"],
@@ -31742,7 +31742,7 @@
             "def": 156,
             "hp": 156
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["LOW_KICK", "VINE_WHIP"],
         "chargedMoves": ["GYRO_BALL", "ENERGY_BALL", "BODY_SLAM"],
         "tags": ["starter"],
@@ -31769,7 +31769,7 @@
             "def": 204,
             "hp": 204
         },
-        "types": ["grass", "fighting"],
+        "types": ["planta", "fighting"],
         "fastMoves": ["LOW_KICK", "SMACK_DOWN", "VINE_WHIP"],
         "chargedMoves": ["GYRO_BALL", "ENERGY_BALL", "SUPER_POWER", "SOLAR_BEAM", "FRENZY_PLANT", "THUNDER_PUNCH"],
         "eliteMoves": ["FRENZY_PLANT"],
@@ -32354,7 +32354,7 @@
             "def": 102,
             "hp": 165
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["ZEN_HEADBUTT", "ROCK_SMASH"],
         "chargedMoves": ["BRICK_BREAK", "ROCK_SLIDE", "SEED_BOMB"],
         "defaultIVs": {
@@ -32379,7 +32379,7 @@
             "def": 146,
             "hp": 265
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["ZEN_HEADBUTT", "ROCK_SMASH", "VINE_WHIP"],
         "chargedMoves": ["BRICK_BREAK", "LEAF_BLADE", "SEED_BOMB"],
         "defaultIVs": {
@@ -33482,7 +33482,7 @@
             "def": 103,
             "hp": 125
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["ASTONISH", "TACKLE"],
         "chargedMoves": ["SEED_BOMB", "SHADOW_BALL", "FOUL_PLAY"],
         "defaultIVs": {
@@ -33507,7 +33507,7 @@
             "def": 154,
             "hp": 198
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["SHADOW_CLAW", "SUCKER_PUNCH"],
         "chargedMoves": ["SEED_BOMB", "SHADOW_BALL", "FOUL_PLAY"],
         "defaultIVs": {
@@ -33534,7 +33534,7 @@
             "def": 123,
             "hp": 135
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["ASTONISH", "RAZOR_LEAF"],
         "chargedMoves": ["GRASS_KNOT", "SHADOW_SNEAK", "FOUL_PLAY"],
         "defaultIVs": {
@@ -33560,7 +33560,7 @@
             "def": 122,
             "hp": 144
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["ASTONISH", "RAZOR_LEAF"],
         "chargedMoves": ["GRASS_KNOT", "SHADOW_SNEAK", "FOUL_PLAY"],
         "defaultIVs": {
@@ -33586,7 +33586,7 @@
             "def": 124,
             "hp": 127
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["ASTONISH", "RAZOR_LEAF"],
         "chargedMoves": ["GRASS_KNOT", "SHADOW_SNEAK", "FOUL_PLAY"],
         "defaultIVs": {
@@ -33612,7 +33612,7 @@
             "def": 120,
             "hp": 153
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["ASTONISH", "RAZOR_LEAF"],
         "chargedMoves": ["GRASS_KNOT", "SHADOW_SNEAK", "FOUL_PLAY"],
         "defaultIVs": {
@@ -33638,7 +33638,7 @@
             "def": 213,
             "hp": 163
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["HEX", "RAZOR_LEAF"],
         "chargedMoves": ["SEED_BOMB", "SHADOW_BALL", "FOUL_PLAY", "FIRE_BLAST", "POLTERGEIST"],
         "defaultIVs": {
@@ -33665,7 +33665,7 @@
             "def": 206,
             "hp": 181
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["HEX", "RAZOR_LEAF"],
         "chargedMoves": ["SEED_BOMB", "SHADOW_BALL", "FOUL_PLAY", "FIRE_BLAST", "POLTERGEIST"],
         "defaultIVs": {
@@ -33692,7 +33692,7 @@
             "def": 219,
             "hp": 146
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["HEX", "RAZOR_LEAF"],
         "chargedMoves": ["SEED_BOMB", "SHADOW_BALL", "FOUL_PLAY", "FIRE_BLAST", "POLTERGEIST"],
         "defaultIVs": {
@@ -33719,7 +33719,7 @@
             "def": 200,
             "hp": 198
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["HEX", "RAZOR_LEAF"],
         "chargedMoves": ["SEED_BOMB", "SHADOW_BALL", "FOUL_PLAY", "FIRE_BLAST", "POLTERGEIST"],
         "defaultIVs": {
@@ -34127,7 +34127,7 @@
             "def": 99,
             "hp": 169
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["TACKLE", "RAZOR_LEAF", "LEAFAGE", "MAGICAL_LEAF"],
         "chargedMoves": ["SEED_BOMB", "ENERGY_BALL"],
         "defaultIVs": {
@@ -34153,7 +34153,7 @@
             "def": 139,
             "hp": 186
         },
-        "types": ["grass", "flying"],
+        "types": ["planta", "flying"],
         "fastMoves": ["PECK", "RAZOR_LEAF", "LEAFAGE", "MAGICAL_LEAF"],
         "chargedMoves": ["SEED_BOMB", "ENERGY_BALL", "BRAVE_BIRD"],
         "defaultIVs": {
@@ -34180,7 +34180,7 @@
             "def": 179,
             "hp": 186
         },
-        "types": ["grass", "ghost"],
+        "types": ["planta", "ghost"],
         "fastMoves": ["ASTONISH", "RAZOR_LEAF", "LEAFAGE", "MAGICAL_LEAF"],
         "chargedMoves": ["SHADOW_SNEAK", "ENERGY_BALL", "BRAVE_BIRD", "FRENZY_PLANT", "SPIRIT_SHACKLE"],
         "eliteMoves": ["FRENZY_PLANT"],
@@ -34207,7 +34207,7 @@
             "def": 174,
             "hp": 204
         },
-        "types": ["grass", "fighting"],
+        "types": ["planta", "fighting"],
         "fastMoves": ["MAGICAL_LEAF", "PSYCHO_CUT"],
         "chargedMoves": ["AURA_SPHERE", "ENERGY_BALL", "AERIAL_ACE", "NIGHT_SHADE", "TRAILBLAZE"],
         "defaultIVs": {
@@ -35106,7 +35106,7 @@
             "def": 64,
             "hp": 120
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "FURY_CUTTER", "LEAFAGE"],
         "chargedMoves": ["LEAF_BLADE", "ENERGY_BALL", "GRASS_KNOT", "TRAILBLAZE"],
         "defaultIVs": {
@@ -35131,7 +35131,7 @@
             "def": 169,
             "hp": 172
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "FURY_CUTTER", "LEAFAGE"],
         "chargedMoves": ["LEAF_BLADE", "LEAF_STORM", "SUPER_POWER", "X_SCISSOR", "TRAILBLAZE"],
         "defaultIVs": {
@@ -35157,7 +35157,7 @@
             "def": 119,
             "hp": 120
         },
-        "types": ["grass", "fairy"],
+        "types": ["planta", "fairy"],
         "fastMoves": ["ASTONISH"],
         "chargedMoves": ["DAZZLING_GLEAM", "SEED_BOMB"],
         "defaultIVs": {
@@ -35182,7 +35182,7 @@
             "def": 168,
             "hp": 155
         },
-        "types": ["grass", "fairy"],
+        "types": ["planta", "fairy"],
         "fastMoves": ["ASTONISH"],
         "chargedMoves": ["MOONBLAST", "SEED_BOMB", "SLUDGE_BOMB"],
         "defaultIVs": {
@@ -35311,7 +35311,7 @@
             "def": 69,
             "hp": 123
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "CHARM"],
         "chargedMoves": ["ENERGY_BALL", "DRAINING_KISS"],
         "defaultIVs": {
@@ -35337,7 +35337,7 @@
             "def": 94,
             "hp": 141
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "CHARM"],
         "chargedMoves": ["ENERGY_BALL", "DRAINING_KISS", "GRASS_KNOT", "TRIPLE_AXEL"],
         "defaultIVs": {
@@ -35363,7 +35363,7 @@
             "def": 195,
             "hp": 176
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "CHARM", "MAGICAL_LEAF"],
         "chargedMoves": ["ENERGY_BALL", "DRAINING_KISS", "GRASS_KNOT", "STOMP", "TRIPLE_AXEL", "HIGH_JUMP_KICK"],
         "eliteMoves": ["HIGH_JUMP_KICK"],
@@ -35840,7 +35840,7 @@
             "def": 198,
             "hp": 216
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["TACKLE", "TAKE_DOWN", "BITE"],
         "chargedMoves": ["TRI_ATTACK", "IRON_HEAD", "AERIAL_ACE", "X_SCISSOR"],
         "defaultIVs": {
@@ -36183,7 +36183,7 @@
             "def": 179,
             "hp": 172
         },
-        "types": ["ghost", "grass"],
+        "types": ["ghost", "planta"],
         "fastMoves": ["ASTONISH", "SHADOW_CLAW", "METAL_SOUND"],
         "chargedMoves": ["POWER_WHIP", "SHADOW_BALL", "HEAVY_SLAM", "WRAP"],
         "defaultIVs": {
@@ -36333,7 +36333,7 @@
             "def": 215,
             "hp": 172
         },
-        "types": ["grass", "fairy"],
+        "types": ["planta", "fairy"],
         "fastMoves": ["BULLET_SEED", "ROCK_SMASH"],
         "chargedMoves": ["GRASS_KNOT", "DAZZLING_GLEAM", "MEGAHORN", "SOLAR_BEAM", "NATURES_MADNESS"],
         "eliteMoves": ["NATURES_MADNESS"],
@@ -36599,7 +36599,7 @@
             "def": 182,
             "hp": 139
         },
-        "types": ["grass", "steel"],
+        "types": ["planta", "steel"],
         "fastMoves": ["AIR_SLASH", "RAZOR_LEAF"],
         "chargedMoves": ["LEAF_BLADE", "X_SCISSOR", "NIGHT_SLASH", "AERIAL_ACE"],
         "defaultIVs": {
@@ -36953,7 +36953,7 @@
             "def": 91,
             "hp": 137
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["SCRATCH", "RAZOR_LEAF"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT"],
         "defaultIVs": {
@@ -36979,7 +36979,7 @@
             "def": 134,
             "hp": 172
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["SCRATCH", "RAZOR_LEAF"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT"],
         "defaultIVs": {
@@ -37006,7 +37006,7 @@
             "def": 168,
             "hp": 225
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["SCRATCH", "RAZOR_LEAF"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT", "EARTH_POWER"],
         "defaultIVs": {
@@ -37449,7 +37449,7 @@
             "def": 104,
             "hp": 120
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "BULLET_SEED"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT"],
         "defaultIVs": {
@@ -37474,7 +37474,7 @@
             "def": 211,
             "hp": 155
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["RAZOR_LEAF", "BULLET_SEED"],
         "chargedMoves": ["ENERGY_BALL", "GRASS_KNOT"],
         "defaultIVs": {
@@ -37727,7 +37727,7 @@
             "def": 116,
             "hp": 120
         },
-        "types": ["grass", "dragon"],
+        "types": ["planta", "dragon"],
         "fastMoves": ["ASTONISH"],
         "chargedMoves": ["STRUGGLE"],
         "defaultIVs": {
@@ -37752,7 +37752,7 @@
             "def": 144,
             "hp": 172
         },
-        "types": ["grass", "dragon"],
+        "types": ["planta", "dragon"],
         "fastMoves": ["BULLET_SEED", "DRAGON_BREATH"],
         "chargedMoves": ["DRAGON_PULSE", "FLY", "OUTRAGE", "SEED_BOMB"],
         "defaultIVs": {
@@ -37778,7 +37778,7 @@
             "def": 146,
             "hp": 242
         },
-        "types": ["grass", "dragon"],
+        "types": ["planta", "dragon"],
         "fastMoves": ["BULLET_SEED", "ASTONISH"],
         "chargedMoves": ["DRAGON_PULSE", "ENERGY_BALL", "OUTRAGE", "SEED_BOMB"],
         "defaultIVs": {
@@ -39323,7 +39323,7 @@
             "def": 215,
             "hp": 233
         },
-        "types": ["dark", "grass"],
+        "types": ["dark", "planta"],
         "fastMoves": ["VINE_WHIP", "BITE"],
         "chargedMoves": ["POWER_WHIP", "ENERGY_BALL", "DARK_PULSE"],
         "defaultIVs": {
@@ -39433,7 +39433,7 @@
             "def": 162,
             "hp": 225
         },
-        "types": ["psychic", "grass"],
+        "types": ["psychic", "planta"],
         "fastMoves": ["POUND", "CONFUSION"],
         "chargedMoves": ["PSYSHOCK", "PSYCHIC", "ENERGY_BALL"],
         "defaultIVs": {
@@ -39754,7 +39754,7 @@
             "def": 99,
             "hp": 120
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["LEAFAGE", "CHARM"],
         "chargedMoves": ["GRASS_KNOT", "PLAY_ROUGH", "ENERGY_BALL"],
         "defaultIVs": {
@@ -39779,7 +39779,7 @@
             "def": 128,
             "hp": 156
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["LEAFAGE", "CHARM"],
         "chargedMoves": ["GRASS_KNOT", "PLAY_ROUGH", "ENERGY_BALL"],
         "defaultIVs": {
@@ -39805,7 +39805,7 @@
             "def": 153,
             "hp": 183
         },
-        "types": ["grass", "dark"],
+        "types": ["planta", "dark"],
         "fastMoves": ["LEAFAGE", "CHARM"],
         "chargedMoves": ["GRASS_KNOT", "PLAY_ROUGH", "ENERGY_BALL", "NIGHT_SLASH", "FRENZY_PLANT", "FLOWER_TRICK"],
         "eliteMoves": ["FRENZY_PLANT"],
@@ -40395,7 +40395,7 @@
             "def": 89,
             "hp": 121
         },
-        "types": ["grass", "normal"],
+        "types": ["planta", "normal"],
         "fastMoves": ["RAZOR_LEAF", "TACKLE"],
         "chargedMoves": ["SEED_BOMB", "ENERGY_BALL", "EARTH_POWER", "TRAILBLAZE"],
         "defaultIVs": {
@@ -40420,7 +40420,7 @@
             "def": 131,
             "hp": 141
         },
-        "types": ["grass", "normal"],
+        "types": ["planta", "normal"],
         "fastMoves": ["RAZOR_LEAF", "TACKLE", "MAGICAL_LEAF"],
         "chargedMoves": ["SEED_BOMB", "ENERGY_BALL", "EARTH_POWER", "TRAILBLAZE"],
         "defaultIVs": {
@@ -40447,7 +40447,7 @@
             "def": 189,
             "hp": 186
         },
-        "types": ["grass", "normal"],
+        "types": ["planta", "normal"],
         "fastMoves": ["RAZOR_LEAF", "TACKLE", "MAGICAL_LEAF"],
         "chargedMoves": ["SEED_BOMB", "ENERGY_BALL", "EARTH_POWER", "TRAILBLAZE"],
         "defaultIVs": {
@@ -40932,7 +40932,7 @@
             "def": 64,
             "hp": 120
         },
-        "types": ["grass", "ghost"],
+        "types": ["planta", "ghost"],
         "fastMoves": ["ASTONISH", "BULLET_SEED"],
         "chargedMoves": ["SHADOW_SNEAK", "NIGHT_SHADE", "POWER_WHIP"],
         "defaultIVs": {
@@ -40957,7 +40957,7 @@
             "def": 144,
             "hp": 146
         },
-        "types": ["grass", "ghost"],
+        "types": ["planta", "ghost"],
         "fastMoves": ["HEX", "BULLET_SEED"],
         "chargedMoves": ["SHADOW_SNEAK", "NIGHT_SHADE", "POWER_WHIP"],
         "defaultIVs": {
@@ -40983,7 +40983,7 @@
             "def": 149,
             "hp": 120
         },
-        "types": ["ground", "grass"],
+        "types": ["ground", "planta"],
         "fastMoves": ["MUD_SLAP", "MUD_SHOT"],
         "chargedMoves": ["EARTH_POWER", "SEED_BOMB", "WRAP"],
         "defaultIVs": {
@@ -41008,7 +41008,7 @@
             "def": 209,
             "hp": 190
         },
-        "types": ["ground", "grass"],
+        "types": ["ground", "planta"],
         "fastMoves": ["MUD_SLAP", "MUD_SHOT"],
         "chargedMoves": ["EARTH_POWER", "SEED_BOMB", "ACID_SPRAY", "WRAP"],
         "defaultIVs": {
@@ -41056,7 +41056,7 @@
             "def": 76,
             "hp": 137
         },
-        "types": ["grass", "none"],
+        "types": ["planta", "none"],
         "fastMoves": ["LEAFAGE", "RAZOR_LEAF"],
         "chargedMoves": ["LEAF_STORM", "GRASS_KNOT", "SEED_BOMB"],
         "defaultIVs": {
@@ -41081,7 +41081,7 @@
             "def": 130,
             "hp": 163
         },
-        "types": ["grass", "fire"],
+        "types": ["planta", "fire"],
         "fastMoves": ["LEAFAGE", "FIRE_FANG"],
         "chargedMoves": ["LEAF_STORM", "GRASS_KNOT", "OVERHEAT", "FLAMETHROWER"],
         "defaultIVs": {
@@ -42120,7 +42120,7 @@
             "def": 190,
             "hp": 244
         },
-        "types": ["grass", "dark"],
+        "types": ["planta", "dark"],
         "fastMoves": ["SPLASH"],
         "chargedMoves": ["STRUGGLE"],
         "defaultIVs": {
@@ -42459,7 +42459,7 @@
             "def": 242,
             "hp": 198
         },
-        "types": ["dark", "grass"],
+        "types": ["dark", "planta"],
         "fastMoves": ["MAGICAL_LEAF", "SNARL"],
         "chargedMoves": ["DARK_PULSE", "GRASS_KNOT", "LEAF_STORM"],
         "defaultIVs": {
