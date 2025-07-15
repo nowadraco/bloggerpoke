@@ -1,0 +1,173 @@
+[
+	{
+		"title": "Hisui Cup",
+		"cup": "hisui",
+		"cp": 1500,
+		"meta": "hisui",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true,
+		"rules": [
+			"Pokémon must be at or below 1,500 CP to enter.",
+			"Only Pokémon first discovered in the Hisui region or Pokémon with a Pokédex number from #387 to #493 will be allowed."
+		]
+	},
+	{
+		"title": "Sunshine Cup",
+		"cup": "sunshine",
+		"cp": 1500,
+		"meta": "sunshine",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true,
+		"rules": [
+			"Pokémon must be at or below 1,500 CP to enter.",
+			"Only Normal-, Fire-, Grass-, and Ground-type Pokémon are eligible.",
+			"Charizard is not allowed."
+		]
+	},
+	{
+		"title": "Fossil Cup",
+		"cup": "fossil",
+		"cp": 1500,
+		"meta": "fossil",
+		"showCup": false,
+		"showFormat": false,
+		"showMeta": false,
+		"hideRankings": true,
+		"rules": [
+			"Pokémon must be at or below 1,500 CP to enter.",
+			"Only Water-, Rock-, and Steel-type Pokémon are eligible.",
+			"Charizard is not allowed."
+		]
+	},
+	{
+		"title": "Summer Cup (Ultra League)",
+		"cup": "summer",
+		"cp": 2500,
+		"meta": "summerultra",
+		"showCup": false,
+		"showFormat": false,
+		"showMeta": false,
+		"hideRankings": true,
+		"rules": [
+			"Pokémon must be at or below 2,500 CP to enter.",
+			"Only Normal-, Fire-, Water-, Grass-, Electric-, and Bug-type Pokémon are eligible."
+		]
+	},
+	{
+		"title": "Master League (Classic)",
+		"cup": "classic",
+		"cp": 10000,
+		"meta": "master",
+		"showCup": false,
+		"showFormat": true,
+		"showMeta": false,
+		"hideRankings": true
+	},
+	{
+		"title": "Master Premier",
+		"cup": "premier",
+		"cp": 10000,
+		"meta": "premiermaster",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true,
+		"hideRankings": true,
+		"rules": [
+			"No CP limit.",
+			"Legendary Pokémon, Mythical Pokémon, and Ultra Beasts are not eligible."
+		]
+	},
+	{
+		"title": "P!P Championship Series",
+		"cup": "championshipseries",
+		"cp": 1500,
+		"meta": "championshipseries",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true,
+		"hideRankings": true
+	},
+	{
+		"title": "Battle Frontier (Aurora)",
+		"cup": "aurora",
+		"cp": 1500,
+		"meta": "aurora",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Battle Frontier (Onyx)",
+		"cup": "onyx",
+		"cp": 1500,
+		"meta": "onyx",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Battle Frontier (Ultra)",
+		"cup": "battlefrontierultra",
+		"cp": 2500,
+		"meta": "ultra",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Battle Frontier (Master)",
+		"cup": "battlefrontiermaster",
+		"cp": 10000,
+		"meta": "battlefrontiermaster",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Devon Ascension Cup",
+		"cup": "ascension",
+		"cp": 1500,
+		"meta": "ascension",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Devon (Championship Invitational S2)",
+		"cup": "devonchampionship",
+		"cp": 1500,
+		"meta": "devonchampionship",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Gymbreakers Pillar Cup Remix",
+		"cup": "pillar2",
+		"cp": 1500,
+		"meta": "pillar2",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Little",
+		"cup": "little",
+		"cp": 500,
+		"meta": "little",
+		"showCup": false,
+		"showFormat": false,
+		"showMeta": false
+	},
+	{
+		"title": "Custom",
+		"cup": "custom",
+		"cp": 1500,
+		"meta": "great",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": false
+	}
+]

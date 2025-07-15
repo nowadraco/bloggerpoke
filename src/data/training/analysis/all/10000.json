@@ -1,0 +1,237 @@
+{
+    "properties": {
+        "lastUpdated": "April 27, 2025",
+        "totalPerformers": 24354,
+        "totalTeams": 8118
+    },
+    "performers": [{
+        "pokemon": "necrozma_dusk_mane SC+IH\/O",
+        "individualScore": 101.41,
+        "teamScore": 535.47,
+        "games": 336
+    }, {
+        "pokemon": "kyurem_white IF+FuF\/IBu",
+        "individualScore": 134.93,
+        "teamScore": 527.05,
+        "games": 903,
+        "usageTrend": [10.2, 7.29, 9.04, 11.07, 10.11, 13.29, 5.65, 6.4, 10.08, 14.15]
+    }, {
+        "pokemon": "kyurem_black DT+FSh\/FuB",
+        "individualScore": 132.75,
+        "teamScore": 527.03,
+        "games": 261
+    }, {
+        "pokemon": "kyurem_black SC+FSh\/FuB",
+        "individualScore": 129.87,
+        "teamScore": 523.08,
+        "games": 1456,
+        "usageTrend": [8.53, 6.78, 4.79, 2.05, 11.7, 20.5, 23.49, 18.34, 18.95, 11.79]
+    }, {
+        "pokemon": "florges FW+M\/TBl",
+        "individualScore": 129.03,
+        "teamScore": 516.67,
+        "games": 675
+    }, {
+        "pokemon": "dialga_origin DB+IH\/ROT",
+        "individualScore": 114.56,
+        "teamScore": 514.31,
+        "games": 839,
+        "usageTrend": [9.03, 12.81, 5.32, 6.56, 5.32, 8.56, 10.55, 10.9, 10.89, 23.35]
+    }, {
+        "pokemon": "tapu_lele A+NM\/Psh",
+        "individualScore": 114.33,
+        "teamScore": 511.76,
+        "games": 227
+    }, {
+        "pokemon": "palkia_origin DB+AT\/SpR",
+        "individualScore": 123.26,
+        "teamScore": 505.17,
+        "games": 2746,
+        "usageTrend": [29.6, 22.11, 31.91, 33.2, 39.89, 33.56, 39.45, 36.85, 39.92, 30.66]
+    }, {
+        "pokemon": "ho_oh I+BrB\/SF",
+        "individualScore": 114.83,
+        "teamScore": 499.29,
+        "games": 1477,
+        "usageTrend": [18.73, 14.57, 16.49, 13.93, 20.74, 20.05, 19.1, 14.01, 23.59, 29.95]
+    }, {
+        "pokemon": "landorus_therian MS+SE\/SSt",
+        "individualScore": 99.41,
+        "teamScore": 496.9,
+        "games": 1023,
+        "usageTrend": [7.36, 6.78, 11.7, 7.79, 6.91, 16.22, 16.21, 12.63, 9.88, 9.2]
+    }, {
+        "pokemon": "rhyperior MSl+BkS\/RW",
+        "individualScore": 124.7,
+        "teamScore": 491.41,
+        "games": 2526,
+        "usageTrend": [29.93, 26.13, 20.74, 23.77, 31.38, 34.01, 34.05, 36.33, 37.1, 29.48]
+    }, {
+        "pokemon": "necrozma_dawn_wings SC+DP\/MoG",
+        "individualScore": 94.21,
+        "teamScore": 490.1,
+        "games": 416
+    }, {
+        "pokemon": "xerneas Geo+CC\/M",
+        "individualScore": 106.27,
+        "teamScore": 490.09,
+        "games": 1059,
+        "usageTrend": [11.54, 15.08, 25, 19.26, 12.77, 13.06, 12.94, 12.46, 9.07, 9.43]
+    }, {
+        "pokemon": "tapu_bulu BS+GK\/NM",
+        "individualScore": 112.49,
+        "teamScore": 487.85,
+        "games": 517
+    }, {
+        "pokemon": "zygarde_complete DT+Cr\/Eq",
+        "individualScore": 119.16,
+        "teamScore": 485.61,
+        "games": 400
+    }, {
+        "pokemon": "primarina Ch+DV\/HC",
+        "individualScore": 107.86,
+        "teamScore": 482.25,
+        "games": 329
+    }, {
+        "pokemon": "necrozma_dusk_mane SC+DP\/Stl",
+        "individualScore": 108.76,
+        "teamScore": 481.2,
+        "games": 2018,
+        "usageTrend": [23.08, 16.33, 23.94, 26.23, 28.19, 28.38, 25.63, 24.05, 20.36, 21.46]
+    }, {
+        "pokemon": "yveltal SkP+DP\/ObW",
+        "individualScore": 128.97,
+        "teamScore": 475.38,
+        "games": 1153,
+        "usageTrend": [11.37, 9.55, 13.3, 15.98, 16.49, 17.57, 13.44, 13.32, 11.69, 16.75]
+    }, {
+        "pokemon": "primarina W+DV\/HC",
+        "individualScore": 92.17,
+        "teamScore": 467.61,
+        "games": 338
+    }, {
+        "pokemon": "kyogre W+OP\/S",
+        "individualScore": 93.73,
+        "teamScore": 465.42,
+        "games": 766,
+        "usageTrend": [8.03, 6.78, 8.51, 9.84, 11.17, 11.94, 11.06, 9.17, 7.26, 10.85]
+    }, {
+        "pokemon": "togekiss Ch+AP\/AuS",
+        "individualScore": 93.09,
+        "teamScore": 464.2,
+        "games": 485
+    }],
+    "teams": [{
+        "team": "necrozma_dusk_mane SC\/IH\/O|kyurem_white IF\/FuF\/IBu|palkia_origin DB\/AT\/SpR",
+        "teamScore": 563.14,
+        "games": 37
+    }, {
+        "team": "palkia_origin DB\/AT\/SpR|kyurem_black SC\/FSh\/FuB|landorus_therian MS\/SE\/SSt",
+        "teamScore": 562.61,
+        "games": 33
+    }, {
+        "team": "necrozma_dusk_mane SC\/DP\/Stl|kyurem_black SC\/FSh\/FuB|palkia_origin DB\/AT\/SpR",
+        "teamScore": 554.71,
+        "games": 85
+    }, {
+        "team": "dialga_origin DB\/IH\/ROT|kyurem_white IF\/FuF\/IBu|landorus_therian MS\/SE\/SSt",
+        "teamScore": 553.41,
+        "games": 29
+    }, {
+        "team": "kyurem_white IF\/FuF\/IBu|dialga_origin DB\/IH\/ROT|rhyperior MSl\/BkS\/RW",
+        "teamScore": 550.83,
+        "games": 30
+    }, {
+        "team": "dialga DB\/DM\/IH|kyurem_white IF\/FuF\/IBu|landorus_therian MS\/SE\/SSt",
+        "teamScore": 547.43,
+        "games": 30
+    }, {
+        "team": "tapu_lele A\/NM\/Psh|kyurem_black SC\/FSh\/FuB|palkia_origin DB\/AT\/SpR",
+        "teamScore": 547.11,
+        "games": 27
+    }, {
+        "team": "necrozma_dusk_mane SC\/IH\/O|kyurem_black SC\/FSh\/FuB|palkia_origin DB\/AT\/SpR",
+        "teamScore": 545.43,
+        "games": 58
+    }, {
+        "team": "landorus_therian MS\/SE\/SSt|kyurem_white IF\/FuF\/IBu|palkia_origin DB\/AT\/SpR",
+        "teamScore": 544.96,
+        "games": 27
+    }, {
+        "team": "kyurem_black DT\/FSh\/FuB|ho_oh I\/BrB\/SF|necrozma_dusk_mane SC\/DP\/Stl",
+        "teamScore": 543.48,
+        "games": 44
+    }, {
+        "team": "kyurem_white IF\/FuF\/IBu|dialga_origin DB\/IH\/ROT|necrozma_dusk_mane SC\/IH\/O",
+        "teamScore": 542.02,
+        "games": 47
+    }, {
+        "team": "melmetal TS\/DbI\/SP|kyurem_white IF\/FuF\/IBu|palkia_origin DB\/AT\/SpR",
+        "teamScore": 541.34,
+        "games": 29
+    }, {
+        "team": "zygarde_complete DT\/Bd\/O|dialga_origin DB\/IH\/ROT|kyurem_black SC\/FSh\/FuB",
+        "teamScore": 537.94,
+        "games": 49
+    }, {
+        "team": "florges FW\/M\/TBl|kyurem_black SC\/FSh\/FuB|palkia_origin DB\/AT\/SpR",
+        "teamScore": 534.56,
+        "games": 41
+    }, {
+        "team": "florges FW\/M\/TBl|kyurem_black SC\/FSh\/FuB|rhyperior MSl\/BkS\/RW",
+        "teamScore": 533.03,
+        "games": 37
+    }, {
+        "team": "necrozma_dusk_mane SC\/IH\/O|kyurem_black DT\/FSh\/FuB|palkia_origin DB\/AT\/SpR",
+        "teamScore": 531.27,
+        "games": 105
+    }, {
+        "team": "florges FW\/M\/TBl|kyurem_black SC\/FSh\/FuB|necrozma_dawn_wings SC\/DP\/MoG",
+        "teamScore": 526.5,
+        "games": 28
+    }, {
+        "team": "zacian_hero QA\/CC\/WC|kyurem_black SC\/FSh\/FuB|rhyperior MSl\/BkS\/RW",
+        "teamScore": 524.9,
+        "games": 29
+    }, {
+        "team": "xerneas Geo\/CC\/M|kyurem_black SC\/FSh\/FuB|palkia_origin DB\/AT\/SpR",
+        "teamScore": 524.47,
+        "games": 36
+    }, {
+        "team": "rhyperior MSl\/BkS\/RW|dialga_origin DB\/IH\/ROT|kyurem_white IF\/FuF\/IBu",
+        "teamScore": 522.43,
+        "games": 47
+    }, {
+        "team": "rhyperior MSl\/RW\/S|palkia_origin DB\/AT\/SpR|primarina Ch\/DV\/HC",
+        "teamScore": 514.81,
+        "games": 32
+    }, {
+        "team": "palkia_origin DB\/AT\/SpR|kyurem_black SC\/FSh\/FuB|tapu_lele A\/NM\/Psh",
+        "teamScore": 514.58,
+        "games": 57
+    }, {
+        "team": "necrozma_dusk_mane SC\/DP\/Stl|kyurem_white IF\/FuF\/IBu|palkia_origin DB\/AT\/SpR",
+        "teamScore": 511,
+        "games": 34
+    }, {
+        "team": "florges FW\/DV\/TBl|palkia_origin DB\/AT\/SpR|rhyperior MSl\/RW\/S",
+        "teamScore": 507.89,
+        "games": 27
+    }, {
+        "team": "ho_oh I\/BrB\/SF|dialga_origin DB\/IH\/ROT|xerneas Geo\/CC\/M",
+        "teamScore": 502.35,
+        "games": 283
+    }, {
+        "team": "palkia_origin DB\/AT\/SpR|ho_oh I\/BrB\/SF|necrozma_dusk_mane SC\/DP\/Stl",
+        "teamScore": 496.97,
+        "games": 235
+    }, {
+        "team": "tapu_bulu BS\/GK\/NM|palkia_origin DB\/AT\/SpR|rhyperior MSl\/BkS\/RW",
+        "teamScore": 494.98,
+        "games": 249
+    }, {
+        "team": "rhyperior MSl\/BkS\/RW|ho_oh I\/BrB\/SF|yveltal SkP\/DP\/ObW",
+        "teamScore": 493.38,
+        "games": 272
+    }]
+}
