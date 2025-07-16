@@ -109,6 +109,7 @@
         const datadexContent = document.getElementById('datadex-content');
 
         let allPokemonData = [];
+        let typeTranslations = {};
         let displayedPokemon = [];
         let isLoading = false;
         const pokemonPerPage = 20;
@@ -152,13 +153,27 @@
                 return;
             }
             try {
-                const response = await fetch('https://raw.githubusercontent.com/nowadraco/bloggerpoke/c4ddc611f37ea9b4857f1dfd884e066a4684fc57/src/data/gamemaster/pokemon.json');
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const pokemonArray = await response.json();
-                allPokemonData = pokemonArray.filter(p => p.speciesName);
+                // Carrega os dados dos Pokémon e as traduções em paralelo
+                const [pokemonResponse, translationResponse] = await Promise.all([
+                    fetch('https://raw.githubusercontent.com/nowadraco/bloggerpoke/c4ddc611f37ea9b4857f1dfd884e066a4684fc57/src/data/gamemaster/pokemon.json'),
+                    fetch('https://raw.githubusercontent.com/nowadraco/bloggerpoke/main/src/data/gamemaster/tipo_portugues.json')
+                ]);
+
+                if (!pokemonResponse.ok) throw new Error(`HTTP error! status: ${pokemonResponse.status}`);
+                if (!translationResponse.ok) throw new Error(`HTTP error! status: ${translationResponse.status}`);
+
+                const pokemonArray = await pokemonResponse.json();
+                typeTranslations = await translationResponse.json();
+                
+                // Processa e traduz os dados dos Pokémon
+                allPokemonData = pokemonArray.filter(p => p.speciesName).map(pokemon => {
+                    const translatedTypes = pokemon.types.map(type => typeTranslations[type] || type);
+                    return { ...pokemon, translatedTypes };
+                });
+
                 displayGenerationSelection();
             } catch (error) {
-                console.error("Erro ao carregar dados dos Pokémon:", error);
+                console.error("Erro ao carregar dados:", error);
                 datadexContent.innerHTML = `<p class="text-white col-span-full text-center">Não foi possível carregar os dados da Pokédex.</p>`;
             }
         }
@@ -168,7 +183,7 @@
              if (typeInPortuguese) {
                 return `https://raw.githubusercontent.com/nowadraco/pokedragonshadow.site/main/src/imagens/tipos/${typeInPortuguese}.png`;
              }
-             return ''; // Retorna vazio se o tipo não for encontrado
+             return '';
         }
 
         function displayGenerationSelection() {
@@ -299,10 +314,9 @@
             `;
 
             const perfectIVs = { atk: 15, def: 15, hp: 15 };
-            // Filtra o tipo "none" antes de criar os badges
             const typesHtml = pokemon.types
                 .filter(type => type && type.toLowerCase() !== 'none')
-                .map(type => `<span class="type-badge ${type.toLowerCase()}">${type}</span>`).join(' ');
+                .map((type, index) => `<span class="type-badge ${type.toLowerCase()}">${pokemon.translatedTypes[index]}</span>`).join(' ');
             const imageUrl = getPokemonImageUrl(pokemon);
 
             let evolutionsHtml = '';
