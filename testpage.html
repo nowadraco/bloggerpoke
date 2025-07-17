@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tipos Duplos (Online)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #1a1a1a;
+        }
+        .selectors {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+        .result-category {
+            margin-bottom: 15px;
+        }
+        .result-category h3 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .type-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+        }
+        .multiplier {
+            font-size: 0.8em;
+            color: #333;
+        }
+        /* Cores para as tags (baseado em cores comuns de Pokémon) */
+        .Aço { background-color: #B8B8D0; }
+        .Água { background-color: #6890F0; }
+        .Dragão { background-color: #7038F8; }
+        .Elétrico { background-color: #F8D030; }
+        .Fada { background-color: #EE99AC; }
+        .Fantasma { background-color: #705898; }
+        .Fogo { background-color: #F08030; }
+        .Gelo { background-color: #98D8D8; }
+        .Inseto { background-color: #A8B820; }
+        .Lutador { background-color: #C03028; }
+        .Normal { background-color: #A8A878; }
+        .Pedra { background-color: #B8A038; }
+        .Planta { background-color: #78C850; }
+        .Psíquico { background-color: #F85888; }
+        .Sombrio { background-color: #705848; }
+        .Terrestre { background-color: #E0C068; }
+        .Venenoso { background-color: #A040A0; }
+        .Voador { background-color: #A890F0; }
+    </style>
+</head>
+<body>
+
+    <h1>Calculadora de Fraquezas de Tipos Duplos</h1>
+
+    <div class="selectors">
+        <select id="type1">
+            <option value="">Carregando tipos...</option>
+        </select>
+        <select id="type2">
+            <option value="">Carregando tipos...</option>
+        </select>
+        <button id="calculateBtn">Calcular</button>
+    </div>
+
+    <div id="results">
+        <h2>Resultados</h2>
+        <p>Aguardando o carregamento dos dados dos tipos do GitHub...</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const type1Select = document.getElementById('type1');
+            const type2Select = document.getElementById('type2');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resultsDiv = document.getElementById('results');
+            const jsonUrl = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/refs/heads/main/src/data/gamemaster/tipos_poke.json';
+
+            // 1. DADOS: O JSON será buscado da URL
+            fetch(jsonUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro na rede: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(typeData => {
+                    // Se a busca for bem sucedida, executa o código principal
+                    initializeApp(typeData);
+                })
+                .catch(error => {
+                    // Em caso de erro, exibe uma mensagem na tela
+                    console.error('Falha ao carregar o JSON de tipos:', error);
+                    resultsDiv.innerHTML = `<h2>Erro</h2><p>Não foi possível carregar os dados dos tipos do GitHub. Verifique sua conexão com a internet e o console para mais detalhes.</p>`;
+                    type1Select.innerHTML = '<option value="">Erro ao carregar</option>';
+                    type2Select.innerHTML = '<option value="">Erro ao carregar</option>';
+                });
+
+            function initializeApp(typeData) {
+                const allTypes = typeData.map(t => t.tipo).sort();
+                
+                // 2. PREPARAÇÃO: Limpa os menus e preenche com os tipos carregados
+                type1Select.innerHTML = '<option value="">Selecione o Tipo 1</option>';
+                type2Select.innerHTML = '<option value="">Selecione o Tipo 2</option>';
+
+                allTypes.forEach(typeName => {
+                    type1Select.add(new Option(typeName, typeName));
+                    type2Select.add(new Option(typeName, typeName));
+                });
+                type2Select.add(new Option("Nenhum", ""), 1);
+
+                resultsDiv.innerHTML = `<h2>Resultados</h2><p>Selecione dois tipos e clique em "Calcular" para ver as fraquezas e resistências combinadas.</p>`;
+
+                // 3. LÓGICA PRINCIPAL: O que acontece quando o botão é clicado
+                calculateBtn.addEventListener('click', () => {
+                    const selectedType1 = type1Select.value;
+                    const selectedType2 = type2Select.value;
+
+                    if (!selectedType1) {
+                        alert("Por favor, selecione pelo menos o Tipo 1.");
+                        return;
+                    }
+                    if (selectedType1 === selectedType2) {
+                        alert("Por favor, selecione dois tipos diferentes ou apenas um.");
+                        return;
+                    }
+
+                    const defense1Data = typeData.find(t => t.tipo === selectedType1).defesa;
+                    const defense2Data = selectedType2 ? typeData.find(t => t.tipo === selectedType2).defesa : null;
+                    
+                    const finalMultipliers = {};
+
+                    allTypes.forEach(attackingType => {
+                        let mult1 = getMultiplier(defense1Data, attackingType);
+                        let mult2 = defense2Data ? getMultiplier(defense2Data, attackingType) : 1.0;
+                        finalMultipliers[attackingType] = mult1 * mult2;
+                    });
+                    
+                    displayResults(finalMultipliers, selectedType1, selectedType2);
+                });
+            }
+
+            // 4. FUNÇÃO AUXILIAR: Encontra o multiplicador de um tipo de ataque contra uma defesa
+            function getMultiplier(defenseData, attackingType) {
+                if (!defenseData) return 1.0;
+                if (defenseData.fraqueza && defenseData.fraqueza['1.6x']?.includes(attackingType)) return 1.6;
+                if (defenseData.resistencia) {
+                    if (defenseData.resistencia['0.625x']?.includes(attackingType)) return 0.625;
+                    if (defenseData.resistencia['0.391x']?.includes(attackingType)) return 0.391;
+                }
+                if (defenseData.imunidade && defenseData.imunidade['0x']?.includes(attackingType)) return 0;
+                return 1.0;
+            }
+
+            // 5. FUNÇÃO DE EXIBIÇÃO: Formata e mostra os resultados na página
+            function displayResults(multipliers, type1, type2) {
+                let title = `Resultados para ${type1}`;
+                if (type2) {
+                    title += ` / ${type2}`;
+                }
+                resultsDiv.innerHTML = `<h2>${title}</h2>`;
+
+                const weaknesses = [];
+                const resistances = [];
+                const immunities = [];
+
+                for (const type in multipliers) {
+                    const mult = multipliers[type];
+                    const roundedMult = Math.round(mult * 1000) / 1000;
+
+                    if (roundedMult > 1) weaknesses.push({ type, mult: roundedMult });
+                    else if (roundedMult < 1 && roundedMult > 0) resistances.push({ type, mult: roundedMult });
+                    else if (roundedMult === 0) immunities.push({ type, mult: roundedMult });
+                }
+
+                weaknesses.sort((a, b) => b.mult - a.mult || a.type.localeCompare(b.type));
+                resistances.sort((a, b) => a.mult - b.mult || a.type.localeCompare(b.type));
+                immunities.sort((a, b) => a.type.localeCompare(b.type));
+
+                if (weaknesses.length > 0) resultsDiv.innerHTML += createCategoryHTML('Fraquezas', weaknesses);
+                if (resistances.length > 0) resultsDiv.innerHTML += createCategoryHTML('Resistências', resistances);
+                if (immunities.length > 0) resultsDiv.innerHTML += createCategoryHTML('Imunidades', immunities);
+                if (weaknesses.length === 0 && resistances.length === 0 && immunities.length === 0) {
+                   resultsDiv.innerHTML += '<p>Esta combinação não possui fraquezas, resistências ou imunidades especiais.</p>'
+                }
+            }
+            
+            function createCategoryHTML(title, items) {
+                let html = `<div class="result-category"><h3>${title}</h3>`;
+                items.forEach(item => {
+                    html += `<span class="type-tag ${item.type}">${item.type} <span class="multiplier">(x${item.mult})</span></span>`;
+                });
+                html += '</div>';
+                return html;
+            }
+        });
+    </script>
+</body>
+</html>
