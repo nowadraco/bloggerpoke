@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Tipos (Únicos e Duplos)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+        h1, #status {
+            text-align: center;
+            color: #1a1a1a;
+        }
+        #status {
+            font-size: 1.2em;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        #results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .type-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 15px;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .type-card:hover {
+            transform: translateY(-5px);
+        }
+        .card-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .result-category {
+            margin-bottom: 15px;
+        }
+        .result-category h3 {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        .type-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 3px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .multiplier {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+        /* Cores dos Tipos */
+        .Aço { background-color: #B8B8D0; color: #333; }
+        .Água { background-color: #6890F0; }
+        .Dragão { background-color: #7038F8; }
+        .Elétrico { background-color: #F8D030; color: #333; }
+        .Fada { background-color: #EE99AC; }
+        .Fantasma { background-color: #705898; }
+        .Fogo { background-color: #F08030; }
+        .Gelo { background-color: #98D8D8; color: #333; }
+        .Inseto { background-color: #A8B820; }
+        .Lutador { background-color: #C03028; }
+        .Normal { background-color: #A8A878; }
+        .Pedra { background-color: #B8A038; }
+        .Planta { background-color: #78C850; }
+        .Psíquico { background-color: #F85888; }
+        .Sombrio { background-color: #705848; }
+        .Terrestre { background-color: #E0C068; color: #333; }
+        .Venenoso { background-color: #A040A0; }
+        .Voador { background-color: #A890F0; }
+    </style>
+</head>
+<body>
+
+    <h1>Tabela Completa de Tipos</h1>
+    <p id="status">Carregando e processando dados de tipos...</p>
+    <div id="results-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultsContainer = document.getElementById('results-container');
+            const statusDiv = document.getElementById('status');
+            const jsonUrl = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/refs/heads/main/src/data/gamemaster/tipos_poke.json';
+
+            async function main() {
+                try {
+                    const response = await fetch(jsonUrl);
+                    if (!response.ok) throw new Error('Falha ao buscar dados da rede.');
+                    const singleTypeData = await response.json();
+                    
+                    statusDiv.textContent = 'Processando dados...';
+                    
+                    const allResults = [];
+                    const allTypes = singleTypeData.map(t => t.tipo).sort();
+
+                    // =========================================================
+                    // ETAPA 1: PROCESSAR OS TIPOS ÚNICOS
+                    // =========================================================
+                    singleTypeData.forEach(singleType => {
+                        const formattedObject = {
+                            tipos: [singleType.tipo],
+                            defesa: { fraquezas: [], resistencias: [], imunidades: [], neutros: [] }
+                        };
+
+                        const defense = singleType.defesa;
+                        if (defense.fraqueza) {
+                            for(const multKey in defense.fraqueza) {
+                                const multValue = parseFloat(multKey);
+                                defense.fraqueza[multKey].forEach(type => formattedObject.defesa.fraquezas.push({tipo: type, mult: multValue}));
+                            }
+                        }
+                        if (defense.resistencia) {
+                            for(const multKey in defense.resistencia) {
+                                const multValue = parseFloat(multKey);
+                                defense.resistencia[multKey].forEach(type => formattedObject.defesa.resistencias.push({tipo: type, mult: multValue}));
+                            }
+                        }
+                        if (defense.imunidade) {
+                             for(const multKey in defense.imunidade) {
+                                const multValue = parseFloat(multKey);
+                                defense.imunidade[multKey].forEach(type => formattedObject.defesa.imunidades.push({tipo: type, mult: multValue}));
+                            }
+                        }
+                        if (defense.normal) {
+                             for(const multKey in defense.normal) {
+                                const multValue = parseFloat(multKey);
+                                defense.normal[multKey].forEach(type => formattedObject.defesa.neutros.push({tipo: type, mult: multValue}));
+                            }
+                        }
+                        allResults.push(formattedObject);
+                    });
+
+                    // =========================================================
+                    // ETAPA 2: CALCULAR E PROCESSAR OS TIPOS DUPLOS
+                    // =========================================================
+                    for (let i = 0; i < allTypes.length; i++) {
+                        for (let j = i + 1; j < allTypes.length; j++) {
+                            const type1Name = allTypes[i];
+                            const type2Name = allTypes[j];
+                            const defense1Data = singleTypeData.find(t => t.tipo === type1Name).defesa;
+                            const defense2Data = singleTypeData.find(t => t.tipo === type2Name).defesa;
+                            
+                            const finalMultipliers = {};
+                            allTypes.forEach(attackingType => {
+                                const mult1 = getMultiplier(defense1Data, attackingType);
+                                const mult2 = getMultiplier(defense2Data, attackingType);
+                                finalMultipliers[attackingType] = mult1 * mult2;
+                            });
+
+                            const dualTypeObject = {
+                                tipos: [type1Name, type2Name],
+                                defesa: { fraquezas: [], resistencias: [], imunidades: [], neutros: [] }
+                            };
+                            
+                            for (const attackingType in finalMultipliers) {
+                                const mult = finalMultipliers[attackingType];
+                                const roundedMult = Math.round(mult * 1000) / 1000;
+                                if (roundedMult > 1) dualTypeObject.defesa.fraquezas.push({ tipo: attackingType, mult: roundedMult });
+                                else if (roundedMult < 1 && roundedMult > 0) dualTypeObject.defesa.resistencias.push({ tipo: attackingType, mult: roundedMult });
+                                else if (roundedMult === 0) dualTypeObject.defesa.imunidades.push({ tipo: attackingType, mult: roundedMult });
+                                else if (roundedMult === 1) dualTypeObject.defesa.neutros.push({ tipo: attackingType, mult: roundedMult });
+                            }
+                            allResults.push(dualTypeObject);
+                        }
+                    }
+
+                    // Ordena os resultados: primeiro por número de tipos, depois alfabeticamente
+                    allResults.sort((a, b) => {
+                        if (a.tipos.length !== b.tipos.length) {
+                            return a.tipos.length - b.tipos.length;
+                        }
+                        return a.tipos[0].localeCompare(b.tipos[0]);
+                    });
+
+                    statusDiv.style.display = 'none';
+                    displayAllCards(allResults);
+
+                } catch (error) {
+                    statusDiv.textContent = `Ocorreu um erro: ${error.message}`;
+                    console.error('Erro:', error);
+                }
+            }
+
+            function displayAllCards(data) {
+                resultsContainer.innerHTML = '';
+                data.forEach(typeData => {
+                    const card = document.createElement('div');
+                    card.className = 'type-card';
+                    
+                    // Cria o título para um ou dois tipos
+                    let titleHTML = `<span class="type-tag ${typeData.tipos[0]}">${typeData.tipos[0]}</span>`;
+                    if (typeData.tipos.length > 1) {
+                        titleHTML += `<span class="type-tag ${typeData.tipos[1]}">${typeData.tipos[1]}</span>`;
+                    }
+                    const title = `<div class="card-title">${titleHTML}</div>`;
+
+                    let content = '';
+                    const defense = typeData.defesa;
+
+                    defense.fraquezas.sort((a, b) => b.mult - a.mult || a.tipo.localeCompare(b.tipo));
+                    defense.resistencias.sort((a, b) => a.mult - b.mult || a.tipo.localeCompare(b.tipo));
+                    defense.imunidades.sort((a, b) => a.tipo.localeCompare(b.tipo));
+                    defense.neutros.sort((a, b) => a.tipo.localeCompare(b.tipo));
+
+                    if (defense.fraquezas.length > 0) content += createCategoryHTML('Fraquezas', defense.fraquezas);
+                    if (defense.resistencias.length > 0) content += createCategoryHTML('Resistências', defense.resistencias);
+                    if (defense.imunidades.length > 0) content += createCategoryHTML('Imunidades', defense.imunidades);
+                    if (defense.neutros.length > 0) content += createCategoryHTML('Dano Neutro', defense.neutros);
+
+                    card.innerHTML = title + content;
+                    resultsContainer.appendChild(card);
+                });
+            }
+            
+            function createCategoryHTML(title, items) {
+                let html = `<div class="result-category"><h3>${title}</h3>`;
+                items.forEach(item => {
+                    html += `<span class="type-tag ${item.tipo}">${item.tipo} <span class="multiplier">(x${item.mult})</span></span>`;
+                });
+                html += '</div>';
+                return html;
+            }
+
+            function getMultiplier(defenseData, attackingType) {
+                if (!defenseData) return 1.0;
+                if (defenseData.fraqueza) for(const k in defenseData.fraqueza) if(defenseData.fraqueza[k].includes(attackingType)) return parseFloat(k);
+                if (defenseData.resistencia) for(const k in defenseData.resistencia) if(defenseData.resistencia[k].includes(attackingType)) return parseFloat(k);
+                if (defenseData.imunidade) for(const k in defenseData.imunidade) if(defenseData.imunidade[k].includes(attackingType)) return parseFloat(k);
+                if (defenseData.normal) for(const k in defenseData.normal) if(defenseData.normal[k].includes(attackingType)) return parseFloat(k);
+                return 1.0;
+            }
+
+            main();
+        });
+    </script>
+</body>
+</html>
