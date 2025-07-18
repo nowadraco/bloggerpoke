@@ -100,18 +100,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             const resultsContainer = document.getElementById('results-container');
             const statusDiv = document.getElementById('status');
+            // Link corrigido para o arquivo JSON "raw" (bruto)
             const jsonUrl = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/main/src/data/gamemaster/tipos_poke.json';
 
             async function fetchDataAndDisplay() {
                 try {
+                    // 1. BUSCAR O JSON
                     const response = await fetch(jsonUrl);
                     if (!response.ok) {
                         throw new Error(`Erro na rede: ${response.statusText}`);
                     }
                     const typeDataList = await response.json();
 
-                    statusDiv.style.display = 'none';
-                    displayAllCards(typeDataList);
+                    statusDiv.style.display = 'none'; // Esconde a mensagem de "carregando"
+                    displayAllCards(typeDataList);    // Exibe os dados
 
                 } catch (error) {
                     statusDiv.textContent = `Ocorreu um erro ao carregar os dados: ${error.message}`;
@@ -120,7 +122,7 @@
             }
 
             function displayAllCards(data) {
-                resultsContainer.innerHTML = ''; 
+                resultsContainer.innerHTML = ''; // Limpa a área para garantir que não haja conteúdo antigo
 
                 data.forEach(typeData => {
                     if (!typeData || !typeData.tipo) {
@@ -131,6 +133,7 @@
                     const card = document.createElement('div');
                     card.className = 'type-card';
 
+                    // Monta o título do card com o tipo único
                     const title = `<div class="card-title">
                         <span class="type-tag ${typeData.tipo}">${typeData.tipo}</span>
                     </div>`;
@@ -138,6 +141,7 @@
                     const defense = typeData.defesa;
                     let content = '';
 
+                    // Cria as seções de fraqueza, resistência, imunidade e dano normal
                     content += createCategoryHTML('Fraquezas', defense.fraqueza);
                     content += createCategoryHTML('Resistências', defense.resistencia);
                     content += createCategoryHTML('Imunidades', defense.imunidade);
@@ -148,25 +152,25 @@
                 });
             }
             
+            // Função auxiliar para criar o HTML de cada categoria (Fraqueza, Resistência, etc.)
             function createCategoryHTML(title, categoryData) {
                 if (!categoryData || Object.keys(categoryData).length === 0) {
-                    return ''; 
+                    return ''; // Não cria a seção se não houver dados
                 }
 
                 let html = `<div class="result-category"><h3>${title}</h3>`;
                 
+                // Ordena os multiplicadores (ex: 0.391x, 0.625x para resistências)
                 const sortedMultipliers = Object.keys(categoryData).sort((a, b) => {
                     return title === 'Fraquezas' ? parseFloat(b) - parseFloat(a) : parseFloat(a) - parseFloat(b);
                 });
 
                 for (const multiplier of sortedMultipliers) {
                     const types = categoryData[multiplier];
-                    types.sort().forEach(type => {
-                        // =========================================================
-                        // A CORREÇÃO ESTÁ AQUI: A linha que removia acentos foi retirada.
-                        // Agora a classe CSS será "Elétrico", que corresponde ao CSS.
-                        // =========================================================
-                        html += `<span class="type-tag ${type}">${type} <span class="multiplier">(${multiplier})</span></span>`;
+                    types.sort().forEach(type => { // Ordena os tipos alfabeticamente
+                        // Limpa o nome do tipo para garantir que seja uma classe CSS válida
+                        const cleanType = type.replace(/é/g, 'e').replace(/í/g, 'i');
+                        html += `<span class="type-tag ${cleanType}">${type} <span class="multiplier">(${multiplier})</span></span>`;
                     });
                 }
                 
@@ -174,6 +178,7 @@
                 return html;
             }
 
+            // Inicia todo o processo
             fetchDataAndDisplay();
         });
     </script>
