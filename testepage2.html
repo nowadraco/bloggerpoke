@@ -163,7 +163,7 @@
                 options.forEach(optionName => selectElement.add(new Option(optionName, optionName)));
             }
 
-            // --- Lógica da Calculadora de DEFESA (sem alterações) ---
+            // --- Lógica da Calculadora de DEFESA ---
             function handleDefenseCalculation() {
                 const selectedType1 = type1DefSelect.value;
                 const selectedType2 = type2DefSelect.value;
@@ -181,7 +181,9 @@
                 resultsDiv.innerHTML = `<h2>Defesa de ${combinationData.nome}</h2>`;
                 resultsDiv.innerHTML += createCategoryHTML('Fraquezas', combinationData.defesa.fraqueza);
                 resultsDiv.innerHTML += createCategoryHTML('Resistências', combinationData.defesa.resistencia);
-                resultsDiv.innerHTML += createCategoryHTML('Imunidades', { '0x': combinationData.defesa.imunidade });
+                // REMOVIDO: Linha que exibia "Imunidades"
+                // resultsDiv.innerHTML += createCategoryHTML('Imunidades', { '0x': combinationData.defesa.imunidade }); 
+                // ADICIONADO: Exibição da categoria "Dano Neutro" para defesa
                 resultsDiv.innerHTML += createCategoryHTML('Dano Neutro', combinationData.defesa.normal);
             }
             
@@ -193,7 +195,6 @@
                     return;
                 }
                 
-                // Inicializa as categorias, incluindo 'normal'
                 const profile = { superEffective: [], notVeryEffective: [], noEffect: [], normal: [] };
 
                 allDefensiveCombinations.forEach(defendingCombination => {
@@ -207,7 +208,7 @@
                         profile.notVeryEffective.push(item);
                     } else if (roundedMult === 0) {
                         profile.noEffect.push(item);
-                    } else if (roundedMult === 1) { // Adicionado para incluir 1.0x no perfil
+                    } else if (roundedMult === 1) { 
                         profile.normal.push(item);
                     }
                 });
@@ -217,17 +218,19 @@
 
             function displayOffensiveResults(attackingType, profile) {
                 attackDynamicContentDiv.innerHTML = `<h2>Ataque do tipo <span class="type-tag ${attackingType}">${attackingType}</span></h2>`;
-                attackFilterInput.value = ''; // Limpa o filtro anterior (texto do input)
+                attackFilterInput.value = ''; 
 
                 profile.superEffective.sort((a,b)=> b.mult - a.mult || a.nome.localeCompare(b.nome));
                 profile.notVeryEffective.sort((a,b)=> a.mult - b.mult || a.nome.localeCompare(b.nome));
-                profile.noEffect.sort((a,b)=> a.nome.localeCompare(b.nome));
-                profile.normal.sort((a,b)=> a.nome.localeCompare(b.nome)); // Ordena também os de dano normal
+                // REMOVIDO: Linha de ordenação para noEffect (já que a categoria será removida da exibição)
+                // profile.noEffect.sort((a,b)=> a.nome.localeCompare(b.nome)); 
+                profile.normal.sort((a,b)=> a.nome.localeCompare(b.nome));
 
                 attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('É Super Efetivo Contra:', profile.superEffective);
                 attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('É Pouco Efetivo Contra:', profile.notVeryEffective);
-                attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('Não Tem Efeito Contra:', profile.noEffect);
-                attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('Causa Dano Normal Contra:', profile.normal); // Nova linha para dano normal
+                // REMOVIDO: Linha que exibia "Não Tem Efeito Contra"
+                // attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('Não Tem Efeito Contra:', profile.noEffect); 
+                attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('Causa Dano Normal Contra:', profile.normal); 
             }
 
             function createOffensiveCategoryHTML(title, items) {
@@ -262,7 +265,19 @@
                 const allCombinations = [];
 
                 singleTypeData.forEach(typeInfo => {
-                    allCombinations.push({ nome: typeInfo.tipo, tipos: [typeInfo.tipo], defesa: typeInfo.defesa });
+                    // Para tipos únicos, garante que 'normal' esteja presente para exibir
+                    const singleTypeDefense = { ...typeInfo.defesa }; // Cria uma cópia para não modificar o original
+                    if (!singleTypeDefense.normal || Object.keys(singleTypeDefense.normal).length === 0) {
+                        const nonAffectedTypes = allTypes.filter(t => 
+                            !Object.values(singleTypeDefense.fraqueza).flat().includes(t) &&
+                            !Object.values(singleTypeDefense.resistencia).flat().includes(t) &&
+                            !singleTypeDefense.imunidade.includes(t)
+                        );
+                        if (nonAffectedTypes.length > 0) {
+                            singleTypeDefense.normal = { '1x': nonAffectedTypes };
+                        }
+                    }
+                    allCombinations.push({ nome: typeInfo.tipo, tipos: [typeInfo.tipo], defesa: singleTypeDefense });
                 });
 
                 for (let i = 0; i < allTypes.length; i++) {
@@ -300,11 +315,17 @@
             }
             
             function createCategoryHTML(title, categoryData) {
+                // Esta função é para a exibição DE DEFESA
                 if (!categoryData || Object.keys(categoryData).length === 0) return '';
                 let html = `<div class="result-category"><h3>${title}</h3>`;
+                // Para dano neutro, não queremos ordenar por multiplicador, mas sim alfabeticamente
                 const multipliers = Object.keys(categoryData).sort((a, b) => title === 'Fraquezas' ? parseFloat(b) - parseFloat(a) : parseFloat(a) - parseFloat(b));
+                
                 multipliers.forEach(multKey => {
-                    categoryData[multKey].sort().forEach(type => {
+                    // Se for Dano Neutro ou Imunidades, o multKey pode ser um placeholder como '1x' ou '0x'
+                    // e a categoria é um array simples, não um objeto de objetos.
+                    const types = categoryData[multKey] || categoryData; // Adapta para a estrutura de imunidades
+                    types.sort().forEach(type => {
                         html += `<span class="type-tag ${type}">${type} <span class="multiplier">(${multKey})</span></span>`;
                     });
                 });
