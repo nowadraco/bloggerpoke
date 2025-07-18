@@ -364,9 +364,8 @@
         "Lutador"
       ]
     },
-    "resistencia": {},
-    "imunidade": {
-      "0x": [
+    "resistencia": {
+      "0.391x": [
         "Fantasma"
       ]
     },
