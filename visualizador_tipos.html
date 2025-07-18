@@ -92,7 +92,7 @@
 </head>
 <body>
 
-    <h1>Tabela de Interações Defensivas por Tipo</h1>
+    <h1>Tabela Completa de Interações Defensivas</h1>
     <p id="status">Carregando dados...</p>
     <div id="results-container"></div>
 
@@ -100,7 +100,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const resultsContainer = document.getElementById('results-container');
             const statusDiv = document.getElementById('status');
-            const jsonUrl = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/main/src/data/gamemaster/tipos_poke.json';
+            // Este é o URL que você está usando
+            const jsonUrl = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/4109174d1372517ebe318b341bf57ebe2e139fa1/src/data/gamemaster/tipos_poke_completo.json';
 
             async function fetchDataAndDisplay() {
                 try {
@@ -108,10 +109,10 @@
                     if (!response.ok) {
                         throw new Error(`Erro na rede: ${response.statusText}`);
                     }
-                    const typeDataList = await response.json();
+                    const allCombinations = await response.json();
 
                     statusDiv.style.display = 'none';
-                    displayAllCards(typeDataList);
+                    displayAllCards(allCombinations);
 
                 } catch (error) {
                     statusDiv.textContent = `Ocorreu um erro ao carregar os dados: ${error.message}`;
@@ -122,27 +123,41 @@
             function displayAllCards(data) {
                 resultsContainer.innerHTML = ''; 
 
-                data.forEach(typeData => {
-                    if (!typeData || !typeData.tipo) {
-                        console.warn("Item inválido ou sem 'tipo' encontrado no JSON:", typeData);
-                        return;
+                data.forEach(combination => {
+                    // =========================================================
+                    // CORREÇÃO 1: Verificando a chave "tipos" (plural) em vez de "tipo"
+                    // =========================================================
+                    if (!combination || !combination.tipos || combination.tipos.length === 0) {
+                        console.warn("Item inválido ou sem 'tipos' encontrado no JSON:", combination);
+                        return; // Pula este item problemático e continua o loop
                     }
 
                     const card = document.createElement('div');
                     card.className = 'type-card';
+                    
+                    // =========================================================
+                    // CORREÇÃO 2: Montando o título a partir da lista "tipos"
+                    // =========================================================
+                    let titleHTML = `<span class="type-tag ${combination.tipos[0]}">${combination.tipos[0]}</span>`;
+                    // Se houver um segundo tipo na lista, adiciona ele também
+                    if (combination.tipos[1]) {
+                        titleHTML += `<span class="type-tag ${combination.tipos[1]}">${combination.tipos[1]}</span>`;
+                    }
+                    const title = `<div class="card-title">${titleHTML}</div>`;
 
-                    const title = `<div class="card-title">
-                        <span class="type-tag ${typeData.tipo}">${typeData.tipo}</span>
-                    </div>`;
-
-                    const defense = typeData.defesa;
+                    const defense = combination.defesa;
                     let content = '';
 
+                    // O resto da lógica para criar o conteúdo do card já estava correta
                     content += createCategoryHTML('Fraquezas', defense.fraqueza);
                     content += createCategoryHTML('Resistências', defense.resistencia);
-                    content += createCategoryHTML('Imunidades', defense.imunidade);
-                    content += createCategoryHTML('Dano Neutro', defense.normal);
-
+                    if (defense.imunidade) {
+                        content += createCategoryHTML('Imunidades', { '0x': defense.imunidade });
+                    }
+                    if (defense.normal) {
+                         content += createCategoryHTML('Dano Neutro', defense.normal);
+                    }
+                    
                     card.innerHTML = title + content;
                     resultsContainer.appendChild(card);
                 });
@@ -162,10 +177,6 @@
                 for (const multiplier of sortedMultipliers) {
                     const types = categoryData[multiplier];
                     types.sort().forEach(type => {
-                        // =========================================================
-                        // A CORREÇÃO ESTÁ AQUI: A linha que removia acentos foi retirada.
-                        // Agora a classe CSS será "Elétrico", que corresponde ao CSS.
-                        // =========================================================
                         html += `<span class="type-tag ${type}">${type} <span class="multiplier">(${multiplier})</span></span>`;
                     });
                 }
