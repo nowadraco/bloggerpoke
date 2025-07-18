@@ -24,7 +24,7 @@
           "Normal",
           "Pedra",
           "Planta",
-          "Psiquico",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -58,6 +58,7 @@
           "Inseto",
           "Normal",
           "Pedra",
+          "Psíquico",
           "Voador",
           "Água"
         ],
@@ -73,7 +74,6 @@
           "Fantasma",
           "Fogo",
           "Gelo",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -108,13 +108,13 @@
           "Inseto",
           "Normal",
           "Pedra",
-          "Planta"
+          "Planta",
+          "Psíquico"
         ]
       },
       "normal": {
         "1x": [
           "Fantasma",
-          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -143,6 +143,7 @@
           "Normal",
           "Pedra",
           "Planta",
+          "Psíquico",
           "Sombrio",
           "Voador"
         ],
@@ -159,7 +160,6 @@
           "Elétrico",
           "Fantasma",
           "Lutador",
-          "Psíquico",
           "Água"
         ]
       }
@@ -187,6 +187,7 @@
           "Gelo",
           "Pedra",
           "Planta",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -203,7 +204,6 @@
       "normal": {
         "1x": [
           "Elétrico",
-          "Psíquico",
           "Água"
         ]
       }
@@ -236,6 +236,7 @@
         "0.625x": [
           "Dragão",
           "Normal",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -245,7 +246,6 @@
           "Fantasma",
           "Fogo",
           "Pedra",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -273,6 +273,7 @@
           "Inseto",
           "Normal",
           "Planta",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -286,7 +287,6 @@
           "Elétrico",
           "Fantasma",
           "Pedra",
-          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -311,7 +311,8 @@
           "Fada",
           "Gelo",
           "Inseto",
-          "Normal"
+          "Normal",
+          "Psíquico"
         ],
         "0.391x": [
           "Planta",
@@ -324,7 +325,6 @@
           "Fantasma",
           "Lutador",
           "Pedra",
-          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Voador",
@@ -398,6 +398,7 @@
           "Normal",
           "Pedra",
           "Planta",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -408,7 +409,6 @@
       "normal": {
         "1x": [
           "Elétrico",
-          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -436,7 +436,8 @@
           "Fada",
           "Gelo",
           "Inseto",
-          "Pedra"
+          "Pedra",
+          "Psíquico"
         ],
         "0.391x": [
           "Normal",
@@ -453,7 +454,6 @@
           "Fantasma",
           "Fogo",
           "Planta",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -481,6 +481,7 @@
           "Fada",
           "Normal",
           "Pedra",
+          "Psíquico",
           "Água"
         ],
         "0.391x": [
@@ -495,7 +496,6 @@
           "Fantasma",
           "Gelo",
           "Inseto",
-          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Voador"
@@ -526,10 +526,10 @@
           "Normal",
           "Pedra",
           "Planta",
-          "Psíquico",
           "Voador"
         ],
         "0.391x": [
+          "Psíquico",
           "Venenoso"
         ]
       },
@@ -570,8 +570,10 @@
           "Sombrio",
           "Voador"
         ],
+        "0.244x": [
+          "Psíquico"
+        ],
         "0.391x": [
-          "Psíquico",
           "Venenoso"
         ]
       },
@@ -606,6 +608,7 @@
           "Fada",
           "Inseto",
           "Normal",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -621,7 +624,6 @@
           "Fantasma",
           "Gelo",
           "Planta",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -635,8 +637,7 @@
     "defesa": {
       "fraqueza": {
         "1.6x": [
-          "Fogo",
-          "Psíquico"
+          "Fogo"
         ],
         "2.56x": [
           "Terrestre"
@@ -665,6 +666,7 @@
           "Elétrico",
           "Fantasma",
           "Lutador",
+          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -689,6 +691,7 @@
           "Dragão",
           "Fada",
           "Normal",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -706,7 +709,6 @@
           "Gelo",
           "Lutador",
           "Pedra",
-          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -738,6 +740,7 @@
           "Inseto",
           "Normal",
           "Pedra",
+          "Psíquico",
           "Voador",
           "Água"
         ]
@@ -747,7 +750,6 @@
           "Fantasma",
           "Fogo",
           "Planta",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -772,6 +774,7 @@
           "Inseto",
           "Normal",
           "Pedra",
+          "Psíquico",
           "Voador",
           "Água"
         ],
@@ -787,7 +790,6 @@
           "Fantasma",
           "Fogo",
           "Gelo",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -1079,6 +1081,7 @@
         "1.6x": [
           "Dragão",
           "Gelo",
+          "Psíquico",
           "Voador"
         ],
         "2.56x": [
@@ -1102,7 +1105,6 @@
           "Fantasma",
           "Lutador",
           "Normal",
-          "Psíquico",
           "Terrestre",
           "Venenoso"
         ]
@@ -1504,13 +1506,13 @@
           "Inseto",
           "Normal",
           "Pedra",
-          "Planta"
+          "Planta",
+          "Psíquico"
         ]
       },
       "normal": {
         "1x": [
           "Fantasma",
-          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -1802,6 +1804,7 @@
       "fraqueza": {
         "1.6x": [
           "Fada",
+          "Psíquico",
           "Terrestre"
         ]
       },
@@ -1823,7 +1826,6 @@
           "Lutador",
           "Normal",
           "Planta",
-          "Psíquico",
           "Venenoso",
           "Voador",
           "Água"
@@ -2213,6 +2215,7 @@
           "Normal",
           "Pedra",
           "Planta",
+          "Psíquico",
           "Sombrio",
           "Voador"
         ],
@@ -2229,7 +2232,6 @@
           "Elétrico",
           "Fantasma",
           "Lutador",
-          "Psíquico",
           "Água"
         ]
       }
@@ -2527,6 +2529,7 @@
         "1.6x": [
           "Aço",
           "Fada",
+          "Psíquico",
           "Venenoso",
           "Voador"
         ]
@@ -2550,7 +2553,6 @@
           "Gelo",
           "Normal",
           "Planta",
-          "Psíquico",
           "Terrestre",
           "Água"
         ]
@@ -2943,6 +2945,7 @@
           "Gelo",
           "Pedra",
           "Planta",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -2959,7 +2962,6 @@
       "normal": {
         "1x": [
           "Elétrico",
-          "Psíquico",
           "Água"
         ]
       }
@@ -3118,7 +3120,7 @@
           "Gelo",
           "Pedra",
           "Planta",
-          "Psiquico",
+          "Psíquico",
           "Terrestre",
           "Voador"
         ]
@@ -3259,6 +3261,7 @@
         "1.6x": [
           "Fada",
           "Fantasma",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -3281,7 +3284,6 @@
           "Fogo",
           "Gelo",
           "Planta",
-          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Água"
@@ -3690,6 +3692,7 @@
         "0.625x": [
           "Dragão",
           "Normal",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -3699,7 +3702,6 @@
           "Fantasma",
           "Fogo",
           "Pedra",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -3997,6 +3999,7 @@
     "defesa": {
       "fraqueza": {
         "1.6x": [
+          "Psíquico",
           "Terrestre",
           "Voador",
           "Água"
@@ -4023,7 +4026,6 @@
           "Lutador",
           "Normal",
           "Pedra",
-          "Psíquico",
           "Venenoso"
         ]
       }
@@ -4419,6 +4421,7 @@
           "Inseto",
           "Normal",
           "Planta",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -4432,7 +4435,6 @@
           "Elétrico",
           "Fantasma",
           "Pedra",
-          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -4731,6 +4733,7 @@
           "Fada",
           "Fogo",
           "Lutador",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -4749,7 +4752,6 @@
           "Normal",
           "Pedra",
           "Planta",
-          "Psíquico",
           "Terrestre",
           "Venenoso",
           "Água"
@@ -5137,7 +5139,8 @@
           "Fada",
           "Gelo",
           "Inseto",
-          "Normal"
+          "Normal",
+          "Psíquico"
         ],
         "0.391x": [
           "Planta",
@@ -5150,7 +5153,6 @@
           "Fantasma",
           "Lutador",
           "Pedra",
-          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Voador",
@@ -5448,7 +5450,8 @@
       "fraqueza": {
         "1.6x": [
           "Fada",
-          "Fogo"
+          "Fogo",
+          "Psíquico"
         ],
         "2.56x": [
           "Voador"
@@ -5472,7 +5475,6 @@
           "Gelo",
           "Normal",
           "Pedra",
-          "Psíquico",
           "Venenoso",
           "Água"
         ]
@@ -5891,6 +5893,7 @@
         "1.6x": [
           "Dragão",
           "Gelo",
+          "Psíquico",
           "Voador"
         ],
         "2.56x": [
@@ -5914,7 +5917,6 @@
           "Fantasma",
           "Lutador",
           "Normal",
-          "Psíquico",
           "Terrestre",
           "Venenoso"
         ]
@@ -5930,6 +5932,7 @@
       "fraqueza": {
         "1.6x": [
           "Fada",
+          "Psíquico",
           "Terrestre"
         ]
       },
@@ -5951,7 +5954,6 @@
           "Lutador",
           "Normal",
           "Planta",
-          "Psíquico",
           "Venenoso",
           "Voador",
           "Água"
@@ -5969,6 +5971,7 @@
         "1.6x": [
           "Aço",
           "Fada",
+          "Psíquico",
           "Venenoso",
           "Voador"
         ]
@@ -5992,7 +5995,6 @@
           "Gelo",
           "Normal",
           "Planta",
-          "Psíquico",
           "Terrestre",
           "Água"
         ]
@@ -6009,6 +6011,7 @@
         "1.6x": [
           "Fada",
           "Fantasma",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -6031,7 +6034,6 @@
           "Fogo",
           "Gelo",
           "Planta",
-          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Água"
@@ -6047,6 +6049,7 @@
     "defesa": {
       "fraqueza": {
         "1.6x": [
+          "Psíquico",
           "Terrestre",
           "Voador",
           "Água"
@@ -6073,7 +6076,6 @@
           "Lutador",
           "Normal",
           "Pedra",
-          "Psíquico",
           "Venenoso"
         ]
       }
@@ -6091,6 +6093,7 @@
           "Fada",
           "Fogo",
           "Lutador",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -6109,7 +6112,6 @@
           "Normal",
           "Pedra",
           "Planta",
-          "Psíquico",
           "Terrestre",
           "Venenoso",
           "Água"
@@ -6126,7 +6128,8 @@
       "fraqueza": {
         "1.6x": [
           "Fada",
-          "Fogo"
+          "Fogo",
+          "Psíquico"
         ],
         "2.56x": [
           "Voador"
@@ -6150,7 +6153,6 @@
           "Gelo",
           "Normal",
           "Pedra",
-          "Psíquico",
           "Venenoso",
           "Água"
         ]
@@ -6165,7 +6167,7 @@
       "fraqueza": {
         "1.6x": [
           "Fada",
-          "Psiquico",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -6205,6 +6207,7 @@
         "1.6x": [
           "Fada",
           "Lutador",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -6227,7 +6230,6 @@
           "Gelo",
           "Normal",
           "Planta",
-          "Psíquico",
           "Terrestre",
           "Venenoso",
           "Água"
@@ -6247,6 +6249,7 @@
           "Fada",
           "Lutador",
           "Planta",
+          "Psíquico",
           "Terrestre",
           "Água"
         ]
@@ -6267,7 +6270,6 @@
           "Elétrico",
           "Fantasma",
           "Gelo",
-          "Psíquico",
           "Voador"
         ]
       }
@@ -6284,6 +6286,7 @@
           "Fada",
           "Fogo",
           "Gelo",
+          "Psíquico",
           "Venenoso"
         ],
         "2.56x": [
@@ -6307,8 +6310,7 @@
           "Fantasma",
           "Inseto",
           "Lutador",
-          "Normal",
-          "Psíquico"
+          "Normal"
         ]
       }
     }
@@ -6329,8 +6331,7 @@
       "resistencia": {
         "0.625x": [
           "Lutador",
-          "Pedra",
-          "Psíquico"
+          "Pedra"
         ]
       },
       "normal": {
@@ -6343,6 +6344,7 @@
           "Inseto",
           "Normal",
           "Planta",
+          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Venenoso",
@@ -6371,8 +6373,10 @@
           "Fantasma",
           "Pedra"
         ],
+        "0.626x": [
+          "Psíquico"
+        ],
         "0.391x": [
-          "Psíquico",
           "Sombrio"
         ]
       },
@@ -6404,6 +6408,7 @@
           "Fada",
           "Gelo",
           "Planta",
+          "Psíquico",
           "Voador",
           "Água"
         ]
@@ -6427,7 +6432,6 @@
           "Fogo",
           "Lutador",
           "Normal",
-          "Psíquico",
           "Terrestre"
         ]
       }
@@ -6440,8 +6444,10 @@
     ],
     "defesa": {
       "fraqueza": {
+        "2.56x": [
+          "Psíquico"
+        ],
         "1.6x": [
-          "Psíquico",
           "Terrestre",
           "Voador"
         ]
@@ -6484,6 +6490,7 @@
           "Elétrico",
           "Fada",
           "Gelo",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -6506,7 +6513,6 @@
           "Fogo",
           "Normal",
           "Pedra",
-          "Psíquico",
           "Venenoso",
           "Água"
         ]
@@ -6524,6 +6530,7 @@
           "Elétrico",
           "Fada",
           "Planta",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -6544,7 +6551,6 @@
           "Fantasma",
           "Lutador",
           "Normal",
-          "Psíquico",
           "Terrestre",
           "Venenoso"
         ]
@@ -6576,6 +6582,7 @@
           "Normal",
           "Pedra",
           "Planta",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -6586,7 +6593,6 @@
       "normal": {
         "1x": [
           "Elétrico",
-          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -6887,6 +6893,7 @@
         "1.6x": [
           "Fada",
           "Lutador",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -6909,7 +6916,6 @@
           "Gelo",
           "Normal",
           "Planta",
-          "Psíquico",
           "Terrestre",
           "Venenoso",
           "Água"
@@ -6946,7 +6952,7 @@
           "Normal",
           "Pedra",
           "Planta",
-          "Psiquico",
+          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Venenoso",
@@ -7302,7 +7308,8 @@
           "Fada",
           "Gelo",
           "Inseto",
-          "Pedra"
+          "Pedra",
+          "Psíquico"
         ],
         "0.391x": [
           "Normal",
@@ -7319,7 +7326,6 @@
           "Fantasma",
           "Fogo",
           "Planta",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -7625,6 +7631,7 @@
           "Fada",
           "Lutador",
           "Planta",
+          "Psíquico",
           "Terrestre",
           "Água"
         ]
@@ -7645,7 +7652,6 @@
           "Elétrico",
           "Fantasma",
           "Gelo",
-          "Psíquico",
           "Voador"
         ]
       }
@@ -8037,6 +8043,7 @@
           "Fada",
           "Normal",
           "Pedra",
+          "Psíquico",
           "Água"
         ],
         "0.391x": [
@@ -8051,7 +8058,6 @@
           "Fantasma",
           "Gelo",
           "Inseto",
-          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Voador"
@@ -8356,6 +8362,7 @@
           "Fada",
           "Fogo",
           "Gelo",
+          "Psíquico",
           "Venenoso"
         ],
         "2.56x": [
@@ -8379,8 +8386,7 @@
           "Fantasma",
           "Inseto",
           "Lutador",
-          "Normal",
-          "Psíquico"
+          "Normal"
         ]
       }
     }
@@ -8772,10 +8778,10 @@
           "Normal",
           "Pedra",
           "Planta",
-          "Psíquico",
           "Voador"
         ],
         "0.391x": [
+          "Psíquico",
           "Venenoso"
         ]
       },
@@ -9079,8 +9085,7 @@
       "resistencia": {
         "0.625x": [
           "Lutador",
-          "Pedra",
-          "Psíquico"
+          "Pedra"
         ]
       },
       "normal": {
@@ -9093,6 +9098,7 @@
           "Inseto",
           "Normal",
           "Planta",
+          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Venenoso",
@@ -9482,8 +9488,10 @@
           "Sombrio",
           "Voador"
         ],
+        "0.244x": [
+          "Psíquico"
+        ],
         "0.391x": [
-          "Psíquico",
           "Venenoso"
         ]
       },
@@ -9803,8 +9811,10 @@
           "Fantasma",
           "Pedra"
         ],
+        "0.626x": [
+          "Psíquico"
+        ],
         "0.391x": [
-          "Psíquico",
           "Sombrio"
         ]
       },
@@ -10213,6 +10223,7 @@
           "Fada",
           "Inseto",
           "Normal",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -10228,7 +10239,6 @@
           "Fantasma",
           "Gelo",
           "Planta",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -10529,6 +10539,7 @@
           "Fada",
           "Gelo",
           "Planta",
+          "Psíquico",
           "Voador",
           "Água"
         ]
@@ -10552,7 +10563,6 @@
           "Fogo",
           "Lutador",
           "Normal",
-          "Psíquico",
           "Terrestre"
         ]
       }
@@ -10794,7 +10804,7 @@
           "Inseto",
           "Lutador",
           "Normal",
-          "Psiquico",
+          "Psíquico",
           "Sombrio",
           "Terrestre",
           "Voador"
@@ -10934,8 +10944,7 @@
     "defesa": {
       "fraqueza": {
         "1.6x": [
-          "Fogo",
-          "Psíquico"
+          "Fogo"
         ],
         "2.56x": [
           "Terrestre"
@@ -10964,6 +10973,7 @@
           "Elétrico",
           "Fantasma",
           "Lutador",
+          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -11259,8 +11269,10 @@
     ],
     "defesa": {
       "fraqueza": {
+        "2.56x": [
+          "Psíquico"
+        ],
         "1.6x": [
-          "Psíquico",
           "Terrestre",
           "Voador"
         ]
@@ -11672,6 +11684,7 @@
           "Dragão",
           "Fada",
           "Normal",
+          "Psíquico",
           "Voador"
         ],
         "0.391x": [
@@ -11689,7 +11702,6 @@
           "Gelo",
           "Lutador",
           "Pedra",
-          "Psíquico",
           "Sombrio",
           "Água"
         ]
@@ -12001,6 +12013,7 @@
           "Elétrico",
           "Fada",
           "Gelo",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -12023,7 +12036,6 @@
           "Fogo",
           "Normal",
           "Pedra",
-          "Psíquico",
           "Venenoso",
           "Água"
         ]
@@ -12354,7 +12366,7 @@
           "Gelo",
           "Normal",
           "Pedra",
-          "Psiquico",
+          "Psíquico",
           "Sombrio",
           "Venenoso"
         ]
@@ -12428,6 +12440,7 @@
           "Inseto",
           "Normal",
           "Pedra",
+          "Psíquico",
           "Voador",
           "Água"
         ]
@@ -12437,7 +12450,6 @@
           "Fantasma",
           "Fogo",
           "Planta",
-          "Psíquico",
           "Sombrio"
         ]
       }
@@ -12732,6 +12744,7 @@
           "Elétrico",
           "Fada",
           "Planta",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -12752,7 +12765,6 @@
           "Fantasma",
           "Lutador",
           "Normal",
-          "Psíquico",
           "Terrestre",
           "Venenoso"
         ]
