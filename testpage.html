@@ -114,30 +114,22 @@
             const resultsDiv = document.getElementById('results');
             const jsonUrl = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/refs/heads/main/src/data/gamemaster/tipos_poke.json';
 
-            // 1. DADOS: O JSON será buscado da URL
             fetch(jsonUrl)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Erro na rede: ${response.statusText}`);
-                    }
+                    if (!response.ok) throw new Error(`Erro na rede: ${response.statusText}`);
                     return response.json();
                 })
-                .then(typeData => {
-                    // Se a busca for bem sucedida, executa o código principal
-                    initializeApp(typeData);
-                })
+                .then(typeData => initializeApp(typeData))
                 .catch(error => {
-                    // Em caso de erro, exibe uma mensagem na tela
                     console.error('Falha ao carregar o JSON de tipos:', error);
-                    resultsDiv.innerHTML = `<h2>Erro</h2><p>Não foi possível carregar os dados dos tipos do GitHub. Verifique sua conexão com a internet e o console para mais detalhes.</p>`;
-                    type1Select.innerHTML = '<option value="">Erro ao carregar</option>';
-                    type2Select.innerHTML = '<option value="">Erro ao carregar</option>';
+                    resultsDiv.innerHTML = `<h2>Erro</h2><p>Não foi possível carregar os dados. Verifique sua conexão.</p>`;
+                    type1Select.innerHTML = '<option value="">Erro</option>';
+                    type2Select.innerHTML = '<option value="">Erro</option>';
                 });
 
             function initializeApp(typeData) {
                 const allTypes = typeData.map(t => t.tipo).sort();
                 
-                // 2. PREPARAÇÃO: Limpa os menus e preenche com os tipos carregados
                 type1Select.innerHTML = '<option value="">Selecione o Tipo 1</option>';
                 type2Select.innerHTML = '<option value="">Selecione o Tipo 2</option>';
 
@@ -147,9 +139,8 @@
                 });
                 type2Select.add(new Option("Nenhum", ""), 1);
 
-                resultsDiv.innerHTML = `<h2>Resultados</h2><p>Selecione dois tipos e clique em "Calcular" para ver as fraquezas e resistências combinadas.</p>`;
+                resultsDiv.innerHTML = `<h2>Resultados</h2><p>Selecione os tipos para ver as interações.</p>`;
 
-                // 3. LÓGICA PRINCIPAL: O que acontece quando o botão é clicado
                 calculateBtn.addEventListener('click', () => {
                     const selectedType1 = type1Select.value;
                     const selectedType2 = type2Select.value;
@@ -158,7 +149,7 @@
                         alert("Por favor, selecione pelo menos o Tipo 1.");
                         return;
                     }
-                    if (selectedType1 === selectedType2) {
+                    if (selectedType1 === selectedType2 && selectedType2) {
                         alert("Por favor, selecione dois tipos diferentes ou apenas um.");
                         return;
                     }
@@ -167,7 +158,6 @@
                     const defense2Data = selectedType2 ? typeData.find(t => t.tipo === selectedType2).defesa : null;
                     
                     const finalMultipliers = {};
-
                     allTypes.forEach(attackingType => {
                         let mult1 = getMultiplier(defense1Data, attackingType);
                         let mult2 = defense2Data ? getMultiplier(defense2Data, attackingType) : 1.0;
@@ -178,19 +168,28 @@
                 });
             }
 
-            // 4. FUNÇÃO AUXILIAR: Encontra o multiplicador de um tipo de ataque contra uma defesa
+            // =========================================================
+            // MUDANÇA 1: Função getMultiplier corrigida para ler a categoria "normal"
+            // =========================================================
             function getMultiplier(defenseData, attackingType) {
                 if (!defenseData) return 1.0;
-                if (defenseData.fraqueza && defenseData.fraqueza['1.6x']?.includes(attackingType)) return 1.6;
-                if (defenseData.resistencia) {
-                    if (defenseData.resistencia['0.625x']?.includes(attackingType)) return 0.625;
-                    if (defenseData.resistencia['0.391x']?.includes(attackingType)) return 0.391;
-                }
-                if (defenseData.imunidade && defenseData.imunidade['0x']?.includes(attackingType)) return 0;
-                return 1.0;
+                
+                const checkCategory = (category) => {
+                    if (!category) return null;
+                    for (const multKey in category) {
+                        if (category[multKey].includes(attackingType)) return parseFloat(multKey);
+                    }
+                    return null;
+                };
+
+                let result = checkCategory(defenseData.fraqueza) 
+                          || checkCategory(defenseData.resistencia) 
+                          || checkCategory(defenseData.imunidade) 
+                          || checkCategory(defenseData.normal);
+
+                return result !== null ? result : 1.0;
             }
 
-            // 5. FUNÇÃO DE EXIBIÇÃO: Formata e mostra os resultados na página
             function displayResults(multipliers, type1, type2) {
                 let title = `Resultados para ${type1}`;
                 if (type2) {
@@ -201,6 +200,7 @@
                 const weaknesses = [];
                 const resistances = [];
                 const immunities = [];
+                const neutrals = []; // <-- MUDANÇA 2: Nova lista para dano neutro
 
                 for (const type in multipliers) {
                     const mult = multipliers[type];
@@ -209,15 +209,19 @@
                     if (roundedMult > 1) weaknesses.push({ type, mult: roundedMult });
                     else if (roundedMult < 1 && roundedMult > 0) resistances.push({ type, mult: roundedMult });
                     else if (roundedMult === 0) immunities.push({ type, mult: roundedMult });
+                    else if (roundedMult === 1) neutrals.push({ type, mult: roundedMult }); // <-- MUDANÇA 2: Adiciona tipos na lista de neutros
                 }
 
                 weaknesses.sort((a, b) => b.mult - a.mult || a.type.localeCompare(b.type));
                 resistances.sort((a, b) => a.mult - b.mult || a.type.localeCompare(b.type));
                 immunities.sort((a, b) => a.type.localeCompare(b.type));
+                neutrals.sort((a, b) => a.type.localeCompare(b.type)); // <-- MUDANÇA 2: Ordena a lista de neutros
 
                 if (weaknesses.length > 0) resultsDiv.innerHTML += createCategoryHTML('Fraquezas', weaknesses);
                 if (resistances.length > 0) resultsDiv.innerHTML += createCategoryHTML('Resistências', resistances);
                 if (immunities.length > 0) resultsDiv.innerHTML += createCategoryHTML('Imunidades', immunities);
+                if (neutrals.length > 0) resultsDiv.innerHTML += createCategoryHTML('Dano Neutro', neutrals); // <-- MUDANÇA 3: Exibe a categoria
+                
                 if (weaknesses.length === 0 && resistances.length === 0 && immunities.length === 0) {
                    resultsDiv.innerHTML += '<p>Esta combinação não possui fraquezas, resistências ou imunidades especiais.</p>'
                 }

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tipos (Defesa e Ataque)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #1a1a1a;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .selectors {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+        .result-category, .offensive-profile {
+            margin-bottom: 20px;
+        }
+        .result-category h3, .offensive-profile h3 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .type-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+        }
+        .multiplier {
+            font-size: 0.8em;
+            color: #333;
+        }
+        /* Cores */
+        .Aço { background-color: #B8B8D0; } .Água { background-color: #6890F0; } .Dragão { background-color: #7038F8; } .Elétrico { background-color: #F8D030; } .Fada { background-color: #EE99AC; } .Fantasma { background-color: #705898; } .Fogo { background-color: #F08030; } .Gelo { background-color: #98D8D8; } .Inseto { background-color: #A8B820; } .Lutador { background-color: #C03028; } .Normal { background-color: #A8A878; } .Pedra { background-color: #B8A038; } .Planta { background-color: #78C850; } .Psíquico { background-color: #F85888; } .Sombrio { background-color: #705848; } .Terrestre { background-color: #E0C068; } .Venenoso { background-color: #A040A0; } .Voador { background-color: #A890F0; }
+    </style>
+</head>
+<body>
+
+    <h1>Calculadora de Tipos (Defesa e Ataque)</h1>
+
+    <div class="selectors">
+        <select id="type1"><option value="">Carregando...</option></select>
+        <select id="type2"><option value="">Carregando...</option></select>
+        <button id="calculateBtn">Calcular</button>
+    </div>
+
+    <div id="results">
+        <h2>Resultados</h2>
+        <p>Selecione um ou dois tipos e clique em "Calcular".</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const type1Select = document.getElementById('type1');
+            const type2Select = document.getElementById('type2');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resultsDiv = document.getElementById('results');
+            const jsonUrl = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/main/src/data/gamemaster/tipos_poke.json';
+
+            let typeDataGlobal = []; // Armazena os dados dos tipos
+
+            fetch(jsonUrl)
+                .then(response => response.json())
+                .then(typeData => {
+                    typeDataGlobal = typeData;
+                    initializeApp(typeData);
+                })
+                .catch(error => {
+                    console.error('Falha ao carregar o JSON:', error);
+                    resultsDiv.innerHTML = `<h2>Erro</h2><p>Não foi possível carregar os dados.</p>`;
+                });
+
+            function initializeApp(typeData) {
+                const allTypes = typeData.map(t => t.tipo).sort();
+                
+                type1Select.innerHTML = '<option value="">Selecione o Tipo 1</option>';
+                type2Select.innerHTML = '<option value="">Selecione o Tipo 2</option>';
+
+                allTypes.forEach(typeName => {
+                    type1Select.add(new Option(typeName, typeName));
+                    type2Select.add(new Option(typeName, typeName));
+                });
+                type2Select.add(new Option("Nenhum", ""), 1);
+
+                resultsDiv.innerHTML = `<h2>Resultados</h2><p>Selecione os tipos para ver as interações.</p>`;
+
+                calculateBtn.addEventListener('click', () => {
+                    const selectedType1 = type1Select.value;
+                    const selectedType2 = type2Select.value;
+
+                    if (!selectedType1) {
+                        alert("Selecione pelo menos o Tipo 1.");
+                        return;
+                    }
+                    if (selectedType1 === selectedType2 && selectedType2) {
+                        alert("Selecione dois tipos diferentes ou apenas um.");
+                        return;
+                    }
+
+                    // --- LÓGICA DEFENSIVA ---
+                    const defense1Data = typeData.find(t => t.tipo === selectedType1).defesa;
+                    const defense2Data = selectedType2 ? typeData.find(t => t.tipo === selectedType2).defesa : null;
+                    const finalMultipliers = {};
+                    allTypes.forEach(attackingType => {
+                        let mult1 = getMultiplier(defense1Data, attackingType);
+                        let mult2 = defense2Data ? getMultiplier(defense2Data, attackingType) : 1.0;
+                        finalMultipliers[attackingType] = mult1 * mult2;
+                    });
+                    
+                    displayDefensiveResults(finalMultipliers, selectedType1, selectedType2);
+                    
+                    // --- LÓGICA OFENSIVA (NOVA) ---
+                    displayOffensiveEffectiveness(selectedType1, selectedType2, typeData);
+                });
+            }
+
+            function getMultiplier(defenseData, attackingType) {
+                if (!defenseData) return 1.0;
+                const checkCategory = (category) => {
+                    if (!category) return null;
+                    for (const multKey in category) {
+                        if (category[multKey].includes(attackingType)) return parseFloat(multKey);
+                    }
+                    return null;
+                };
+                let result = checkCategory(defenseData.fraqueza) || checkCategory(defenseData.resistencia) || checkCategory(defenseData.imunidade) || checkCategory(defenseData.normal);
+                return result !== null ? result : 1.0;
+            }
+
+            function displayDefensiveResults(multipliers, type1, type2) {
+                let title = `<h2>Defesa de ${type1}${type2 ? ` / ${type2}` : ''}</h2>`;
+                resultsDiv.innerHTML = title;
+
+                const lists = { weaknesses: [], resistances: [], immunities: [], neutrals: [] };
+                for (const type in multipliers) {
+                    const roundedMult = Math.round(multipliers[type] * 1000) / 1000;
+                    if (roundedMult > 1) lists.weaknesses.push({ type, mult: roundedMult });
+                    else if (roundedMult < 1 && roundedMult > 0) lists.resistances.push({ type, mult: roundedMult });
+                    else if (roundedMult === 0) lists.immunities.push({ type, mult: roundedMult });
+                    else if (roundedMult === 1) lists.neutrals.push({ type, mult: roundedMult });
+                }
+
+                lists.weaknesses.sort((a,b)=>b.mult-a.mult); lists.resistances.sort((a,b)=>a.mult-b.mult); lists.immunities.sort(); lists.neutrals.sort();
+                
+                resultsDiv.innerHTML += createCategoryHTML('Fraquezas', lists.weaknesses);
+                resultsDiv.innerHTML += createCategoryHTML('Resistências', lists.resistances);
+                resultsDiv.innerHTML += createCategoryHTML('Imunidades', lists.immunities);
+                resultsDiv.innerHTML += createCategoryHTML('Dano Neutro', lists.neutrals);
+            }
+            
+            function createCategoryHTML(title, items) {
+                if(items.length === 0) return '';
+                let html = `<div class="result-category"><h3>${title}</h3>`;
+                items.forEach(item => { html += `<span class="type-tag ${item.type}">${item.type} <span class="multiplier">(x${item.mult})</span></span>`; });
+                return html + '</div>';
+            }
+
+            // =========================================================
+            // NOVA SEÇÃO: LÓGICA PARA MOSTRAR EFICÁCIA DO ATAQUE
+            // =========================================================
+            function displayOffensiveEffectiveness(type1, type2, allTypeData) {
+                resultsDiv.innerHTML += `<h2>Eficácia do Ataque</h2>`;
+                
+                // Gera e exibe o perfil de ataque para o Tipo 1
+                const offensiveProfile1 = generateOffensiveProfile(type1, allTypeData);
+                resultsDiv.innerHTML += createOffensiveProfileHTML(type1, offensiveProfile1);
+
+                // Se houver um Tipo 2, faz o mesmo para ele
+                if (type2) {
+                    const offensiveProfile2 = generateOffensiveProfile(type2, allTypeData);
+                    resultsDiv.innerHTML += createOffensiveProfileHTML(type2, offensiveProfile2);
+                }
+            }
+
+            function generateOffensiveProfile(attackingType, allTypeData) {
+                const profile = { superEffective: [], notVeryEffective: [], noEffect: [] };
+                
+                allTypeData.forEach(defendingTypeInfo => {
+                    const defendingType = defendingTypeInfo.tipo;
+                    const multiplier = getMultiplier(defendingTypeInfo.defesa, attackingType);
+                    
+                    if (multiplier > 1) profile.superEffective.push(defendingType);
+                    else if (multiplier < 1 && multiplier > 0) profile.notVeryEffective.push(defendingType);
+                    else if (multiplier === 0) profile.noEffect.push(defendingType);
+                });
+                return profile;
+            }
+
+            function createOffensiveProfileHTML(attackingType, profile) {
+                let html = `<div class="offensive-profile"><h3>Ataque do tipo <span class="type-tag ${attackingType}">${attackingType}</span></h3>`;
+                
+                if (profile.superEffective.length > 0) {
+                    html += `<div><strong>É super efetivo contra:</strong> `;
+                    profile.superEffective.forEach(type => { html += `<span class="type-tag ${type}">${type}</span>`; });
+                    html += `</div>`;
+                }
+                if (profile.notVeryEffective.length > 0) {
+                    html += `<div style="margin-top:10px;"><strong>É pouco efetivo contra:</strong> `;
+                    profile.notVeryEffective.forEach(type => { html += `<span class="type-tag ${type}">${type}</span>`; });
+                    html += `</div>`;
+                }
+                if (profile.noEffect.length > 0) {
+                    html += `<div style="margin-top:10px;"><strong>Não tem efeito contra:</strong> `;
+                    profile.noEffect.forEach(type => { html += `<span class="type-tag ${type}">${type}</span>`; });
+                    html += `</div>`;
+                }
+                return html + '</div>';
+            }
+        });
+    </script>
+</body>
+</html>
