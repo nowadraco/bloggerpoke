@@ -1,9 +1,8 @@
-</body>
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Gerador de JSON (Matriz Completa)</title>
+    <title>Gerador de JSON (Matriz Completa Corrigida)</title>
     <style>
         body { font-family: sans-serif; background-color: #f0f0f0; color: #333; max-width: 90%; margin: 20px auto; padding: 20px; }
         h1 { text-align: center; }
@@ -47,14 +46,10 @@
                             const type1Name = allTypes[i];
                             const type2Name = allTypes[j];
 
-                            // =========================================================
-                            // NOVA LÓGICA: SE OS TIPOS FOREM IGUAIS...
-                            // =========================================================
+                            // Lógica para tipos puros (iguais)
                             if (type1Name === type2Name) {
-                                // Encontra os dados originais do tipo único
                                 const singleTypeInfo = singleTypeData.find(t => t.tipo === type1Name);
                                 
-                                // Formata o objeto para ser consistente com os tipos duplos
                                 const formattedObject = {
                                     tipos: [type1Name],
                                     defesa: {
@@ -66,9 +61,7 @@
                                 };
                                 fullMatrixResults.push(formattedObject);
                             
-                            // =========================================================
-                            // LÓGICA ANTIGA: SE OS TIPOS FOREM DIFERENTES...
-                            // =========================================================
+                            // Lógica para tipos duplos (diferentes)
                             } else {
                                 const defense1Data = singleTypeData.find(t => t.tipo === type1Name).defesa;
                                 const defense2Data = singleTypeData.find(t => t.tipo === type2Name).defesa;
@@ -104,7 +97,6 @@
                                     }
                                 }
                                 
-                                // Limpa chaves vazias e ordena
                                 if (Object.keys(dualTypeObject.defesa.fraqueza).length === 0) delete dualTypeObject.defesa.fraqueza;
                                 else for (const key in dualTypeObject.defesa.fraqueza) dualTypeObject.defesa.fraqueza[key].sort();
                                 
@@ -132,13 +124,36 @@
                     generateBtn.disabled = false;
                 }
             }
-
+            
+            // =========================================================
+            // AQUI ESTÁ A FUNÇÃO CORRIGIDA
+            // Ela agora ignora acentos e lê todas as categorias do JSON,
+            // garantindo que o cálculo para tipos duplos seja sempre correto.
+            // =========================================================
             function getMultiplier(defenseData, attackingType) {
                 if (!defenseData) return 1.0;
-                for (const k in defenseData.fraqueza) if (defenseData.fraqueza[k].includes(attackingType)) return 1.6;
-                for (const k in defenseData.resistencia) if (defenseData.resistencia[k].includes(attackingType)) return parseFloat(k);
-                for (const k in defenseData.imunidade) if (defenseData.imunidade[k].includes(attackingType)) return 0;
-                return 1.0;
+
+                // Função auxiliar para normalizar strings (remover acentos)
+                const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                const normalizedAttackingType = normalize(attackingType);
+
+                const checkCategory = (category) => {
+                    if (!category) return null;
+                    for (const multKey in category) {
+                        // Compara as versões normalizadas (sem acento)
+                        if (category[multKey].some(type => normalize(type) === normalizedAttackingType)) {
+                            return parseFloat(multKey);
+                        }
+                    }
+                    return null;
+                };
+
+                let result = checkCategory(defenseData.fraqueza) 
+                          || checkCategory(defenseData.resistencia) 
+                          || checkCategory(defenseData.imunidade) 
+                          || checkCategory(defenseData.normal);
+
+                return result !== null ? result : 1.0;
             }
             
             generateBtn.addEventListener('click', generateFullMatrixJson);
