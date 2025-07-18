@@ -2,14 +2,22 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Gerador de JSON (Ultra Completo)</title>
-    <style>body{font-family:sans-serif;background-color:#f0f0f0;color:#333;max-width:90%;margin:20px auto;padding:20px}h1{text-align:center}button{display:block;width:350px;padding:15px;font-size:18px;margin:20px auto;cursor:pointer;background-color:#17a2b8;color:white;border:none;border-radius:5px}button:disabled{background-color:#ccc;cursor:not-allowed}#status{text-align:center;font-style:italic;color:#555;margin-bottom:20px}textarea{width:100%;height:60vh;margin-top:10px;font-family:monospace;font-size:14px}</style>
+    <title>Gerador de JSON de Tipos Duplos</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f0f0; color: #333; max-width: 90%; margin: 20px auto; padding: 20px; }
+        h1 { text-align: center; }
+        button { display: block; width: 350px; padding: 15px; font-size: 18px; margin: 20px auto; cursor: pointer; background-color: #28a745; color: white; border: none; border-radius: 5px; }
+        button:disabled { background-color: #ccc; cursor: not-allowed; }
+        #status { text-align: center; font-style: italic; color: #555; margin-bottom: 20px; }
+        textarea { width: 100%; height: 60vh; margin-top: 10px; font-family: monospace; font-size: 14px; }
+    </style>
 </head>
 <body>
-    <h1>Gerador de JSON (Ultra Completo com Dano 1.0x)</h1>
-    <p id="status">Clique para gerar o JSON com todas as interações, incluindo dano neutro.</p>
-    <button id="generateBtn">Gerar JSON Ultra Completo</button>
-    <textarea id="jsonOutput" readonly placeholder="O resultado do JSON completo aparecerá aqui..."></textarea>
+    <h1>Gerador de JSON (Tipos Duplos Únicos)</h1>
+    <p id="status">Clique para gerar o JSON com as combinações únicas de tipos duplos.</p>
+    <button id="generateBtn">Gerar JSON Otimizado</button>
+    <textarea id="jsonOutput" readonly placeholder="O resultado do JSON otimizado aparecerá aqui..."></textarea>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const generateBtn = document.getElementById('generateBtn');
@@ -17,7 +25,7 @@
             const statusDiv = document.getElementById('status');
             const jsonUrl = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/refs/heads/main/src/data/gamemaster/tipos_poke.json';
 
-            async function generateFullPermutationJson() {
+            async function generateUniqueDualTypeJson() {
                 try {
                     generateBtn.disabled = true;
                     statusDiv.textContent = 'Buscando dados...';
@@ -25,30 +33,40 @@
                     const response = await fetch(jsonUrl);
                     if (!response.ok) throw new Error('Falha na rede.');
                     const singleTypeData = await response.json();
-                    statusDiv.textContent = 'Calculando...';
+                    statusDiv.textContent = 'Calculando combinações únicas...';
+                    
                     const allTypes = singleTypeData.map(t => t.tipo).sort();
-                    const fullResults = [];
+                    const uniqueResults = [];
+
+                    // =========================================================
+                    // LÓGICA DE LOOP ATUALIZADA
+                    // Começa j = i + 1 para evitar duplicatas (A/B e B/A) e tipos puros (A/A)
+                    // =========================================================
                     for (let i = 0; i < allTypes.length; i++) {
-                        for (let j = 0; j < allTypes.length; j++) {
+                        for (let j = i + 1; j < allTypes.length; j++) {
                             const type1Name = allTypes[i];
                             const type2Name = allTypes[j];
+
                             const defense1Data = singleTypeData.find(t => t.tipo === type1Name).defesa;
                             const defense2Data = singleTypeData.find(t => t.tipo === type2Name).defesa;
+                            
                             const finalMultipliers = {};
                             allTypes.forEach(attackingType => {
                                 const mult1 = getMultiplier(defense1Data, attackingType);
                                 const mult2 = getMultiplier(defense2Data, attackingType);
                                 finalMultipliers[attackingType] = mult1 * mult2;
                             });
-                            // Objeto agora inclui a chave 'normal'
+
                             const combinationObject = {
                                 tipos: [type1Name, type2Name],
-                                defesa: {fraqueza:{},resistencia:{},imunidade:[],normal:{}}
+                                defesa: {fraqueza: {}, resistencia: {}, imunidade: [], normal: {}}
                             };
+
                             for (const attackingType in finalMultipliers) {
                                 const mult = finalMultipliers[attackingType];
                                 const roundedMult = Math.round(mult * 1000) / 1000;
                                 const multKey = `${roundedMult}x`;
+
                                 if (roundedMult > 1) {
                                     if (!combinationObject.defesa.fraqueza[multKey]) combinationObject.defesa.fraqueza[multKey] = [];
                                     combinationObject.defesa.fraqueza[multKey].push(attackingType);
@@ -57,37 +75,40 @@
                                     combinationObject.defesa.resistencia[multKey].push(attackingType);
                                 } else if (roundedMult === 0) {
                                     combinationObject.defesa.imunidade.push(attackingType);
-                                } else if (roundedMult === 1) { // LÓGICA ADICIONADA
+                                } else if (roundedMult === 1) {
                                     if (!combinationObject.defesa.normal[multKey]) combinationObject.defesa.normal[multKey] = [];
                                     combinationObject.defesa.normal[multKey].push(attackingType);
                                 }
                             }
-                            // Limpa chaves vazias para um JSON mais limpo
+
                             if(Object.keys(combinationObject.defesa.fraqueza).length === 0) delete combinationObject.defesa.fraqueza;
                             if(Object.keys(combinationObject.defesa.resistencia).length === 0) delete combinationObject.defesa.resistencia;
                             if(Object.keys(combinationObject.defesa.normal).length === 0) delete combinationObject.defesa.normal;
                             if(combinationObject.defesa.imunidade.length === 0) delete combinationObject.defesa.imunidade;
 
-                            fullResults.push(combinationObject);
+                            uniqueResults.push(combinationObject);
                         }
                     }
-                    jsonOutput.value = JSON.stringify(fullResults, null, 2);
-                    statusDiv.textContent = `JSON gerado com sucesso para ${fullResults.length} combinações!`;
+
+                    jsonOutput.value = JSON.stringify(uniqueResults, null, 2);
+                    statusDiv.textContent = `JSON gerado com sucesso para ${uniqueResults.length} combinações únicas!`;
                 } catch (error) {
                     statusDiv.textContent = `Ocorreu um erro: ${error.message}`;
                 } finally {
                     generateBtn.disabled = false;
                 }
             }
-            function getMultiplier(d, a) {
-                if(!d)return 1;
-                for(const k in d.fraqueza)if(d.fraqueza[k].includes(a))return parseFloat(k);
-                for(const k in d.resistencia)if(d.resistencia[k].includes(a))return parseFloat(k);
-                for(const k in d.imunidade)if(d.imunidade[k].includes(a))return parseFloat(k);
-                for(const k in d.normal)if(d.normal[k].includes(a))return parseFloat(k);
-                return 1;
+
+            function getMultiplier(defenseData, attackingType) {
+                if (!defenseData) return 1.0;
+                for (const k in defenseData.fraqueza) if (defenseData.fraqueza[k].includes(attackingType)) return parseFloat(k);
+                for (const k in defenseData.resistencia) if (defenseData.resistencia[k].includes(attackingType)) return parseFloat(k);
+                for (const k in defenseData.imunidade) if (defenseData.imunidade[k].includes(attackingType)) return parseFloat(k);
+                for (const k in defenseData.normal) if (defenseData.normal[k].includes(attackingType)) return parseFloat(k);
+                return 1.0;
             }
-            generateBtn.addEventListener('click', generateFullPermutationJson);
+            
+            generateBtn.addEventListener('click', generateUniqueDualTypeJson);
         });
     </script>
 </body>
