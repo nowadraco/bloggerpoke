@@ -1,9 +1,8 @@
-</body>
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Gerador de JSON (Matriz Completa)</title>
+    <title>Gerador de JSON (Matriz Completa Corrigida)</title>
     <style>
         body { font-family: sans-serif; background-color: #f0f0f0; color: #333; max-width: 90%; margin: 20px auto; padding: 20px; }
         h1 { text-align: center; }
@@ -41,20 +40,14 @@
                     const allTypes = singleTypeData.map(t => t.tipo).sort();
                     const fullMatrixResults = [];
 
-                    // Loops para criar a matriz N x N
                     for (let i = 0; i < allTypes.length; i++) {
                         for (let j = 0; j < allTypes.length; j++) {
                             const type1Name = allTypes[i];
                             const type2Name = allTypes[j];
 
-                            // =========================================================
-                            // NOVA LÓGICA: SE OS TIPOS FOREM IGUAIS...
-                            // =========================================================
+                            // Lógica para tipos puros (iguais) - ESTA PARTE ESTÁ MANTIDA
                             if (type1Name === type2Name) {
-                                // Encontra os dados originais do tipo único
                                 const singleTypeInfo = singleTypeData.find(t => t.tipo === type1Name);
-                                
-                                // Formata o objeto para ser consistente com os tipos duplos
                                 const formattedObject = {
                                     tipos: [type1Name],
                                     defesa: {
@@ -66,9 +59,7 @@
                                 };
                                 fullMatrixResults.push(formattedObject);
                             
-                            // =========================================================
-                            // LÓGICA ANTIGA: SE OS TIPOS FOREM DIFERENTES...
-                            // =========================================================
+                            // Lógica para tipos duplos (diferentes) - ESTA PARTE ESTÁ MANTIDA
                             } else {
                                 const defense1Data = singleTypeData.find(t => t.tipo === type1Name).defesa;
                                 const defense2Data = singleTypeData.find(t => t.tipo === type2Name).defesa;
@@ -104,7 +95,6 @@
                                     }
                                 }
                                 
-                                // Limpa chaves vazias e ordena
                                 if (Object.keys(dualTypeObject.defesa.fraqueza).length === 0) delete dualTypeObject.defesa.fraqueza;
                                 else for (const key in dualTypeObject.defesa.fraqueza) dualTypeObject.defesa.fraqueza[key].sort();
                                 
@@ -132,12 +122,36 @@
                     generateBtn.disabled = false;
                 }
             }
-
+            
+            // =========================================================
+            // AQUI ESTÁ A CORREÇÃO
+            // Esta versão da função getMultiplier lê todas as categorias
+            // do JSON e garante que o cálculo para tipos duplos seja correto.
+            // =========================================================
             function getMultiplier(defenseData, attackingType) {
                 if (!defenseData) return 1.0;
-                for (const k in defenseData.fraqueza) if (defenseData.fraqueza[k].includes(attackingType)) return 1.6;
-                for (const k in defenseData.resistencia) if (defenseData.resistencia[k].includes(attackingType)) return parseFloat(k);
-                for (const k in defenseData.imunidade) if (defenseData.imunidade[k].includes(attackingType)) return 0;
+
+                if (defenseData.fraqueza) {
+                    for (const multKey in defenseData.fraqueza) {
+                        if (defenseData.fraqueza[multKey].includes(attackingType)) return parseFloat(multKey);
+                    }
+                }
+                if (defenseData.resistencia) {
+                    for (const multKey in defenseData.resistencia) {
+                        if (defenseData.resistencia[multKey].includes(attackingType)) return parseFloat(multKey);
+                    }
+                }
+                if (defenseData.imunidade) {
+                    for (const multKey in defenseData.imunidade) {
+                        if (defenseData.imunidade[multKey].includes(attackingType)) return parseFloat(multKey);
+                    }
+                }
+                if (defenseData.normal) {
+                    for (const multKey in defenseData.normal) {
+                        if (defenseData.normal[multKey].includes(attackingType)) return parseFloat(multKey);
+                    }
+                }
+                
                 return 1.0;
             }
             
