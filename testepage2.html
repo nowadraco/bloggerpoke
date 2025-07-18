@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f4f4f9;
             color: #333;
             max-width: 800px;
             margin: 20px auto;
@@ -27,11 +27,16 @@
             gap: 20px;
             margin-bottom: 20px;
         }
-        select, button {
+        select, button, input[type="text"] {
             padding: 10px;
             font-size: 16px;
             border-radius: 5px;
             border: 1px solid #ccc;
+        }
+        input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 15px;
         }
         button {
             background-color: #007bff;
@@ -42,25 +47,26 @@
         button:hover {
             background-color: #0056b3;
         }
-        #results {
+        #results, #attack-results {
             margin-top: 30px;
             background-color: #fff;
             padding: 15px;
             border-radius: 5px;
             min-height: 100px;
         }
-        .result-category, .offensive-profile {
+        .result-category {
             margin-bottom: 20px;
         }
-        .result-category h3, .offensive-profile h3 {
+        .result-category h3 {
             border-bottom: 1px solid #eee;
             padding-bottom: 5px;
             margin-top: 0;
+            margin-bottom: 10px;
         }
         .type-tag {
             display: inline-block;
             padding: 5px 10px;
-            margin: 5px;
+            margin: 4px;
             border-radius: 4px;
             color: white;
             font-weight: bold;
@@ -69,90 +75,217 @@
             font-size: 0.8em;
             color: #333;
         }
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px solid #ddd;
+        }
         /* Cores */
         .Aço { background-color: #B8B8D0; } .Água { background-color: #6890F0; } .Dragão { background-color: #7038F8; } .Elétrico { background-color: #F8D030; } .Fada { background-color: #EE99AC; } .Fantasma { background-color: #705898; } .Fogo { background-color: #F08030; } .Gelo { background-color: #98D8D8; } .Inseto { background-color: #A8B820; } .Lutador { background-color: #C03028; } .Normal { background-color: #A8A878; } .Pedra { background-color: #B8A038; } .Planta { background-color: #78C850; } .Psíquico { background-color: #F85888; } .Sombrio { background-color: #705848; } .Terrestre { background-color: #E0C068; } .Venenoso { background-color: #A040A0; } .Voador { background-color: #A890F0; }
     </style>
 </head>
 <body>
 
-    <h1>Calculadora de Tipos (Defesa e Ataque)</h1>
-
+    <h1>Calculadora de Defesa</h1>
     <div class="selectors">
-        <select id="type1"><option value="">Carregando...</option></select>
-        <select id="type2"><option value="">Carregando...</option></select>
-        <button id="calculateBtn">Calcular</button>
+        <select id="type1Def"><option value="">Carregando...</option></select>
+        <select id="type2Def"><option value="">Carregando...</option></select>
+        <button id="calculateBtnDef">Calcular Defesa</button>
+    </div>
+    <div id="results">
+        <h2>Resultado da Defesa</h2>
+        <p>Selecione um ou dois tipos e clique em "Calcular Defesa".</p>
     </div>
 
-    <div id="results">
-        <h2>Resultados</h2>
-        <p>Selecione um ou dois tipos e clique em "Calcular".</p>
+    <hr>
+
+    <h1>Calculadora de Ataque</h1>
+    <div class="selectors">
+        <select id="typeAtk"><option value="">Carregando...</option></select>
+        <button id="calculateBtnAtk">Calcular Ataque</button>
+    </div>
+    <div id="attack-results">
+        <h2>Resultado do Ataque</h2>
+        <input type="text" id="attackFilterInput" placeholder="Filtrar por tipo..."> 
+        <div id="attackDynamicContent">
+            <p>Selecione um tipo de ataque e clique em "Calcular Ataque".</p>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const type1Select = document.getElementById('type1');
-            const type2Select = document.getElementById('type2');
-            const calculateBtn = document.getElementById('calculateBtn');
-            const resultsDiv = document.getElementById('results');
+            // --- Elementos Comuns ---
             const jsonUrl = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/main/src/data/gamemaster/tipos_poke.json';
+            let allDefensiveCombinations = [];
 
-            let typeDataGlobal = []; // Armazena os dados dos tipos
+            // --- Elementos de Defesa ---
+            const type1DefSelect = document.getElementById('type1Def');
+            const type2DefSelect = document.getElementById('type2Def');
+            const calculateBtnDef = document.getElementById('calculateBtnDef');
+            const resultsDiv = document.getElementById('results');
 
+            // --- Elementos de Ataque ---
+            const typeAtkSelect = document.getElementById('typeAtk');
+            const calculateBtnAtk = document.getElementById('calculateBtnAtk');
+            const attackResultsDiv = document.getElementById('attack-results');
+            const attackFilterInput = document.getElementById('attackFilterInput'); 
+            const attackDynamicContentDiv = document.getElementById('attackDynamicContent');
+
+            // --- Inicialização ---
             fetch(jsonUrl)
                 .then(response => response.json())
-                .then(typeData => {
-                    typeDataGlobal = typeData;
-                    initializeApp(typeData);
+                .then(singleTypeData => {
+                    allDefensiveCombinations = generateAllDefensiveCombinations(singleTypeData);
+                    initializeApp(singleTypeData);
                 })
                 .catch(error => {
                     console.error('Falha ao carregar o JSON:', error);
                     resultsDiv.innerHTML = `<h2>Erro</h2><p>Não foi possível carregar os dados.</p>`;
+                    attackDynamicContentDiv.innerHTML = `<h2>Erro</h2><p>Não foi possível carregar os dados.</p>`; 
                 });
 
-            function initializeApp(typeData) {
-                const allTypes = typeData.map(t => t.tipo).sort();
+            function initializeApp(singleTypeData) {
+                const allSingleTypes = singleTypeData.map(t => t.tipo).sort();
                 
-                type1Select.innerHTML = '<option value="">Selecione o Tipo 1</option>';
-                type2Select.innerHTML = '<option value="">Selecione o Tipo 2</option>';
+                populateSelect(type1DefSelect, allSingleTypes, "Selecione o Tipo 1");
+                populateSelect(type2DefSelect, allSingleTypes, "Nenhum", true);
+                populateSelect(typeAtkSelect, allSingleTypes, "Selecione o Ataque");
 
-                allTypes.forEach(typeName => {
-                    type1Select.add(new Option(typeName, typeName));
-                    type2Select.add(new Option(typeName, typeName));
+                calculateBtnDef.addEventListener('click', handleDefenseCalculation);
+                calculateBtnAtk.addEventListener('click', handleAttackCalculation);
+                
+                attackFilterInput.addEventListener('input', handleAttackFilter);
+            }
+            
+            function populateSelect(selectElement, options, defaultText, includeNone = false) {
+                selectElement.innerHTML = `<option value="">${defaultText}</option>`;
+                if (includeNone) selectElement.add(new Option("Nenhum", ""));
+                options.forEach(optionName => selectElement.add(new Option(optionName, optionName)));
+            }
+
+            // --- Lógica da Calculadora de DEFESA (sem alterações) ---
+            function handleDefenseCalculation() {
+                const selectedType1 = type1DefSelect.value;
+                const selectedType2 = type2DefSelect.value;
+
+                if (!selectedType1) { alert("Selecione pelo menos o Tipo 1 para a defesa."); return; }
+                if (selectedType1 === selectedType2 && selectedType2) { alert("Selecione dois tipos diferentes ou apenas um."); return; }
+                
+                const combinationName = selectedType2 ? [selectedType1, selectedType2].sort().join(' / ') : selectedType1;
+                const combinationData = allDefensiveCombinations.find(c => c.nome === combinationName);
+                
+                displayDefensiveResults(combinationData);
+            }
+
+            function displayDefensiveResults(combinationData) {
+                resultsDiv.innerHTML = `<h2>Defesa de ${combinationData.nome}</h2>`;
+                resultsDiv.innerHTML += createCategoryHTML('Fraquezas', combinationData.defesa.fraqueza);
+                resultsDiv.innerHTML += createCategoryHTML('Resistências', combinationData.defesa.resistencia);
+                resultsDiv.innerHTML += createCategoryHTML('Imunidades', { '0x': combinationData.defesa.imunidade });
+                resultsDiv.innerHTML += createCategoryHTML('Dano Neutro', combinationData.defesa.normal);
+            }
+            
+            // --- Lógica da Calculadora de ATAQUE ---
+            function handleAttackCalculation() {
+                const attackingType = typeAtkSelect.value;
+                if (!attackingType) {
+                    alert("Selecione um tipo de ataque.");
+                    return;
+                }
+                
+                // Inicializa as categorias, incluindo 'normal'
+                const profile = { superEffective: [], notVeryEffective: [], noEffect: [], normal: [] };
+
+                allDefensiveCombinations.forEach(defendingCombination => {
+                    const multiplier = getMultiplier(defendingCombination.defesa, attackingType);
+                    const roundedMult = Math.round(multiplier * 1000) / 1000;
+                    const item = { nome: defendingCombination.nome, tipos: defendingCombination.tipos, mult: roundedMult };
+
+                    if (roundedMult > 1) {
+                        profile.superEffective.push(item);
+                    } else if (roundedMult < 1 && roundedMult > 0) {
+                        profile.notVeryEffective.push(item);
+                    } else if (roundedMult === 0) {
+                        profile.noEffect.push(item);
+                    } else if (roundedMult === 1) { // Adicionado para incluir 1.0x no perfil
+                        profile.normal.push(item);
+                    }
                 });
-                type2Select.add(new Option("Nenhum", ""), 1);
+                
+                displayOffensiveResults(attackingType, profile);
+            }
 
-                resultsDiv.innerHTML = `<h2>Resultados</h2><p>Selecione os tipos para ver as interações.</p>`;
+            function displayOffensiveResults(attackingType, profile) {
+                attackDynamicContentDiv.innerHTML = `<h2>Ataque do tipo <span class="type-tag ${attackingType}">${attackingType}</span></h2>`;
+                attackFilterInput.value = ''; // Limpa o filtro anterior (texto do input)
 
-                calculateBtn.addEventListener('click', () => {
-                    const selectedType1 = type1Select.value;
-                    const selectedType2 = type2Select.value;
+                profile.superEffective.sort((a,b)=> b.mult - a.mult || a.nome.localeCompare(b.nome));
+                profile.notVeryEffective.sort((a,b)=> a.mult - b.mult || a.nome.localeCompare(b.nome));
+                profile.noEffect.sort((a,b)=> a.nome.localeCompare(b.nome));
+                profile.normal.sort((a,b)=> a.nome.localeCompare(b.nome)); // Ordena também os de dano normal
 
-                    if (!selectedType1) {
-                        alert("Selecione pelo menos o Tipo 1.");
-                        return;
+                attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('É Super Efetivo Contra:', profile.superEffective);
+                attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('É Pouco Efetivo Contra:', profile.notVeryEffective);
+                attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('Não Tem Efeito Contra:', profile.noEffect);
+                attackDynamicContentDiv.innerHTML += createOffensiveCategoryHTML('Causa Dano Normal Contra:', profile.normal); // Nova linha para dano normal
+            }
+
+            function createOffensiveCategoryHTML(title, items) {
+                if (items.length === 0) return '';
+                let html = `<div class="result-category"><h3>${title}</h3>`;
+                items.forEach(item => {
+                    let typeTags = item.tipos.map(t => `<span class="type-tag ${t}">${t}</span>`).join('');
+                    html += `<div class="offensive-item">${typeTags} <span class="multiplier">(x${item.mult})</span></div>`;
+                });
+                return html + '</div>';
+            }
+
+            function handleAttackFilter() {
+                const normalize = (str) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                const filterText = normalize(attackFilterInput.value);
+                
+                const itemsToFilter = attackDynamicContentDiv.querySelectorAll('.offensive-item');
+                
+                itemsToFilter.forEach(item => {
+                    const itemText = normalize(item.textContent);
+                    if (itemText.includes(filterText)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
                     }
-                    if (selectedType1 === selectedType2 && selectedType2) {
-                        alert("Selecione dois tipos diferentes ou apenas um.");
-                        return;
-                    }
-
-                    // --- LÓGICA DEFENSIVA ---
-                    const defense1Data = typeData.find(t => t.tipo === selectedType1).defesa;
-                    const defense2Data = selectedType2 ? typeData.find(t => t.tipo === selectedType2).defesa : null;
-                    const finalMultipliers = {};
-                    allTypes.forEach(attackingType => {
-                        let mult1 = getMultiplier(defense1Data, attackingType);
-                        let mult2 = defense2Data ? getMultiplier(defense2Data, attackingType) : 1.0;
-                        finalMultipliers[attackingType] = mult1 * mult2;
-                    });
-                    
-                    displayDefensiveResults(finalMultipliers, selectedType1, selectedType2);
-                    
-                    // --- LÓGICA OFENSIVA (NOVA) ---
-                    displayOffensiveEffectiveness(selectedType1, selectedType2, typeData);
                 });
             }
 
+            // --- Funções Auxiliares Comuns ---
+            function generateAllDefensiveCombinations(singleTypeData) {
+                const allTypes = singleTypeData.map(t => t.tipo).sort();
+                const allCombinations = [];
+
+                singleTypeData.forEach(typeInfo => {
+                    allCombinations.push({ nome: typeInfo.tipo, tipos: [typeInfo.tipo], defesa: typeInfo.defesa });
+                });
+
+                for (let i = 0; i < allTypes.length; i++) {
+                    for (let j = i + 1; j < allTypes.length; j++) {
+                        const type1Name = allTypes[i], type2Name = allTypes[j];
+                        const defense1Data = singleTypeData.find(t => t.tipo === type1Name).defesa;
+                        const defense2Data = singleTypeData.find(t => t.tipo === type2Name).defesa;
+                        const finalMultipliers = {};
+                        allTypes.forEach(attackingType => {
+                            const mult1 = getMultiplier(defense1Data, attackingType);
+                            const mult2 = getMultiplier(defense2Data, attackingType);
+                            finalMultipliers[attackingType] = mult1 * mult2;
+                        });
+                        allCombinations.push({
+                            nome: `${type1Name} / ${type2Name}`,
+                            tipos: [type1Name, type2Name],
+                            defesa: formatMultipliersToDefenseData(finalMultipliers)
+                        });
+                    }
+                }
+                return allCombinations;
+            }
+            
             function getMultiplier(defenseData, attackingType) {
                 if (!defenseData) return 1.0;
                 const checkCategory = (category) => {
@@ -165,85 +298,38 @@
                 let result = checkCategory(defenseData.fraqueza) || checkCategory(defenseData.resistencia) || checkCategory(defenseData.imunidade) || checkCategory(defenseData.normal);
                 return result !== null ? result : 1.0;
             }
+            
+            function createCategoryHTML(title, categoryData) {
+                if (!categoryData || Object.keys(categoryData).length === 0) return '';
+                let html = `<div class="result-category"><h3>${title}</h3>`;
+                const multipliers = Object.keys(categoryData).sort((a, b) => title === 'Fraquezas' ? parseFloat(b) - parseFloat(a) : parseFloat(a) - parseFloat(b));
+                multipliers.forEach(multKey => {
+                    categoryData[multKey].sort().forEach(type => {
+                        html += `<span class="type-tag ${type}">${type} <span class="multiplier">(${multKey})</span></span>`;
+                    });
+                });
+                return html + '</div>';
+            }
 
-            function displayDefensiveResults(multipliers, type1, type2) {
-                let title = `<h2>Defesa de ${type1}${type2 ? ` / ${type2}` : ''}</h2>`;
-                resultsDiv.innerHTML = title;
-
-                const lists = { weaknesses: [], resistances: [], immunities: [], neutrals: [] };
+            function formatMultipliersToDefenseData(multipliers) {
+                const data = { fraqueza: {}, resistencia: {}, imunidade: [], normal: {} };
                 for (const type in multipliers) {
                     const roundedMult = Math.round(multipliers[type] * 1000) / 1000;
-                    if (roundedMult > 1) lists.weaknesses.push({ type, mult: roundedMult });
-                    else if (roundedMult < 1 && roundedMult > 0) lists.resistances.push({ type, mult: roundedMult });
-                    else if (roundedMult === 0) lists.immunities.push({ type, mult: roundedMult });
-                    else if (roundedMult === 1) lists.neutrals.push({ type, mult: roundedMult });
+                    const multKey = `${roundedMult}x`;
+                    if (roundedMult > 1) {
+                        if (!data.fraqueza[multKey]) data.fraqueza[multKey] = [];
+                        data.fraqueza[multKey].push(type);
+                    } else if (roundedMult < 1 && roundedMult > 0) {
+                        if (!data.resistencia[multKey]) data.resistencia[multKey] = [];
+                        data.resistencia[multKey].push(type);
+                    } else if (roundedMult === 0) {
+                        data.imunidade.push(type);
+                    } else if (roundedMult === 1) {
+                        if (!data.normal[multKey]) data.normal[multKey] = [];
+                        data.normal[multKey].push(type);
+                    }
                 }
-
-                lists.weaknesses.sort((a,b)=>b.mult-a.mult); lists.resistances.sort((a,b)=>a.mult-b.mult); lists.immunities.sort(); lists.neutrals.sort();
-                
-                resultsDiv.innerHTML += createCategoryHTML('Fraquezas', lists.weaknesses);
-                resultsDiv.innerHTML += createCategoryHTML('Resistências', lists.resistances);
-                resultsDiv.innerHTML += createCategoryHTML('Imunidades', lists.immunities);
-                resultsDiv.innerHTML += createCategoryHTML('Dano Neutro', lists.neutrals);
-            }
-            
-            function createCategoryHTML(title, items) {
-                if(items.length === 0) return '';
-                let html = `<div class="result-category"><h3>${title}</h3>`;
-                items.forEach(item => { html += `<span class="type-tag ${item.type}">${item.type} <span class="multiplier">(x${item.mult})</span></span>`; });
-                return html + '</div>';
-            }
-
-            // =========================================================
-            // NOVA SEÇÃO: LÓGICA PARA MOSTRAR EFICÁCIA DO ATAQUE
-            // =========================================================
-            function displayOffensiveEffectiveness(type1, type2, allTypeData) {
-                resultsDiv.innerHTML += `<h2>Eficácia do Ataque</h2>`;
-                
-                // Gera e exibe o perfil de ataque para o Tipo 1
-                const offensiveProfile1 = generateOffensiveProfile(type1, allTypeData);
-                resultsDiv.innerHTML += createOffensiveProfileHTML(type1, offensiveProfile1);
-
-                // Se houver um Tipo 2, faz o mesmo para ele
-                if (type2) {
-                    const offensiveProfile2 = generateOffensiveProfile(type2, allTypeData);
-                    resultsDiv.innerHTML += createOffensiveProfileHTML(type2, offensiveProfile2);
-                }
-            }
-
-            function generateOffensiveProfile(attackingType, allTypeData) {
-                const profile = { superEffective: [], notVeryEffective: [], noEffect: [] };
-                
-                allTypeData.forEach(defendingTypeInfo => {
-                    const defendingType = defendingTypeInfo.tipo;
-                    const multiplier = getMultiplier(defendingTypeInfo.defesa, attackingType);
-                    
-                    if (multiplier > 1) profile.superEffective.push(defendingType);
-                    else if (multiplier < 1 && multiplier > 0) profile.notVeryEffective.push(defendingType);
-                    else if (multiplier === 0) profile.noEffect.push(defendingType);
-                });
-                return profile;
-            }
-
-            function createOffensiveProfileHTML(attackingType, profile) {
-                let html = `<div class="offensive-profile"><h3>Ataque do tipo <span class="type-tag ${attackingType}">${attackingType}</span></h3>`;
-                
-                if (profile.superEffective.length > 0) {
-                    html += `<div><strong>É super efetivo contra:</strong> `;
-                    profile.superEffective.forEach(type => { html += `<span class="type-tag ${type}">${type}</span>`; });
-                    html += `</div>`;
-                }
-                if (profile.notVeryEffective.length > 0) {
-                    html += `<div style="margin-top:10px;"><strong>É pouco efetivo contra:</strong> `;
-                    profile.notVeryEffective.forEach(type => { html += `<span class="type-tag ${type}">${type}</span>`; });
-                    html += `</div>`;
-                }
-                if (profile.noEffect.length > 0) {
-                    html += `<div style="margin-top:10px;"><strong>Não tem efeito contra:</strong> `;
-                    profile.noEffect.forEach(type => { html += `<span class="type-tag ${type}">${type}</span>`; });
-                    html += `</div>`;
-                }
-                return html + '</div>';
+                return data;
             }
         });
     </script>
