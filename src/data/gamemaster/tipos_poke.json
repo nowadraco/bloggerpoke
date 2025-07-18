@@ -22,7 +22,7 @@
           "Normal",
           "Pedra",
           "Planta",
-          "Psiquico",
+          "Psíquico",
           "Voador"
         ]
       },
@@ -208,7 +208,7 @@
         "Gelo",
         "Pedra",
         "Planta",
-        "Psiquico",
+        "Psíquico",
         "Terrestre",
         "Voador"
       ]
@@ -327,7 +327,7 @@
     "fraqueza": {
       "1.6x": [
         "Fada",
-        "Psiquico",
+        "Psíquico",
         "Voador"
       ]
     },
@@ -382,7 +382,7 @@
         "Normal",
         "Pedra",
         "Planta",
-        "Psiquico",
+        "Psíquico",
         "Sombrio",
         "Terrestre",
         "Venenoso",
@@ -561,7 +561,7 @@
         "Inseto",
         "Lutador",
         "Normal",
-        "Psiquico",
+        "Psíquico",
         "Sombrio",
         "Terrestre",
         "Voador"
@@ -638,7 +638,7 @@
         "Gelo",
         "Normal",
         "Pedra",
-        "Psiquico",
+        "Psíquico",
         "Sombrio",
         "Venenoso"
       ]
