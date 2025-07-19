@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Raid Bosses</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            text-align: center;
+            color: #1a1a1a;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .pokemon-image-container {
+            position: relative;
+            display: inline-block;
+        }
+        .pokemon-image-container .imgSelvagem {
+            position: relative;
+            z-index: 2;
+            display: block;
+        }
+        .pokemon-image-container.is-shadow::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            background-image: url('https://raw.githubusercontent.com/nowadraco/blogger-poke-dragon-shadow/refs/heads/main/img/assets/shadow.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            animation: flickerFire 3s ease-in-out infinite;
+        }
+        @keyframes flickerFire {
+            0% { transform: scale(1) translateY(0) skewX(0); opacity: 0.8; }
+            20% { transform: scale(1.05) translateY(-5px) skewX(-2deg); opacity: 1; }
+            40% { transform: scale(0.98) translateY(2px) skewX(2deg); opacity: 0.75; }
+            60% { transform: scale(1.03) translateY(-3px) skewX(-1deg); opacity: 0.9; }
+            80% { transform: scale(1) translateY(1px) skewX(1deg); opacity: 0.8; }
+            100% { transform: scale(1) translateY(0) skewX(0); opacity: 0.8; }
+        }
+        .construction-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        ul.selvagens {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start; /* Alinha os itens ao início, evitando que estiquem */
+        }
+        li.Selvagem {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            width: 150px;
+            transition: transform 0.2s;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
+        li.Selvagem:hover {
+            transform: scale(1.05);
+            border-color: #4c70af;
+        }
+        li.Selvagem img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        li.Selvagem span { 
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333; 
+            margin-top: 10px;
+        }
+        .boost {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 5px; 
+        }
+        .clima-boost {
+            width: 26px;
+            height: 26px; 
+            margin-right: 5px;
+        }
+        .pc-boost {
+            font-size: 14px;
+            color: #555;
+        }
+        .tipo-icons {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 5px;
+        }
+        .tipo-icons img {
+            width: 24px; 
+            height: 24px;
+        }
+        .postId {
+            max-width: 0px;
+            max-height: 0px;
+            overflow: hidden; 
+            display: none; 
+        }
+        a:not(.postId) {
+            display: inline-block;
+            min-width: 48px;
+            min-height: 48px;
+        }
+        .containerbloco {
+            width: 97%;
+            margin: 0 auto;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+        .contador {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #fff;
+            color: #333;
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            margin-right: 1rem;
+        }
+        .box-contador {
+            text-align: center;
+        }
+
+        /* --- Estilos para o Detalhe de Fraquezas/Resistências (Integrado) --- */
+        .type-details-toggle {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%; 
+            box-sizing: border-box;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        .type-details-toggle:hover {
+            background-color: #0056b3;
+        }
+        .type-details-content {
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            text-align: left; 
+            display: none; 
+            overflow: hidden; 
+        }
+        .type-details-content.active {
+            display: block; 
+        }
+        .type-details-content .result-category {
+            margin-bottom: 15px; 
+        }
+        .type-details-content .result-category h3 {
+            font-size: 1em;
+            border-bottom: 1px dashed #ccc; 
+            padding-bottom: 3px;
+            margin-bottom: 8px;
+            text-align: left; 
+        }
+        .type-details-content .result-category h4 {
+            font-size: 0.9em;
+            margin-top: 5px;
+            margin-bottom: 3px;
+            color: #666;
+            text-align: left; 
+        }
+        .type-details-content .type-group {
+            gap: 3px; 
+            margin-bottom: 5px;
+            justify-content: flex-start; 
+        }
+        .type-details-content .type-tag {
+            font-size: 0.8em; 
+            padding: 3px 6px;
+        }
+
+        /* Cores (mantidas as mesmas do outro script) */
+        .Aço { background-color: #B8B8D0; } .Água { background-color: #6890F0; } .Dragão { background-color: #7038F8; } .Elétrico { background-color: #F8D030; } .Fada { background-color: #EE99AC; } .Fantasma { background-color: #705898; } .Fogo { background-color: #F08030; } .Gelo { background-color: #98D8D8; } .Inseto { background-color: #A8B820; } .Lutador { background-color: #C03028; } .Normal { background-color: #A8A878; } .Pedra { background-color: #B8A038; } .Planta { background-color: #78C850; } .Psíquico { background-color: #F85888; } .Sombrio { background-color: #705848; } .Terrestre { background-color: #E0C068; } .Venenoso { background-color: #A040A0; } .Voador { background-color: #A890F0; }
+
+        /* Estilos para telas menores (celulares) */
+        @media (max-width: 600px) {
+            .selectors {
+                flex-direction: column; 
+                gap: 10px; 
+            }
+            .selectors select,
+            .selectors button {
+                width: 100%; 
+                box-sizing: border-box; 
+            }
+            li.Selvagem {
+                width: calc(100% - 20px); 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="construction-message">
+        <h1>Em Construção</h1>
+        <p>
+            Estes são os Chefes de Reide atuais durante o evento Festival da Água (15 a 20 de julho). Tatsugiri estará disponível em suas respectivas regiões: Forma Curvada (Europa, Oriente Médio e África), Forma Pendular (Américas) e Forma Estendida (Ásia-Pacífico).
+        </p>
+        <div class="box-contador">
+            <div class="contador">Contagem Regressiva</div>
+        </div>
+        <br /><br />
+        <img
+            src="https://nowadraco.github.io/pokedragonshadow.site/src/imagens/contructor.jpg"
+            alt="uma imagem em desenho de uma pessoa olhando uma planta de construção com várias ferramentas na pochete"
+        />
+        <h3>Reides</h3>
+        <h4>Reides de uma estrela</h4>
+        <ul class="selvagens pokemon-list">
+            <li>Shellder*</li>
+            <li>Ducklett*</li>
+            <li>Tatsugiri (Forma Curvada)</li>
+            <li>Tatsugiri (Forma Pendular)</li>
+            <li>Tatsugiri (Forma Estendida)</li>
+        </ul>
+        <h4>Reides de três estrelas</h4>
+        <ul class="selvagens pokemon-list">
+            <li>Kingler</li>
+            <li>Gyarados</li>
+            <li>Hippowdon</li>
+            <li>Azumarill</li>
+        </ul>
+        <h4>Reides de cinco estrelas</h4>
+        <ul class="selvagens pokemon-list">
+            <li>Terrakion</li>
+        </ul>
+        <h4>Megarreides</h4>
+        <ul class="selvagens pokemon-list">
+            <li>Mega Blastoise*</li>
+        </ul>
+        <p>*Com sorte, vocês poderão até encontrar um Brilhante.</p>
+    </div>
+    <div class="construction-message">
+        <img
+            src="https://nowadraco.github.io/pokedragonshadow.site/src/imagens/contructor.jpg"
+            alt="uma imagem em desenho de uma pessoa olhando uma planta de construção com várias ferramentas na pochete"
+        />
+        <h3>Reides</h3>
+        <h4>Reides de uma estrela</h4>
+        <ul class="selvagens pokemon-list">
+            <li>Magnemite (shadow)*</li>
+            <li>Cyndaquil (shadow)</li>
+            <li>Murkrow (shadow)*</li>
+            <li>Spoink (shadow)</li>
+        </ul>
+        <h4>Reides de três estrelas</h4>
+        <ul class="selvagens pokemon-list">
+            <li>Lapras (shadow)</li>
+            <li>Piloswine (shadow)</li>
+            <li>Gurdurr (shadow)</li>
+            <li>Registeel (shadow)</li> 
+        </ul>
+        <h4>Reides de cinco estrelas</h4>
+        <ul class="selvagens pokemon-list">
+            <li>Registeel (shadow)</li>
+        </ul>
+        <p>*Com sorte, vocês poderão até encontrar um Brilhante.</p>
+    </div>
+
+    <script>
+        // --- Constantes e URLs de JSON ---
+        const POKEMON_RAID_JSON_URL = 'https://raw.githubusercontent.com/nowadraco/blogger-poke-dragon-shadow/refs/heads/main/json/poke_reide.json';
+        const POKEMON_RAID_SHINY_JSON_URL = 'https://raw.githubusercontent.com/nowadraco/blogger-poke-dragon-shadow/refs/heads/main/json/poke_reide_shiny.json';
+        const TYPES_DATA_JSON_URL = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/main/src/data/gamemaster/tipos_poke.json';
+        
+        // --- CPMs para cálculo de PC ---
+        const cpms = [0.0939999967813491, 0.135137430784308, 0.166397869586944, 0.192650914456886, 0.215732470154762, 0.236572655026622, 0.255720049142837, 0.273530381100769, 0.290249884128570, 0.306057381335773, 0.321087598800659, 0.335445032295077, 0.349212676286697, 0.362457748778790, 0.375235587358474, 0.387592411085168, 0.399567276239395, 0.411193549517250, 0.422500014305114, 0.432926413410414, 0.443107545375824, 0.453059953871985, 0.462798386812210, 0.472336077786704, 0.481684952974319, 0.490855810259008, 0.499858438968658, 0.508701756943992, 0.517393946647644, 0.525942508771329, 0.534354329109191, 0.542635762230353, 0.550792694091796, 0.558830599438087, 0.566754519939422, 0.574569148039264, 0.582278907299041, 0.589887911977272, 0.597400009632110, 0.604823657502073, 0.612157285213470, 0.619404110566050, 0.626567125320434, 0.633649181622743, 0.640652954578399, 0.647580963301656, 0.654435634613037, 0.661219263506722, 0.667934000492096, 0.674581899290818, 0.681164920330047, 0.687684905887771, 0.694143652915954, 0.700542893277978, 0.706884205341339, 0.713169102333341, 0.719399094581604, 0.725575616972598, 0.731700003147125, 0.734741011137376, 0.737769484519958, 0.740785574597326, 0.743789434432983, 0.746781208702482, 0.749761044979095, 0.752729105305821, 0.755685508251190, 0.758630366519684, 0.761563837528228, 0.764486065255226, 0.767397165298461, 0.770297273971590, 0.773186504840850, 0.776064945942412, 0.778932750225067, 0.781790064808426, 0.784636974334716, 0.787473583646825, 0.790300011634826, 0.792803950958807, 0.795300006866455, 0.797803921486970, 0.800300002098083, 0.802803892322847, 0.805299997329711, 0.807803863460723, 0.810299992561340, 0.812803834895026, 0.815299987792968, 0.817803806620319, 0.820299983024597, 0.822803778631297, 0.825299978256225, 0.827803750922782, 0.830299973487854, 0.832803753381377, 0.835300028324127, 0.837803755931569, 0.840300023555755, 0.842803729034748, 0.845300018787384, 0.847803702398935, 0.850300009250640, 0.852803676019539, 0.855300004482269, 0.857803649892077, 0.860300004482269, 0.862803624012168, 0.865299999713897];
+
+        // --- Funções Auxiliares de Tipos (Globais, para serem usadas por ambos os scripts) ---
+        function getTypeColor(tipo) { /* ...código... */ return '#FFFFFF'; }
+        function getTypeIcon(tipo) { /* ...código... */ return ''; }
+        function formatMultiplierToPercentage(multKey) { /* ...código... */ return multKey; }
+        function createDefenseCategoryHTML(title, categoryData) { /* ...código... */ return ''; }
+        function generateAllDefensiveCombinations(singleTypeData) { /* ...código... */ return []; }
+        function getMultiplier(defenseData, attackingType) { /* ...código... */ return 1.0; }
+        function formatMultipliersToDefenseData(multipliers) { /* ...código... */ return {}; }
+
+        // --- Variáveis globais para os dados (serão preenchidas após o carregamento) ---
+        let allPokemonData = [];
+        let allShinyPokemonData = [];
+        let allTypesRawData = [];
+        let allDefensiveCombinations = [];
+
+        // --- Funções auxiliares de busca (globais) ---
+        function buscarPokemon(pokemons, nome) { /* ...código... */ return null; }
+        function buscarShinyPokemon(shinyPokemons, nome) { /* ...código... */ return null; }
+
+        // --- Funções principais do Raid Bosses ---
+        async function carregarTodosOsDados() { /* ...código... */ }
+        function alternarImagens() { /* ...código... */ }
+        function calculateCP(baseStats, ivs, level) { /* ...código... */ return 0; }
+        function generatePokemonListItem(pokemonData, shinyPokemonData, nomeExibicao) { /* ...código... */ return ''; }
+        async function processSpecificPokemonList() { /* ...código... */ }
+        function addTypeDetailsToggleListeners() { /* ...código... */ }
+        async function loadAndDisplayPokemonDefensiveData(pokemonTypes, targetElement, categoryToShow = 'all') { /* ...código... */ }
+        function countdown(endDate1, endDate2) { /* ...código... */ }
+
+        // --- Constantes de data para o contador ---
+        const firstEndDate = "2025-07-14T09:59:59";
+        const secondEndDate = "2025-07-20T19:59:59";
+
+        // --- Inicialização Principal ---
+        document.addEventListener('DOMContentLoaded', () => {
+            processSpecificPokemonList();
+            setInterval(() => {
+                countdown(firstEndDate, secondEndDate);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
