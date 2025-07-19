@@ -75,7 +75,6 @@
         .type-tag {
             display: inline-block;
             padding: 5px 10px;
-            /* margin: 4px; <-- REMOVIDO: O espaçamento será controlado pelo .offensive-item e .type-group */
             border-radius: 4px;
             color: white;
             font-weight: bold;
@@ -118,6 +117,20 @@
         }
         /* Cores */
         .Aço { background-color: #B8B8D0; } .Água { background-color: #6890F0; } .Dragão { background-color: #7038F8; } .Elétrico { background-color: #F8D030; } .Fada { background-color: #EE99AC; } .Fantasma { background-color: #705898; } .Fogo { background-color: #F08030; } .Gelo { background-color: #98D8D8; } .Inseto { background-color: #A8B820; } .Lutador { background-color: #C03028; } .Normal { background-color: #A8A878; } .Pedra { background-color: #B8A038; } .Planta { background-color: #78C850; } .Psíquico { background-color: #F85888; } .Sombrio { background-color: #705848; } .Terrestre { background-color: #E0C068; } .Venenoso { background-color: #A040A0; } .Voador { background-color: #A890F0; }
+
+        /* Estilos para telas menores (celulares) */
+        @media (max-width: 600px) {
+            .selectors {
+                flex-direction: column; /* Empilha os itens verticalmente */
+                gap: 10px; /* Espaçamento entre os itens empilhados */
+            }
+
+            .selectors select,
+            .selectors button {
+                width: 100%; /* Faz com que seletores e botões ocupem a largura total */
+                box-sizing: border-box; /* Inclui padding e borda na largura total */
+            }
+        }
     </style>
 </head>
 <body>
@@ -267,10 +280,9 @@
                 if (items.length === 0) return '';
                 let html = `<div class="result-category"><h3>${title}</h3>`;
                 
-                // Agrupa os itens por multiplicador
                 const groupedItems = {};
                 items.forEach(item => {
-                    const multKey = item.mult + 'x'; // Ex: 2.56x, 1.6x, 0.625x, 1x
+                    const multKey = item.mult + 'x'; 
                     if (!groupedItems[multKey]) {
                         groupedItems[multKey] = [];
                     }
@@ -279,16 +291,15 @@
 
                 const multipliers = Object.keys(groupedItems);
 
-                // Ordena os multiplicadores de forma apropriada para cada categoria de ataque
                 multipliers.sort((a, b) => {
                     const numA = parseFloat(a.replace('x', ''));
                     const numB = parseFloat(b.replace('x', ''));
                     if (title === 'É Super Efetivo Contra:') {
-                        return numB - numA; // Maior para menor (ex: 2.56x, 1.6x)
+                        return numB - numA; 
                     } else if (title === 'É Pouco Efetivo Contra:') {
-                        return numA - numB; // Menor para maior (ex: 0.39x, 0.625x)
-                    } else { // 'Causa Dano Normal Contra:'
-                        return 0; // Não precisa de ordenação específica para 1x
+                        return numA - numB; 
+                    } else { 
+                        return 0; 
                     }
                 });
 
@@ -299,10 +310,8 @@
                         html += `<h4>${percentage}</h4>`; 
                         html += `<div class="type-group">`; 
                         
-                        // Ordena os itens dentro do grupo por nome de combinação (ex: Fada / Gelo)
                         typesInGroup.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(item => {
                             let typeTags = item.tipos.map(t => `<span class="type-tag ${t}">${t}</span>`).join('');
-                            // Adiciona a classe 'double-type-combo' se for uma combinação de dois tipos
                             let comboClass = item.tipos.length > 1 ? ' double-type-combo' : '';
                             html += `<span class="offensive-item${comboClass}" data-combo-name="${item.nome}">${typeTags}</span>`; 
                         });
@@ -321,7 +330,7 @@
                 itemsToFilter.forEach(item => {
                     const itemText = normalize(item.dataset.comboName || item.textContent); 
                     if (itemText.includes(filterText)) {
-                        item.style.display = 'inline-flex'; // Usar inline-flex para garantir a exibição correta
+                        item.style.display = 'inline-flex'; 
                     } else {
                         item.style.display = 'none';
                     }
