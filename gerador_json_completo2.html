@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Gerador de JSON de Tipos Duplos (Com Redundâncias)</title>
+    <title>Gerador de JSON de Tipos (Únicos e Duplos)</title>
     <style>
         body { font-family: sans-serif; background-color: #f0f0f0; color: #333; max-width: 90%; margin: 20px auto; padding: 20px; }
         h1 { text-align: center; }
@@ -13,10 +13,10 @@
     </style>
 </head>
 <body>
-    <h1>Gerador de JSON (Tipos Únicos e Duplos - Com Redundâncias)</h1>
-    <p id="status">Clique para gerar o JSON com as combinações de tipos únicos e duplos, incluindo redundâncias como Aço/Água e Água/Aço.</p>
-    <button id="generateBtn">Gerar JSON Otimizado</button>
-    <textarea id="jsonOutput" readonly placeholder="O resultado do JSON otimizado aparecerá aqui..."></textarea>
+    <h1>Gerador de JSON (Tipos Únicos e Duplos)</h1>
+    <p id="status">Clique para gerar o JSON com todos os tipos únicos e todas as combinações duplas (incluindo A/B e B/A, mas excluindo A/A).</p>
+    <button id="generateBtn">Gerar JSON</button>
+    <textarea id="jsonOutput" readonly placeholder="O resultado do JSON aparecerá aqui..."></textarea>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -36,31 +36,26 @@
                     statusDiv.textContent = 'Calculando combinações...';
                     
                     const allTypes = singleTypeData.map(t => t.tipo).sort();
-                    const allResults = [];
+                    const finalResults = []; // Este array armazenará todos os resultados
 
-                    // Adicionar tipos únicos primeiro
+                    // 1. Adicionar todos os tipos únicos
                     singleTypeData.forEach(typeDef => {
                         const combinationObject = {
                             tipos: [typeDef.tipo],
-                            defesa: typeDef.defesa
+                            defesa: { ...typeDef.defesa } // Copia o objeto de defesa diretamente
                         };
                         // Normaliza os objetos de defesa para remover chaves vazias ou arrays vazios
-                        if(Object.keys(combinationObject.defesa.fraqueza || {}).length === 0) delete combinationObject.defesa.fraqueza;
-                        if(Object.keys(combinationObject.defesa.resistencia || {}).length === 0) delete combinationObject.defesa.resistencia;
-                        if(Object.keys(combinationObject.defesa.normal || {}).length === 0) delete combinationObject.defesa.normal;
-                        if(combinationObject.defesa.imunidade && combinationObject.defesa.imunidade.length === 0) delete combinationObject.defesa.imunidade;
-                        allResults.push(combinationObject);
+                        normalizeDefenseObject(combinationObject.defesa);
+                        finalResults.push(combinationObject);
                     });
 
-
-                    // Lógica para gerar todas as combinações duplas (incluindo A/B e B/A)
+                    // 2. Gerar todas as combinações duplas (A/B e B/A, excluindo A/A)
                     for (let i = 0; i < allTypes.length; i++) {
                         for (let j = 0; j < allTypes.length; j++) {
                             const type1Name = allTypes[i];
                             const type2Name = allTypes[j];
 
-                            // Se os tipos são iguais, já foram adicionados como tipo único, então pule a DUPLICATA DE COMBINAÇÃO
-                            // Mas não se for para um tipo diferente do original.
+                            // Pular combinações de tipos idênticos (ex: Aço/Aço)
                             if (type1Name === type2Name) {
                                 continue; 
                             }
@@ -99,21 +94,15 @@
                                 }
                             }
 
-                            // Normaliza os objetos de defesa para remover chaves vazias ou arrays vazios
-                            if(Object.keys(combinationObject.defesa.fraqueza).length === 0) delete combinationObject.defesa.fraqueza;
-                            if(Object.keys(combinationObject.defesa.resistencia).length === 0) delete combinationObject.defesa.resistencia;
-                            if(Object.keys(combinationObject.defesa.normal).length === 0) delete combinationObject.defesa.normal;
-                            if(combinationObject.defesa.imunidade.length === 0) delete combinationObject.defesa.imunidade;
-
-                            allResults.push(combinationObject);
+                            // Normaliza o objeto de defesa da combinação dupla
+                            normalizeDefenseObject(combinationObject.defesa);
+                            
+                            finalResults.push(combinationObject);
                         }
                     }
 
-                    // *** REMOVIDA A LÓGICA DE REMOÇÃO DE DUPLICATAS ***
-                    // Isso garante que ["Aço", "Água"] e ["Água", "Aço"] serão mantidos.
-
-                    jsonOutput.value = JSON.stringify(allResults, null, 2);
-                    statusDiv.textContent = `JSON gerado com sucesso para ${allResults.length} combinações (únicas e duplas, com redundâncias)!`;
+                    jsonOutput.value = JSON.stringify(finalResults, null, 2);
+                    statusDiv.textContent = `JSON gerado com sucesso para ${finalResults.length} combinações!`;
                 } catch (error) {
                     statusDiv.textContent = `Ocorreu um erro: ${error.message}`;
                 } finally {
@@ -121,15 +110,39 @@
                 }
             }
 
+            // Função auxiliar para normalizar o objeto de defesa (remover chaves vazias)
+            function normalizeDefenseObject(defesa) {
+                if(Object.keys(defesa.fraqueza || {}).length === 0) delete defesa.fraqueza;
+                if(Object.keys(defesa.resistencia || {}).length === 0) delete defesa.resistencia;
+                if(Object.keys(defesa.normal || {}).length === 0) delete defesa.normal;
+                if(defesa.imunidade && defesa.imunidade.length === 0) delete defesa.imunidade;
+            }
+
             function getMultiplier(defenseData, attackingType) {
                 if (!defenseData) return 1.0;
-                // Verifique primeiro a imunidade
+                
+                // Prioridade para imunidade
                 if (defenseData.imunidade && defenseData.imunidade.includes(attackingType)) return 0.0;
                 
-                for (const k in defenseData.fraqueza) if (defenseData.fraqueza[k].includes(attackingType)) return parseFloat(k);
-                for (const k in defenseData.resistencia) if (defenseData.resistencia[k].includes(attackingType)) return parseFloat(k);
-                for (const k in defenseData.normal) if (defenseData.normal[k].includes(attackingType)) return parseFloat(k);
-                return 1.0; // Padrão se não encontrado em nenhuma categoria
+                // Procurar em fraquezas
+                for (const k in defenseData.fraqueza) {
+                    if (defenseData.fraqueza[k].includes(attackingType)) {
+                        return parseFloat(k);
+                    }
+                }
+                // Procurar em resistências
+                for (const k in defenseData.resistencia) {
+                    if (defenseData.resistencia[k].includes(attackingType)) {
+                        return parseFloat(k);
+                    }
+                }
+                // Procurar em normal
+                for (const k in defenseData.normal) {
+                    if (defenseData.normal[k].includes(attackingType)) {
+                        return parseFloat(k);
+                    }
+                }
+                return 1.0; // Padrão se não encontrado em nenhuma categoria (neutro)
             }
             
             generateBtn.addEventListener('click', generateAllTypeCombinationsJson);
