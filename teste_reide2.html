@@ -25,7 +25,7 @@
             position: relative;
             display: inline-block;
         }
-        .pokemon-image-container .imgSelvagem {
+        .pokemon-image-container .img-selvagem {
             position: relative;
             z-index: 2;
             display: block;
@@ -65,9 +65,9 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            align-items: flex-start; /* Alinha os itens ao início, evitando que estiquem */
+            align-items: flex-start;
         }
-        li.Selvagem {
+        li.selvagem {
             border: 2px solid #ccc;
             border-radius: 10px;
             padding: 10px;
@@ -79,15 +79,15 @@
             flex-direction: column; 
             justify-content: space-between; 
         }
-        li.Selvagem:hover {
+        li.selvagem:hover {
             transform: scale(1.05);
             border-color: #4c70af;
         }
-        li.Selvagem img {
+        li.selvagem img {
             max-width: 100%;
             border-radius: 5px;
         }
-        li.Selvagem span { 
+        li.selvagem span { 
             display: block;
             font-size: 16px;
             font-weight: bold;
@@ -198,6 +198,8 @@
             text-align: left; 
         }
         .type-details-content .type-group {
+            display: flex; /* Adicionado para que os tags fiquem lado a lado */
+            flex-wrap: wrap; /* Adicionado para quebrar linha se necessário */
             gap: 3px; 
             margin-bottom: 5px;
             justify-content: flex-start; 
@@ -205,10 +207,12 @@
         .type-details-content .type-tag {
             font-size: 0.8em; 
             padding: 3px 6px;
+            border-radius: 3px; /* Adicionado para um visual de tag */
+            color: white; /* Adicionado para contraste */
         }
 
         /* Cores (mantidas as mesmas do outro script) */
-        .Aço { background-color: #B8B8D0; } .Água { background-color: #6890F0; } .Dragão { background-color: #7038F8; } .Elétrico { background-color: #F8D030; } .Fada { background-color: #EE99AC; } .Fantasma { background-color: #705898; } .Fogo { background-color: #F08030; } .Gelo { background-color: #98D8D8; } .Inseto { background-color: #A8B820; } .Lutador { background-color: #C03028; } .Normal { background-color: #A8A878; } .Pedra { background-color: #B8A038; } .Planta { background-color: #78C850; } .Psíquico { background-color: #F85888; } .Sombrio { background-color: #705848; } .Terrestre { background-color: #E0C068; } .Venenoso { background-color: #A040A0; } .Voador { background-color: #A890F0; }
+        .Aço, .aço { background-color: #B8B8D0; } .Água, .água { background-color: #6890F0; } .Dragão, .dragão { background-color: #7038F8; } .Elétrico, .elétrico { background-color: #F8D030; } .Fada, .fada { background-color: #EE99AC; } .Fantasma, .fantasma { background-color: #705898; } .Fogo, .fogo { background-color: #F08030; } .Gelo, .gelo { background-color: #98D8D8; } .Inseto, .inseto { background-color: #A8B820; } .Lutador, .lutador { background-color: #C03028; } .Normal, .normal { background-color: #A8A878; } .Pedra, .pedra { background-color: #B8A038; } .Planta, .planta { background-color: #78C850; } .Psíquico, .psíquico { background-color: #F85888; } .Sombrio, .sombrio { background-color: #705848; } .Terrestre, .terrestre { background-color: #E0C068; } .Venenoso, .venenoso { background-color: #A040A0; } .Voador, .voador { background-color: #A890F0; }
 
         /* Estilos para telas menores (celulares) */
         @media (max-width: 600px) {
@@ -221,7 +225,7 @@
                 width: 100%; 
                 box-sizing: border-box; 
             }
-            li.Selvagem {
+            li.selvagem {
                 width: calc(100% - 20px); 
             }
         }
@@ -250,6 +254,7 @@
             <li>Tatsugiri (Forma Curvada)</li>
             <li>Tatsugiri (Forma Pendular)</li>
             <li>Tatsugiri (Forma Estendida)</li>
+            <li>Kingler</li>
         </ul>
         <h4>Reides de três estrelas</h4>
         <ul class="selvagens pokemon-list">
@@ -267,13 +272,11 @@
             <li>Mega Blastoise*</li>
         </ul>
         <p>*Com sorte, vocês poderão até encontrar um Brilhante.</p>
-    </div>
-    <div class="construction-message">
         <img
             src="https://nowadraco.github.io/pokedragonshadow.site/src/imagens/contructor.jpg"
             alt="uma imagem em desenho de uma pessoa olhando uma planta de construção com várias ferramentas na pochete"
         />
-        <h3>Reides</h3>
+        <h3>Reides Sombrias</h3>
         <h4>Reides de uma estrela</h4>
         <ul class="selvagens pokemon-list">
             <li>Magnemite (shadow)*</li>
@@ -296,52 +299,421 @@
     </div>
 
     <script>
-        // --- Constantes e URLs de JSON ---
+        // --- Constantes e Variáveis Globais ---
         const POKEMON_RAID_JSON_URL = 'https://raw.githubusercontent.com/nowadraco/blogger-poke-dragon-shadow/refs/heads/main/json/poke_reide.json';
         const POKEMON_RAID_SHINY_JSON_URL = 'https://raw.githubusercontent.com/nowadraco/blogger-poke-dragon-shadow/refs/heads/main/json/poke_reide_shiny.json';
         const TYPES_DATA_JSON_URL = 'https://raw.githubusercontent.com/nowadraco/bloggerpoke/main/src/data/gamemaster/tipos_poke.json';
         
-        // --- CPMs para cálculo de PC ---
+        // URLs para ícones de tipos
+        const TYPE_ICON_BASE_URL = 'https://raw.githubusercontent.com/nowadraco/pokedragonshadow.site/refs/heads/main/src/imagens/tipos/';
+        const WEATHER_ICON_BASE_URL = 'https://raw.githubusercontent.com/nowadraco/pokedragonshadow.site/c3027920e2d9674426a728d292ff8ce08209b2d2/src/imagens/clima/';
+
+        let allDefensiveCombinations = []; 
+        let allTypesData = []; 
+
         const cpms = [0.0939999967813491, 0.135137430784308, 0.166397869586944, 0.192650914456886, 0.215732470154762, 0.236572655026622, 0.255720049142837, 0.273530381100769, 0.290249884128570, 0.306057381335773, 0.321087598800659, 0.335445032295077, 0.349212676286697, 0.362457748778790, 0.375235587358474, 0.387592411085168, 0.399567276239395, 0.411193549517250, 0.422500014305114, 0.432926413410414, 0.443107545375824, 0.453059953871985, 0.462798386812210, 0.472336077786704, 0.481684952974319, 0.490855810259008, 0.499858438968658, 0.508701756943992, 0.517393946647644, 0.525942508771329, 0.534354329109191, 0.542635762230353, 0.550792694091796, 0.558830599438087, 0.566754519939422, 0.574569148039264, 0.582278907299041, 0.589887911977272, 0.597400009632110, 0.604823657502073, 0.612157285213470, 0.619404110566050, 0.626567125320434, 0.633649181622743, 0.640652954578399, 0.647580963301656, 0.654435634613037, 0.661219263506722, 0.667934000492096, 0.674581899290818, 0.681164920330047, 0.687684905887771, 0.694143652915954, 0.700542893277978, 0.706884205341339, 0.713169102333341, 0.719399094581604, 0.725575616972598, 0.731700003147125, 0.734741011137376, 0.737769484519958, 0.740785574597326, 0.743789434432983, 0.746781208702482, 0.749761044979095, 0.752729105305821, 0.755685508251190, 0.758630366519684, 0.761563837528228, 0.764486065255226, 0.767397165298461, 0.770297273971590, 0.773186504840850, 0.776064945942412, 0.778932750225067, 0.781790064808426, 0.784636974334716, 0.787473583646825, 0.790300011634826, 0.792803950958807, 0.795300006866455, 0.797803921486970, 0.800300002098083, 0.802803892322847, 0.805299997329711, 0.807803863460723, 0.810299992561340, 0.812803834895026, 0.815299987792968, 0.817803806620319, 0.820299983024597, 0.822803778631297, 0.825299978256225, 0.827803750922782, 0.830299973487854, 0.832803753381377, 0.835300028324127, 0.837803755931569, 0.840300023555755, 0.842803729034748, 0.845300018787384, 0.847803702398935, 0.850300009250640, 0.852803676019539, 0.855300004482269, 0.857803649892077, 0.860300004482269, 0.862803624012168, 0.865299999713897];
 
-        // --- Funções Auxiliares de Tipos (Globais, para serem usadas por ambos os scripts) ---
-        function getTypeColor(tipo) { /* ...código... */ return '#FFFFFF'; }
-        function getTypeIcon(tipo) { /* ...código... */ return ''; }
-        function formatMultiplierToPercentage(multKey) { /* ...código... */ return multKey; }
-        function createDefenseCategoryHTML(title, categoryData) { /* ...código... */ return ''; }
-        function generateAllDefensiveCombinations(singleTypeData) { /* ...código... */ return []; }
-        function getMultiplier(defenseData, attackingType) { /* ...código... */ return 1.0; }
-        function formatMultipliersToDefenseData(multipliers) { /* ...código... */ return {}; }
+        // --- Funções de Ajuda de Tipos (Copiadas e Adaptadas do script anterior) ---
+        function getTypeColor(tipo) {
+            switch (tipo.toLowerCase()) {
+                case 'normal': return '#A8A77A'; case 'fogo': return '#FF4500'; case 'água': return '#1E90FF';
+                case 'elétrico': return '#F7D02C'; case 'planta': return '#32CD32'; case 'gelo': return '#96D9D6';
+                case 'lutador': return '#C22E28'; case 'venenoso': return '#A33EA1'; case 'terrestre': return '#E2BF65';
+                case 'voador': return '#A98FF3'; case 'psíquico': return '#F95587'; case 'inseto': return '#A6B91A';
+                case 'pedra': return '#B6A136'; case 'fantasma': return '#735797'; case 'dragão': return '#6F35FC';
+                case 'sombrio': return '#705746'; case 'aço': return '#B7B7CE'; case 'fada': return '#D685AD';
+                case 'substitute': return '#000'; default: return '#FFFFFF';
+            }
+        }
 
-        // --- Variáveis globais para os dados (serão preenchidas após o carregamento) ---
-        let allPokemonData = [];
-        let allShinyPokemonData = [];
-        let allTypesRawData = [];
-        let allDefensiveCombinations = [];
+        function getTypeIcon(tipo) {
+            // Usa a constante TYPE_ICON_BASE_URL
+            const iconMap = {
+                'aço': 'aco.png', 'água': 'agua.png', 'dragão': 'dragao.png', 'elétrico': 'eletrico.png',
+                'fada': 'fada.png', 'fantasma': 'fantasma.png', 'fogo': 'fogo.png', 'gelo': 'gelo.png',
+                'inseto': 'inseto.png', 'lutador': 'lutador.png', 'normal': 'normal.png', 'pedra': 'pedra.png',
+                'planta': 'planta.png', 'psíquico': 'psiquico.png', 'sombrio': 'sombrio.png', 'terrestre': 'terrestre.png',
+                'venenoso': 'venenoso.png', 'voador': 'voador.png'
+            };
+            const fileName = iconMap[tipo.toLowerCase()];
+            return fileName ? TYPE_ICON_BASE_URL + fileName : '';
+        }
 
-        // --- Funções auxiliares de busca (globais) ---
-        function buscarPokemon(pokemons, nome) { /* ...código... */ return null; }
-        function buscarShinyPokemon(shinyPokemons, nome) { /* ...código... */ return null; }
+        function getWeatherIcon(tipo) {
+            // Usa a constante WEATHER_ICON_BASE_URL
+            const iconMap = {
+                'planta': 'ensolarado.png', 'fogo': 'ensolarado.png', 'terrestre': 'ensolarado.png',
+                'água': 'chovendo.png', 'elétrico': 'chovendo.png', 'inseto': 'chovendo.png',
+                'normal': 'parcialmente_nublado.png', 'pedra': 'parcialmente_nublado.png',
+                'fada': 'nublado.png', 'lutador': 'nublado.png', 'venenoso': 'nublado.png',
+                'voador': 'ventando.png', 'dragão': 'ventando.png', 'psíquico': 'ventando.png',
+                'gelo': 'nevando.png', 'aço': 'nevando.png',
+                'sombrio': 'neblina.png', 'fantasma': 'neblina.png'
+            };
+            const fileName = iconMap[tipo.toLowerCase()];
+            return fileName ? WEATHER_ICON_BASE_URL + fileName : '';
+        }
 
-        // --- Funções principais do Raid Bosses ---
-        async function carregarTodosOsDados() { /* ...código... */ }
-        function alternarImagens() { /* ...código... */ }
-        function calculateCP(baseStats, ivs, level) { /* ...código... */ return 0; }
-        function generatePokemonListItem(pokemonData, shinyPokemonData, nomeExibicao) { /* ...código... */ return ''; }
-        async function processSpecificPokemonList() { /* ...código... */ }
-        function addTypeDetailsToggleListeners() { /* ...código... */ }
-        async function loadAndDisplayPokemonDefensiveData(pokemonTypes, targetElement, categoryToShow = 'all') { /* ...código... */ }
-        function countdown(endDate1, endDate2) { /* ...código... */ }
+        function calculateCP(baseStats, ivs, level) {
+            const cpmIndex = Math.round((level - 1) * 2);
+            const cpm = cpms[cpmIndex];
+            const cp = Math.floor(((baseStats.atk + ivs.atk) *
+                Math.sqrt(baseStats.def + ivs.def) *
+                Math.sqrt(baseStats.hp + ivs.hp) *
+                cpm ** 2) / 10);
+            return cp;
+        }
 
-        // --- Constantes de data para o contador ---
-        const firstEndDate = "2025-07-14T09:59:59";
-        const secondEndDate = "2025-07-20T19:59:59";
+        function buscarPokemon(pokemons, nome) {
+            const nomeNormalizado = nome.replace('*', '').replace(/\s*\(shadow\)\s*/i, '').trim().toLowerCase();
+            return pokemons.find(pokemon => pokemon.nome.toLowerCase() === nomeNormalizado);
+        }
+
+        function buscarShinyPokemon(shinyPokemons, nome) {
+            const nomeNormalizado = nome.replace('*', '').replace(/\s*\(shadow\)\s*/i, '').trim().toLowerCase();
+            return shinyPokemons.find(shiny => shiny.nome.toLowerCase() === nomeNormalizado);
+        }
+
+        // Função auxiliar para formatar multiplicador para porcentagem
+        function formatMultiplierToPercentage(multKey) {
+            let num = parseFloat(multKey.replace('x', ''));
+            if (isNaN(num)) return multKey;
+            
+            let percentage = num * 100;
+            if (percentage % 1 !== 0) { 
+                return percentage.toFixed(1) + '%'; 
+            }
+            return percentage + '%';
+        }
+
+        // Função para gerar o HTML das categorias de defesa (Fraquezas, Resistências, Dano Neutro)
+        function createDefenseCategoryHTML(title, categoryData) {
+            if (!categoryData || Object.keys(categoryData).length === 0) return '';
+            let html = `<div class="result-category"><h3>${title}</h3>`;
+            
+            const multipliers = Object.keys(categoryData);
+
+            multipliers.sort((a, b) => {
+                const numA = parseFloat(a.replace('x', ''));
+                const numB = parseFloat(b.replace('x', ''));
+                if (title === 'Fraquezas') {
+                    return numB - numA; 
+                } else {
+                    return numA - numB; 
+                }
+            });
+
+            multipliers.forEach(multKey => {
+                const types = categoryData[multKey];
+                if (types && types.length > 0) {
+                    const percentage = formatMultiplierToPercentage(multKey);
+                    html += `<h4>${percentage}</h4>`; 
+                    html += `<div class="type-group">`; 
+                    types.sort().forEach(type => { 
+                        html += `<span class="type-tag ${type.toLowerCase()}">${type}</span>`; // Usar toLowerCase para a classe
+                    });
+                    html += `</div>`; 
+                }
+            });
+            return html + '</div>';
+        }
+
+        // --- Funções Auxiliares para Geração de Combinações de Tipos (Copiadas do script anterior) ---
+        function generateAllDefensiveCombinations(singleTypeData) {
+            const allTypes = singleTypeData.map(t => t.tipo).sort();
+            const allCombinations = [];
+
+            singleTypeData.forEach(typeInfo => {
+                const singleTypeDefense = { ...typeInfo.defesa }; 
+                if (!singleTypeDefense.normal || Object.keys(singleTypeDefense.normal).length === 0) {
+                    const nonAffectedTypes = allTypes.filter(t => 
+                        !Object.values(singleTypeDefense.fraqueza).flat().includes(t) &&
+                        !Object.values(singleTypeDefense.resistencia).flat().includes(t) &&
+                        !singleTypeDefense.imunidade.includes(t)
+                    );
+                    if (nonAffectedTypes.length > 0) {
+                        singleTypeDefense.normal = { '1x': nonAffectedTypes };
+                    }
+                }
+                allCombinations.push({ nome: typeInfo.tipo, tipos: [typeInfo.tipo], defesa: singleTypeDefense });
+            });
+
+            for (let i = 0; i < allTypes.length; i++) {
+                for (let j = i + 1; j < allTypes.length; j++) {
+                    const type1Name = allTypes[i], type2Name = allTypes[j];
+                    const defense1Data = singleTypeData.find(t => t.tipo === type1Name).defesa;
+                    const defense2Data = singleTypeData.find(t => t.tipo === type2Name).defesa;
+                    const finalMultipliers = {};
+                    allTypes.forEach(attackingType => {
+                        const mult1 = getMultiplier(defense1Data, attackingType);
+                        const mult2 = getMultiplier(defense2Data, attackingType);
+                        finalMultipliers[attackingType] = mult1 * mult2;
+                    });
+                    allCombinations.push({
+                        nome: `${type1Name} / ${type2Name}`,
+                        tipos: [type1Name, type2Name],
+                        defesa: formatMultipliersToDefenseData(finalMultipliers)
+                    });
+                }
+            }
+            return allCombinations;
+        }
+        
+        function getMultiplier(defenseData, attackingType) {
+            if (!defenseData) return 1.0;
+            const checkCategory = (category) => {
+                if (!category) return null;
+                for (const multKey in category) {
+                    if (category[multKey].includes(attackingType)) return parseFloat(multKey);
+                }
+                return null;
+            };
+            let result = checkCategory(defenseData.fraqueza) || checkCategory(defenseData.resistencia) || checkCategory(defenseData.imunidade) || checkCategory(defenseData.normal);
+            return result !== null ? result : 1.0;
+        }
+
+        function formatMultipliersToDefenseData(multipliers) {
+            const data = { fraqueza: {}, resistencia: {}, imunidade: [], normal: {} };
+            for (const type in multipliers) {
+                const roundedMult = Math.round(multipliers[type] * 1000) / 1000;
+                const multKey = `${roundedMult}x`;
+                if (roundedMult > 1) {
+                    if (!data.fraqueza[multKey]) data.fraqueza[multKey] = [];
+                    data.fraqueza[multKey].push(type);
+                } else if (roundedMult < 1 && roundedMult > 0) {
+                    if (!data.resistencia[multKey]) data.resistencia[multKey] = [];
+                    data.resistencia[multKey].push(type);
+                } else if (roundedMult === 0) {
+                    data.imunidade.push(type);
+                } else if (roundedMult === 1) {
+                    if (!data.normal[multKey]) data.normal[multKey] = [];
+                    data.normal[multKey].push(type);
+                }
+            }
+            return data;
+        }
+
+        // --- Funções do script de Raid Bosses ---
+        async function carregarDados() {
+            try {
+                const [pokemonsResponse, shinyResponse, typesDataResponse] = await Promise.all([
+                    fetch(POKEMON_RAID_JSON_URL),
+                    fetch(POKEMON_RAID_SHINY_JSON_URL),
+                    fetch(TYPES_DATA_JSON_URL)
+                ]);
+                const pokemons = await pokemonsResponse.json();
+                const shinyPokemons = await shinyResponse.json();
+                allTypesData = await typesDataResponse.json(); 
+                allDefensiveCombinations = generateAllDefensiveCombinations(allTypesData); 
+
+                return { pokemons, shinyPokemons };
+            } catch (error) {
+                console.error('Erro ao carregar arquivos JSON:', error);
+                return { pokemons: [], shinyPokemons: [] };
+            }
+        }
+
+        function alternarImagens(pokemons, shinyPokemons) {
+            const listas = document.querySelectorAll('.pokemon-list li');
+
+            listas.forEach(item => {
+                const span = item.querySelector('span');
+                if (!span) return;
+
+                const nomeOriginal = span.textContent.trim();
+                const nomeSemAsterisco = nomeOriginal.replace('*', '').replace(/\s*\(shadow\)\s*/i, '').trim();
+                const img = item.querySelector('img.img-selvagem'); // Alterado para img-selvagem
+
+                if (img && nomeOriginal.includes('*')) {
+                    let pokemon = buscarPokemon(pokemons, nomeSemAsterisco);
+                    let shinyPokemon = buscarShinyPokemon(shinyPokemons, nomeSemAsterisco);
+
+                    if (!pokemon || !shinyPokemon) {
+                        img.src = 'placeholder.png'; // Certifique-se de que 'placeholder.png' existe ou use uma URL completa.
+                        return;
+                    }
+
+                    let showShiny = false;
+
+                    setInterval(() => {
+                        img.style.transition = 'opacity 0.5s';
+                        img.style.opacity = 0;
+
+                        setTimeout(() => {
+                            img.src = showShiny ? shinyPokemon.img : pokemon.img;
+                            img.style.opacity = 1;
+                            showShiny = !showShiny;
+                        }, 500);
+                    }, 2500);
+                }
+            });
+        }
+
+        function generatePokemonListItem(pokemon, shinyPokemon, nomeExibicao) {
+            const validTipos = pokemon.tipos.filter(tipo => tipo && tipo.toLowerCase() !== "null"); 
+            const typeColors = validTipos.map(tipo => getTypeColor(tipo));
+            let gradientBackground;
+            if (typeColors.length === 1) {
+                gradientBackground = typeColors[0];
+            } else {
+                gradientBackground = `linear-gradient(to right, ${typeColors.join(', ')})`;
+            }
+            const baseStats = pokemon.statusBase;
+            const cpInfo = {
+                normal: calculateCP(baseStats, { atk: 10, def: 10, hp: 10 }, 20),
+                perfect: calculateCP(baseStats, { atk: 15, def: 15, hp: 15 }, 20)
+            };
+            const cpBoost = {
+                normal: calculateCP(baseStats, { atk: 10, def: 10, hp: 10 }, 25),
+                perfect: calculateCP(baseStats, { atk: 15, def: 15, hp: 15 }, 25)
+            };
+            const typeIcons = validTipos.map(tipo => `<img src="${getTypeIcon(tipo)}" alt="${tipo}">`).join('');
+            const weatherIcons = validTipos.map(tipo => `<img class="clima-boost" src="${getWeatherIcon(tipo)}">`).join('');
+
+            const isShadow = /\(shadow\)/i.test(nomeExibicao);
+            const shadowClass = isShadow ? 'is-shadow' : '';
+
+            const pokemonImageHTML = `
+                <div class="pokemon-image-container ${shadowClass}">
+                    <img class="img-selvagem" src="${pokemon.img}" alt="${nomeExibicao}">
+                </div>
+            `;
+
+            // HTML para os detalhes de fraqueza/resistência
+            const defenseDetailsHTML = `
+                <button class="type-details-toggle" data-pokemon-types="${validTipos.join(',')}">Ver Fraquezas</button>
+                <div class="type-details-content">
+                    </div>
+            `;
+
+            return `<li class="selvagem ${validTipos.map(t => t.toLowerCase()).join(' ')}"
+                        style="background: ${gradientBackground};">
+                        ${pokemonImageHTML}
+                        <span>${nomeExibicao}</span> 
+                        <div class="tipo-icons">${typeIcons}</div>
+                        <div class="pc-info">PC: ${cpInfo.normal} - ${cpInfo.perfect}</div>
+                        <div class="boost">
+                            ${weatherIcons}
+                            <div class="pc-boost"> ${cpBoost.normal} - ${cpBoost.perfect}</div>
+                        </div>
+                        ${defenseDetailsHTML}
+                    </li>`;
+        }
+
+        async function processSpecificPokemonList() {
+            try {
+                const { pokemons, shinyPokemons } = await carregarDados(); 
+                const pokemonLists = document.querySelectorAll('.pokemon-list');
+                for (const pokemonListElement of pokemonLists) {
+                    const pokemonNames = Array.from(pokemonListElement.getElementsByTagName('li'))
+                        .map(li => li.textContent.trim());
+                    
+                    const processedPokemonNames = pokemonNames.map(originalName => ({
+                        original: originalName,
+                        cleaned: originalName.replace('*', '').replace(/\s*\(shadow\)\s*/i, '').trim()
+                    }));
+
+                    const pokemonDataForList = processedPokemonNames.map(item => {
+                        const pokemon = buscarPokemon(pokemons, item.cleaned);
+                        if (pokemon) {
+                            return {
+                                originalName: item.original,
+                                pokemonData: pokemon,
+                                shinyPokemonData: buscarShinyPokemon(shinyPokemons, item.cleaned)
+                            };
+                        }
+                        return null;
+                    }).filter(Boolean); 
+
+                    const pokemonListHTML = pokemonDataForList.map(data => {
+                        return generatePokemonListItem(data.pokemonData, data.shinyPokemonData, data.originalName);
+                    }).join('');
+
+                    pokemonListElement.innerHTML = pokemonListHTML;
+
+                    addTypeDetailsToggleListeners();
+                }
+                alternarImagens(pokemons, shinyPokemons);
+            } catch (error) {
+                console.error('Erro ao processar as listas de Pokémon:', error);
+            }
+        }
+
+        function addTypeDetailsToggleListeners() {
+            document.querySelectorAll('.type-details-toggle').forEach(button => {
+                button.addEventListener('click', async (event) => {
+                    const toggleButton = event.currentTarget;
+                    const detailsContent = toggleButton.nextElementSibling; 
+                    const pokemonTypesString = toggleButton.dataset.pokemonTypes;
+                    const pokemonTypes = pokemonTypesString.split(',').filter(t => t !== ''); 
+
+                    if (!detailsContent.classList.contains('active')) {
+                        // Limpa o conteúdo antes de renderizar para garantir que seja sempre atualizado
+                        detailsContent.innerHTML = ''; 
+                        await loadAndDisplayPokemonDefensiveData(pokemonTypes, detailsContent, 'fraquezas'); 
+                        detailsContent.classList.add('active');
+                        toggleButton.textContent = "Esconder Fraquezas";
+                    } else {
+                        detailsContent.classList.remove('active');
+                        toggleButton.textContent = "Ver Fraquezas";
+                        detailsContent.innerHTML = ''; // Limpa o conteúdo ao esconder
+                    }
+                });
+            });
+        }
+
+        // Nova função para carregar e exibir dados defensivos de um Pokémon específico
+        // Agora aceita um terceiro parâmetro 'categoryToShow'
+        async function loadAndDisplayPokemonDefensiveData(pokemonTypes, targetElement, categoryToShow = 'all') {
+            const sortedTypes = pokemonTypes.sort();
+            const combinationName = sortedTypes.length === 2 
+                                            ? sortedTypes.join(' / ') 
+                                            : sortedTypes[0];
+            
+            const combinationData = allDefensiveCombinations.find(c => c.nome === combinationName);
+
+            if (combinationData) {
+                let htmlContent = '';
+                if (categoryToShow === 'fraquezas') {
+                    htmlContent += createDefenseCategoryHTML('Fraquezas', combinationData.defesa.fraqueza);
+                } else if (categoryToShow === 'all') {
+                    // Se quisermos adicionar um modo "mostrar tudo" futuramente
+                    htmlContent += createDefenseCategoryHTML('Fraquezas', combinationData.defesa.fraqueza);
+                    htmlContent += createDefenseCategoryHTML('Resistências', combinationData.defesa.resistencia);
+                    htmlContent += createDefenseCategoryHTML('Dano Neutro', combinationData.defesa.normal);
+                }
+                
+                targetElement.innerHTML = htmlContent;
+            } else {
+                targetElement.innerHTML = `<p>Dados de tipo não encontrados para ${combinationName}.</p>`;
+            }
+        }
+
+        // --- Funções do Contador ---
+        function countdown(endDate) { // Removido endDate1
+            const now = new Date().getTime();
+            const distance = new Date(endDate).getTime() - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const countdownElement = document.querySelector('.contador');
+            if (distance < 0) {
+                countdownElement.innerHTML = "Evento Encerrado";
+            } else {
+                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+
+        // Apenas a data de término relevante para o evento "Festival da Água"
+        const eventEndDate = "2025-07-20T19:59:59"; 
 
         // --- Inicialização Principal ---
         document.addEventListener('DOMContentLoaded', () => {
             processSpecificPokemonList();
+            // Passa apenas a data de término relevante para a contagem regressiva
             setInterval(() => {
-                countdown(firstEndDate, secondEndDate);
+                countdown(eventEndDate); 
             }, 1000);
         });
     </script>
