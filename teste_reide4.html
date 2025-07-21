@@ -325,7 +325,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
               default:
                   return '';
           }
-        }q
+        }
 
         function calculateCP(baseStats, ivs, level) {
           const cpmIndex = Math.round((level - 1) * 2);
@@ -451,17 +451,39 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
                   }
               }
               alternarImagens(pokemons, shinyPokemons);
+              // Chama a nova função passando os pokemons do JSON e os nomes das listas
+              logPokemonTypesFromList(pokemons);
           } catch (error) {
               console.error('Erro ao processar as listas de Pokémon:', error);
           }
         }
 
+        // Nova função para logar os tipos dos Pokémon que estão nas <li>
+        async function logPokemonTypesFromList(allPokemonsData) {
+            const allPokemonNamesInLists = [];
+            document.querySelectorAll('.pokemon-list li').forEach(li => {
+                const name = li.textContent.trim().replace('*', '').replace(/\s*\(shadow\)\s*/i, '').trim();
+                if (name) {
+                    allPokemonNamesInLists.push(name);
+                }
+            });
+
+            const pokemonTypesFromList = {};
+            allPokemonNamesInLists.forEach(listedName => {
+                const foundPokemon = allPokemonsData.find(p => p.nome.toLowerCase() === listedName.toLowerCase());
+                if (foundPokemon) {
+                    pokemonTypesFromList[listedName] = foundPokemon.tipos.filter(tipo => tipo !== "null");
+                } else {
+                    pokemonTypesFromList[listedName] = 'Não encontrado no JSON de Pokémon';
+                }
+            });
+            console.log('Tipos dos Pokémon listados no HTML:', pokemonTypesFromList);
+        }
+
+
         processSpecificPokemonList();
     </script>
     <script>
-        // Note: The countdown function is referenced but not defined in the provided code.
-        // You'll need to add its definition for this part to work.
-        // For example:
         function countdown(endDate1, endDate2) {
              const now = new Date().getTime();
              const distance = new Date(endDate2).getTime() - now;

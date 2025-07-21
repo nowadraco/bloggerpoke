@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Todos os Encarts de Tipos Pokémon</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex; /* Para organizar os encarts em linha */
+    flex-wrap: wrap; /* Para que os encarts quebrem a linha */
+    justify-content: center; /* Centraliza os encarts na página */
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    padding: 20px;
+  }
+
+  .encart-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    width: 350px; /* Largura fixa para cada encart */
+    margin: 15px; /* Espaçamento entre os encarts */
+    box-sizing: border-box; /* Garante que padding e borda não aumentem a largura total */
+  }
+
+  .encart-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+  }
+
+  /* Estilo para o número do encart */
+  .encart-title .encart-number {
+    font-size: 0.7em; /* Tamanho menor para o número */
+    color: #777;
+    margin-right: 8px; /* Espaço entre o número e o nome do tipo */
+  }
+
+  .defense-section {
+    margin-bottom: 15px;
+  }
+
+  .defense-section h3 {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 8px;
+    border-left: 4px solid #007bff;
+    padding-left: 8px;
+  }
+
+  .defense-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .defense-section li {
+    padding: 3px 0;
+    color: #666;
+    font-size: 0.95em;
+  }
+
+  .defense-section li strong {
+    color: #333;
+  }
+
+  /* Cores específicas para fraquezas, resistências e normais */
+  .fraqueza h3 { border-color: #dc3545; }
+  .resistencia h3 { border-color: #28a745; }
+  .normal h3 { border-color: #ffc107; }
+
+  /* Estilo para a mensagem de carregamento/erro */
+  #main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .message {
+    text-align: center;
+    color: #888;
+    margin-top: 50px;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+
+  <h1>Todas as Combinações de Tipos Pokémon</h1>
+
+  <select id="jsonSelector">
+    <option value="https://raw.githubusercontent.com/nowadraco/bloggerpoke/refs/heads/main/src/data/gamemaster/tipos_poke_completo.json">Ver JSON Completo</option>
+    <option value="https://raw.githubusercontent.com/nowadraco/bloggerpoke/refs/heads/main/src/data/gamemaster/tipos_poke_completo-teste.json">Ver JSON de Teste</option>
+  </select>
+
+  <button onclick="carregarTodosEncarts()">Carregar Todos os Encarts</button>
+
+  <div id="main-content">
+    <div class="message">Selecione um JSON e clique em "Carregar Todos os Encarts".</div>
+  </div>
+
+  <script>
+    async function carregarTodosEncarts() {
+      const selector = document.getElementById('jsonSelector');
+      const url = selector.value;
+      const mainContentDiv = document.getElementById('main-content');
+      mainContentDiv.innerHTML = '<div class="message">Carregando todos os encarts...</div>';
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Erro ao carregar o JSON: ${response.statusText}`);
+        }
+        const data = await response.json();
+
+        mainContentDiv.innerHTML = ''; // Limpa a mensagem de carregamento
+
+        let contador = 0; // Inicializa o contador
+
+        // Itera sobre cada objeto (combinação de tipo) no array JSON
+        data.forEach(tipoData => {
+          contador++; // Incrementa o contador para cada encart
+
+          const novoEncartDiv = document.createElement('div');
+          novoEncartDiv.className = 'encart-container';
+          mainContentDiv.appendChild(novoEncartDiv);
+
+          // Passa o contador para a função de renderização
+          renderizarEncart(tipoData, novoEncartDiv, contador);
+        });
+
+      } catch (error) {
+        console.error("Erro ao buscar o JSON:", error);
+        mainContentDiv.innerHTML = `<div class="message" style="color: red;">Erro ao carregar os encarts: ${error.message}</div>`;
+      }
+    }
+
+    // A função agora aceita um terceiro argumento: 'numeroEncart'
+    function renderizarEncart(tipoData, targetElement, numeroEncart) {
+      // Adiciona o número no título do encart
+      let htmlContent = `<h2 class="encart-title">
+                           <span class="encart-number">${numeroEncart}.</span>
+                           ${tipoData.tipos.join(' / ')}
+                         </h2>`;
+
+      const defesa = tipoData.defesa;
+
+      if (defesa.fraqueza && Object.keys(defesa.fraqueza).length > 0) {
+        htmlContent += `<div class="defense-section fraqueza"><h3>Fraqueza</h3><ul>`;
+        for (const [multiplier, types] of Object.entries(defesa.fraqueza)) {
+          htmlContent += `<li><strong>${multiplier}:</strong> ${types.join(', ')}</li>`;
+        }
+        htmlContent += `</ul></div>`;
+      }
+
+      if (defesa.resistencia && Object.keys(defesa.resistencia).length > 0) {
+        htmlContent += `<div class="defense-section resistencia"><h3>Resistência</h3><ul>`;
+        for (const [multiplier, types] of Object.entries(defesa.resistencia)) {
+          htmlContent += `<li><strong>${multiplier}:</strong> ${types.join(', ')}</li>`;
+        }
+        htmlContent += `</ul></div>`;
+      }
+
+      if (defesa.normal && Object.keys(defesa.normal).length > 0) {
+        htmlContent += `<div class="defense-section normal"><h3>Dano Normal</h3><ul>`;
+        for (const [multiplier, types] of Object.entries(defesa.normal)) {
+          htmlContent += `<li><strong>${multiplier}:</strong> ${types.join(', ')}</li>`;
+        }
+        htmlContent += `</ul></div>`;
+      }
+
+      targetElement.innerHTML = htmlContent;
+    }
+
+    // Opcional: Carregar automaticamente o primeiro JSON ao iniciar
+    // window.onload = carregarTodosEncarts;
+  </script>
+
+</body>
+</html>
